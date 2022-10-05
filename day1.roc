@@ -15,9 +15,14 @@ main =
     |> Path.fromStr
     |> File.readUtf8
     |> Task.map parseInput
-    |> Task.map countDepthIncreases
-    |> Task.map Num.toStr
-    |> Task.await (\count -> Stdout.line "The number of depth increases is: \(count)")
+    |> Task.map \depths ->
+        part1 = depths |> countDepthIncreases |> Num.toStr
+        part2 = depths |> slidingWindow |> countDepthIncreases |> Num.toStr
+
+        { part1, part2 }
+    |> Task.await
+        (\{ part1, part2 } ->
+            Stdout.line "The number of depth increases is Part 1:\(part1) Part 2:\(part2)")
     |> Program.quick
 
 parseInput : Str -> List U64
@@ -45,3 +50,21 @@ countDepthIncreases = \depths ->
 expect countDepthIncreases [] == 0
 expect countDepthIncreases [10, 15, 10] == 1
 expect countDepthIncreases [199, 200, 208, 210, 200, 207, 240, 269, 260, 263] == 7
+
+slidingWindow : List U64 -> List U64
+slidingWindow = \depths ->
+    depths
+    |> List.walk
+        { n1: Nothing, n2: Nothing, filtered: [] }
+        \state, depth ->
+            when Pair state.n1 state.n2 is
+                Pair Nothing Nothing -> { n1: Just depth, n2: Nothing, filtered: [] }
+                Pair (Just n1) Nothing -> { n1: Just depth, n2: Just n1, filtered: [] }
+                Pair (Just n1) (Just n2) ->
+                    { n1: Just depth, n2: Just n1, filtered: List.append state.filtered (n1 + n2 + depth) }
+
+                Pair _ _ -> state
+    |> .filtered
+
+expect slidingWindow [1, 2, 3, 4, 5, 6] == [6, 9, 12, 15]
+expect slidingWindow [199, 200, 208, 210, 200, 207, 240, 269, 260, 263] == [607, 618, 618, 617, 647, 716, 769, 792]
