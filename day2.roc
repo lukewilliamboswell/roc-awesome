@@ -54,15 +54,15 @@ expect parseInput "" == []
 expect parseInput "forward 12" == [Fd 12]
 expect parseInput "forward 5\ndown 5\nforward 8\nup 3\ndown 8\nforward 2" == [Fd 5, Dn 5, Fd 8, Up 3, Dn 8, Fd 2]
 
-process : List [Fd U64, Up U64, Dn U64] -> { h : U64, d : U64 }
+process : List [Fd U64, Up U64, Dn U64] -> { h : U64, d : U64, a : U64 }
 process = \movements ->
     movements
     |> List.walk
-        { h: 0, d: 0 }
+        { h: 0, d: 0, a: 0 }
         \state, current ->
             when current is
-                Fd x -> { state & h: state.h + x }
-                Up x -> { state & d: state.d - x }
-                Dn x -> { state & d: state.d + x }
+                Fd x -> { state & h: state.h + x, d: state.d + (x * state.a) }
+                Up x -> { state & a: state.a - x }
+                Dn x -> { state & a: state.a + x }
 
-expect process [Fd 5, Dn 5, Fd 8, Up 3, Dn 8, Fd 2] == { h: 15, d: 10 }
+expect process [Fd 5, Dn 5, Fd 8, Up 3, Dn 8, Fd 2] == { h: 15, d: 60, a: 10 }
