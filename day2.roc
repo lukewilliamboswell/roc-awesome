@@ -15,15 +15,17 @@ main =
     |> Path.fromStr
     |> File.readUtf8
     |> Task.map parseInput
+    |> Task.map process
     |> Task.await
-        (\_ ->
-            h = "10"
-            d = "12"
-            r = "120"
+        (\{ h, d } ->
+            hs = h |> Num.toStr
+            ds = d |> Num.toStr
+            rs = (h * d) |> Num.toStr
 
-            Stdout.line "Final position is h:\(h),d:\(d), result:\(r)")
+            Stdout.line "Final position is h:\(hs),d:\(ds), result:\(rs)")
     |> Program.quick
 
+maybeMove : Str, Str -> Result U64 [InvalidNumStr, NotFound]
 maybeMove = \line, direction ->
     line
     |> Str.replaceFirst direction ""
@@ -38,17 +40,29 @@ parseInput = \content ->
     content
     |> Str.split "\n"
     |> List.keepOks \line ->
-
         maybeForward = maybeMove line "forward"
         maybeDown = maybeMove line "down"
         maybeUp = maybeMove line "up"
 
         when Triple maybeForward maybeDown maybeUp is
-            Triple (Ok x) _ _ -> Fd x
-            Triple _ (Ok x) _ -> Dn x
-            Triple _ _ (Ok x) -> Up x
-            Triple _ _ _ -> Fd 0
+            Triple (Ok x) _ _ -> Ok (Fd x)
+            Triple _ (Ok x) _ -> Ok (Dn x)
+            Triple _ _ (Ok x) -> Ok (Up x)
+            Triple _ _ _ -> Err ""
 
 expect parseInput "" == []
 expect parseInput "forward 12" == [Fd 12]
 expect parseInput "forward 5\ndown 5\nforward 8\nup 3\ndown 8\nforward 2" == [Fd 5, Dn 5, Fd 8, Up 3, Dn 8, Fd 2]
+
+process : List [Fd U64, Up U64, Dn U64] -> { h : U64, d : U64 }
+process = \movements ->
+    movements
+    |> List.walk
+        { h: 0, d: 0 }
+        \state, current ->
+            when current is
+                Fd x -> { state & h: state.h + x }
+                Up x -> { state & d: state.d - x }
+                Dn x -> { state & d: state.d + x }
+
+expect process [Fd 5, Dn 5, Fd 8, Up 3, Dn 8, Fd 2] == { h: 15, d: 10 }
