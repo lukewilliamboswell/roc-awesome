@@ -20,10 +20,7 @@ main =
         (\bitCounts ->
             g = compareBitCounts bitCounts Gamma
             e = compareBitCounts bitCounts Epilson
-            p = when Pair (Str.toU128 g) (Str.toU128 e) is
-                    Pair (Ok gn) (Ok en) -> Num.toStr (gn*en)
-                    Pair _ _ -> "Err: could not convert Gamma and Epilson to numbers" 
-
+            p = Num.toStr ((binaryToDecimal g) * (binaryToDecimal e))
             Stdout.line "Part 1 -- The gamma:\(g), epsilon:\(e), power:\(p)")
     |> Program.quick
 
