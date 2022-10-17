@@ -15,11 +15,10 @@ main =
     |> Path.fromStr
     |> File.readUtf8
     |> Task.map parseInput
-    |> Task.map countBits
     |> Task.await
-        (\bitCounts ->
-            g = compareBitCounts bitCounts Gamma
-            e = compareBitCounts bitCounts Epilson
+        (\fileContents ->
+            g = fileContents |> countBits |> compareBitCounts Gamma
+            e = fileContents |> countBits |> compareBitCounts Epilson
             p = Num.toStr ((binaryToDecimal g) * (binaryToDecimal e))
             Stdout.line "Part 1 -- The gamma:\(g), epsilon:\(e), power:\(p)")
     |> Program.quick
