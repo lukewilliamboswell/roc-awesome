@@ -1,4 +1,4 @@
-app "aoc-2021-day-4"
+app "app-aoc-2021-day-4"
     packages { pf: "../cli-platform/main.roc" }
     imports [
         pf.Program.{ Program },

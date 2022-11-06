@@ -1,6 +1,6 @@
 # Hello World used for template and check basic program compiles
 
-app "problem000"
+app "app-euler-0"
     packages { pf: "../cli-platform/main.roc" }
     imports [
         pf.Stdout,

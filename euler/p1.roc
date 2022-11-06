@@ -1,6 +1,6 @@
 # Find the solution to Project Euler Problem 1
 
-app "problem001"
+app "app-euler-1"
     packages { pf: "../cli-platform/main.roc" }
     imports [
         pf.Stdout, 
