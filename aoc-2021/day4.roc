@@ -3,89 +3,96 @@ app "app-aoc-2021-day-4"
     imports [
         pf.Program.{ Program },
         pf.Stdout,
-        # pf.Task.{ Task },
-        # pf.File,
-        # pf.Path.{ Path },
+        Json,
+        pf.Task.{ Task },
+        pf.File,
+        pf.Path.{ Path },
     ]
     provides [main] to pf
 
 main : Program
 main =
-    Stdout.line "Day 4"
+    Path.fromStr "input-day-4.txt"
+    |> File.readUtf8
+    |> Task.map parseInput
+    |> Task.map (\parsedInput -> Encode.toBytes parsedInput Json.toUtf8)
+    |> Task.map (\encoded -> encoded |> Str.fromUtf8 |> Result.withDefault "")
+    |> Task.map Stdout.line
+    # Stdout.line "WIP"
     |> Program.quick
-    # task = file <- 
-    #             Path.fromStr "input-day-4.txt"
-    #             |> File.readUtf8
-    #             |> Task.await
 
-    #         Contents bingoNumbersStr bingoBoardsStr = splitContents file
+BingoBoard : List {row : U64, col: U64, number: U64}
+ParsedInput : {
+    bingoNumbers : List U64, 
+    boards : List BingoBoard,
+}
+ParsedInputHelper : [ParsingNumbers ParsedInput, ParsingBoard U64 ParsedInput]
 
-    #         bingoNumbers = 
-    #             bingoNumbersStr
-    #             |> Str.split ","
-    #             |> List.keepOks Str.toU64
+emptyBingoBoard : ParsedInput
+emptyBingoBoard = {bingoNumbers : [], boards : [] }
 
-    #         bingoBoards =
-    #             bingoBoardsStr
-    #             |> List.map (\str -> str |> Str.replaceEach "\n" "")
-    #             |> List.map (\str -> str |> Result.withDefault "")
-    #             |> List.map (\str -> str |> Str.split " ")
-    #             |> List.map (\str -> str |> List.keepOks Str.toU64)
-    #             |> List.keepOks parseBingoBoard
-    #             |> List.map printBingoBoard
-    #             |> Str.joinWith "\n\n"
+parseInput : Str -> ParsedInput
+parseInput = \fileContents ->
+    List.walk 
+        (Str.graphemes fileContents)
+        (ParsingNumbers emptyBingoBoard)
+        parseInputHelper
+    |> \output -> 
+        when output is
+            ParsingNumbers input -> input
+            ParsingBoard _ input -> input
+    |> \parsedInput ->
+        # filter out boards that are empty due to newline characters
+        updatedBoards = List.keepIf parsedInput.boards (\boards -> List.len boards > 0)
+        {parsedInput & boards:updatedBoards}
 
-            
-    #         printValue = 
-    #             Str.concat 
-    #                 (bingoBoards )
-    #                 (bingoNumbers |> List.map Num.toStr |> Str.joinWith ",")
-            
-    #         Stdout.line printValue
-    
-    
+parseInputHelper : ParsedInputHelper, Str -> ParsedInputHelper
+parseInputHelper = \input, grapheme ->
+    number = Str.toU64 grapheme
+    when number is
+        Ok num ->
+            when input is
+                ParsingNumbers state ->  
+                    updatedBingoNumbers = List.append state.bingoNumbers num
+                    ParsingNumbers {state & bingoNumbers : updatedBingoNumbers}
+                ParsingBoard boardNumber state ->
+                    maybeBoard = List.get state.boards boardNumber
+                    when maybeBoard is 
+                        Ok board ->
+                            len = List.len board
+                            updatedBoard = List.append board {row : nextRow num, col : nextCol num, number : num } 
+                            updatedBoards = List.set state.boards boardNumber updatedBoard
+                            ParsingBoard boardNumber {state & boards : updatedBoards}
+                        Err _ -> 
+                            updatedBoard = [{row : 0u64, col: 0u64, number: num}]
+                            updatedBoards = List.set state.boards boardNumber updatedBoard
+                            ParsingBoard boardNumber {state & boards : updatedBoards}
+        Err _ -> 
+            when input is
+                ParsingNumbers state ->
+                    ParsingBoard 0u64 state
+                ParsingBoard boardNumber state ->
+                    ParsingBoard (boardNumber+1) state           
 
-# Board : Dict [Index U8 U8] U64
+# Get the index for the next bingo number to insert into a board  
+nextRow : U64 -> U64
+nextRow = \len ->
+    (len % 5)
 
-# ## Parse numbers into a bingo board
-# ## Note will overwrite numbers if more than 25 
-# parseBingoBoard : List U64 -> Result Board [TooManyNumbers, TooFewNumbers]
-# parseBingoBoard = \numbers ->
-#     length = List.len numbers 
-#     if length == 25 then 
-#         # x0y0 x1y0 ... x4y0
-#         # x0y1 ...  ... x4y1
-#         # .
-#         # .
-#         # x0y4 ...  ... x4y4
-#         List.walk 
-#             numbers
-#             {board: Dict.empty, x : 0u8, y : 0u8}
-#             \state, elem ->
-#                 newBoard = Dict.insert state.board (Index state.x state.y) elem
-#                 newX = (state.x + 1u8) % 5u8
-#                 newY = (state.y + 1u8) % 5u8
-#                 {board: newBoard, x : newX, y : newY}
-#         |> \state -> Ok state.board
-#     else if length < 25 then
-#         Err TooFewNumbers
-#     else 
-#         Err TooManyNumbers 
-    
-# expect parseBingoBoard [1,2,3] == Err TooFewNumbers
+expect nextRow 0 == 0
+expect nextRow 1 == 1
+expect nextRow 2 == 2
+expect nextRow 3 == 3
+expect nextRow 4 == 4
+expect nextRow 5 == 0
 
-# printBingoBoard : Board -> Str
-# printBingoBoard = \_ ->
-#     "TODO: Implement me"
+nextCol : U64 -> U64
+nextCol = \len ->
+    (len // 5) % 5
 
-# splitContents : Str ->  [Contents Str (List Str)]
-# splitContents = \contents ->
-#     {before, others} = contents 
-#         |> Str.split "\n\n"
-#         |> List.split 1
-    
-#     bingoNumbersStr = before 
-#         |> List.first
-#         |> Result.withDefault ""
-
-#     Contents bingoNumbersStr others
+expect nextCol 0 == 0
+expect nextCol 1 == 0
+expect nextCol 5 == 1
+expect nextCol 6 == 1
+expect nextCol 10 == 2
+expect nextCol 11 == 2
