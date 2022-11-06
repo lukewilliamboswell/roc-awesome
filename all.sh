@@ -1,15 +1,17 @@
 #!/bin/bash
 
 # AOC 2021
-for file in ./aoc-2021/*.roc
+cd ./aoc-2021
+for file in *.roc
 do
-    roc test $file
-    roc dev $file
+    roc test $file --prebuilt-platform true
+    roc dev $file --prebuilt-platform true
 done
 
 # Project Euler
-for file in ./euler/*.roc
+cd ../euler
+for file in *.roc
 do
-    roc test $file
-    roc dev $file
+    roc test $file --prebuilt-platform true
+    roc dev $file --prebuilt-platform true
 done
