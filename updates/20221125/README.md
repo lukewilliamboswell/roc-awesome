@@ -20,6 +20,6 @@ Pull requests to update welcome!
 - `dbg` added in [PR#4578](https://github.com/roc-lang/roc/pull/4578), described in [proposal](https://docs.google.com/document/d/1VsEGIwZDWdssCQKnzxijjzpj0WpgTSsR_eeZHX0A4ug/edit) enables printline debugging for development.
 
 ## Platforms
-- WIP @brian-carroll making progress on [Virtual-DOM](https://github.com/roc-lang/roc/pull/4427) implementing [Action-State in Roc](https://docs.google.com/document/d/16qY4NGVOHu8mvInVD-ddTajZYSsFvFBvQON_hmyHGfo/edit).
+- WIP @brian-carroll explorations with [Virtual-DOM](https://github.com/roc-lang/roc/pull/4427) to implement [Action-State in Roc](https://docs.google.com/document/d/16qY4NGVOHu8mvInVD-ddTajZYSsFvFBvQON_hmyHGfo/edit), identifing areas to improve Roc language and compiler.
 - Cli API simplified in [PR#4582](https://github.com/roc-lang/roc/pull/4582) with removal of third param from Task.
 - @lukewilliamboswell has made progress on [Tui](https://github.com/lukewilliamboswell/roc/tree/tui/examples/tui), intent is to explore Action-State and editor ideas.
