@@ -1,22 +1,17 @@
 
 # Syntax Highlighting using the Roc Parser
-*Thanks to @Joshua Warner for these ideas*
+*Thanks to @Joshua Warner for this idea*
 
 **Goal.** Propose an approach that evolves Roc's parser to support syntax highlighting for HTML documentation.
 
-**Background.** I have been doing some research into developing a grammar of Roc in [tree-sitter](https://tree-sitter.github.io/tree-sitter/) for the use-case of syntax highlighting. This also would provide additional benefits like enabling more advanced use cases such as folding etc and support in text-editors. However, the more I research the more I started to question if this is the best direction for Roc at this time. The features TS would enable are desirable in the short-term, however, I think they will be better satisfied by Roc's projectional editor. 
+**Background.** I have been doing some research into developing a grammar of Roc in [tree-sitter](https://tree-sitter.github.io/tree-sitter/) for the use-case of documentation syntax highlighting. A TS grammar also would provide additional benefits, such as folding and support in most text-editors. However, the more I research the more I started to question if this was an achievable project to work on. The features TS would enable are desirable in the short-term, however, I think Roc's projectional editor will be better suited in the medium-long term.
 
-**Issues**
-- Roc's indentation rules are *very* subtle so it will be hard to get a tree-sitter parser that works correctly
-- This is particularly challenging for keywords etc which are context-sensitive and so there are many subtle cases to handle correctly.
+Roc's indentation rules are *very* subtle. It will be hard to build and maintain a tree-sitter parser that works correctly. Keywords are particularly challenging as they are context-sensitive with many subtle cases to handle.
 
-**Proposed Solution** 
-Emit relevant syntax information such as keywords as a side stream in the parser. This supports a syntax highlighting use case, and is easy to make optional and eliminate any effect on the production compiler.
+**Proposed Solution.** Emit relevant syntax information as a side stream in the parser. This supports a syntax highlighting use case, and is easy to make optional which eliminates any effect on the production compiler.
  
-@JoshuaWarner has recently embarked on [a campaign](https://github.com/roc-lang/roc/pull/4470) to convert the parser to use combinators. The goal is to have *one* parser that can be used in different contexts, and provide different behaviour as required. The Parser trait that has a single [parse method](https://github.com/roc-lang/roc/blob/main/crates/compiler/parse/src/parser.rs#L771). If everything is combinator-based, it's easy to have a second `parse_for_highlight` method in this trait that returns extra data along with the thing it just parsed. In this case, it will also return a list of locations that were parsed; in something like `Vec<Loc<SyntaxElement>>`.
+@Joshua Warner has recently embarked on [a campaign](https://github.com/roc-lang/roc/pull/4470) to convert the parser to use combinators. His goal is to have *one* parser (to rule them all) which can be used in multiple contexts with different behaviour as required. The `Parser` trait currently has a single [parse()](https://github.com/roc-lang/roc/blob/main/crates/compiler/parse/src/parser.rs#L771) method. When everything is combinator-based; it will be possible to have a second `parse_for_highlight()` method which returns alternate date. In this case, it returns a list of syntax relevant locations in the buffer, i.e. `Vec<Loc<SyntaxElement>>`.
 
-When everything is converted to using combinators, we can then implement logic for just the combinators themselves. We can capture the `Loc` information for relevant syntax such as keywords, builtins, constants, literals, strings, comments, operators, and other characters `(`,`:` etc.
+To do this once the parser is fully converted to combinators; we only need to implement logic in the combinators. We can capture the `Loc` information for relevant syntax such as; keywords, builtins, constants, literals, strings, comments, operators, and other characters `(`,`:` etc. Then when we serialise the text buffer, we can insert `<span>` and `</span>` wherever needed.
 
-Then we simply serialise the text buffer and insert `<span>` and `</span>` where needed.
-
-There is a fair amount of up front work before we see any externally-visible progress, however I think this is a worthwhile objective to aim for. 
+Note that there is a signifcant amount of up front work before we see any externally-visible progress, however, if I think this is a worthwhile objective to work towards.
