@@ -1,27 +1,24 @@
 app "app-aoc-2021-day-4"
-    packages { pf: "../cli-platform/main.roc" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.0/_V6HO2Dwez0xsSstgK8qC6wBLXSfNlVFyUTMg0cYiQQ.tar.br" }
     imports [
-        pf.Program.{ Program },
         pf.Stdout,
-        # Json,
         pf.Task.{ Task },
         pf.File,
         pf.Path.{ Path },
+        pf.Process,
     ]
     provides [main] to pf
 
-main : Program
+main : Task {} []
 main =
-    Path.fromStr "input-day-4.txt"
-    |> File.readUtf8
-    # |> Task.map parseInput
-    # |> Task.map (\parsedInput -> 
-    #     expect parsedInput != parsedInput
-    #     Encode.toBytes parsedInput Json.toUtf8
-    # )
-    # |> Task.map (\encoded -> encoded |> Str.fromUtf8 |> Result.withDefault "")
-    |> Task.map Stdout.line
-    |> Program.quick
+    task = 
+        _ <- File.readUtf8 (Path.fromStr "input-day-4.txt") |> Task.await
+        Stdout.line "Read ths input file... do something with it"
+    
+    Task.attempt task \result ->
+        when result is
+            Ok {} -> Process.exit 0
+            Err _ -> Process.exit 1
 
 # BingoBoard : List {row : U64, col: U64, number: U64}
 # ParsedInput : {

@@ -1,29 +1,27 @@
 app "app-aoc-2021-day-1"
-    packages { pf: "../cli-platform/main.roc" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.0/_V6HO2Dwez0xsSstgK8qC6wBLXSfNlVFyUTMg0cYiQQ.tar.br" }
     imports [
-        pf.Program.{ Program },
         pf.Stdout,
         pf.Task.{ Task },
         pf.File,
         pf.Path.{ Path },
+        pf.Process,
     ]
     provides [main] to pf
 
-main : Program
+main : Task {} []
 main =
-    "input-day-1.txt"
-    |> Path.fromStr
-    |> File.readUtf8
-    |> Task.map parseInput
-    |> Task.map \depths ->
-        part1 = depths |> countDepthIncreases |> Num.toStr
-        part2 = depths |> slidingWindow |> countDepthIncreases |> Num.toStr
-
-        { part1, part2 }
-    |> Task.await
-        (\{ part1, part2 } ->
-            Stdout.line "The number of depth increases is Part 1:\(part1) Part 2:\(part2)")
-    |> Program.quick
+    task = 
+        inputDay1 <- File.readUtf8 (Path.fromStr "input-day-1.txt") |> Task.await
+        parsedInput = parseInput inputDay1
+        part1 = parsedInput |> countDepthIncreases |> Num.toStr
+        part2 = parsedInput |> slidingWindow |> countDepthIncreases |> Num.toStr
+        Stdout.line "The number of depth increases is Part 1:\(part1) Part 2:\(part2)"
+    
+    Task.attempt task \result ->
+        when result is
+            Ok {} -> Process.exit 0
+            Err _ -> Process.exit 1
 
 parseInput : Str -> List U64
 parseInput = \content ->

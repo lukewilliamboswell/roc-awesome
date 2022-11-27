@@ -1,29 +1,28 @@
 app "app-aoc-2021-day-2"
-    packages { pf: "../cli-platform/main.roc" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.0/_V6HO2Dwez0xsSstgK8qC6wBLXSfNlVFyUTMg0cYiQQ.tar.br" }
     imports [
-        pf.Program.{ Program },
         pf.Stdout,
         pf.Task.{ Task },
         pf.File,
         pf.Path.{ Path },
+        pf.Process,
     ]
     provides [main] to pf
 
-main : Program
+main : Task {} []
 main =
-    "input-day-2.txt"
-    |> Path.fromStr
-    |> File.readUtf8
-    |> Task.map parseInput
-    |> Task.map process
-    |> Task.await
-        (\{ h, d } ->
-            hs = h |> Num.toStr
-            ds = d |> Num.toStr
-            rs = (h * d) |> Num.toStr
-
-            Stdout.line "Final position is h:\(hs),d:\(ds), result:\(rs)")
-    |> Program.quick
+    task = 
+        inputDay2 <- File.readUtf8 (Path.fromStr "input-day-2.txt") |> Task.await
+        {h,d} = inputDay2 |> parseInput |> process
+        hs = h |> Num.toStr
+        ds = d |> Num.toStr
+        rs = (h * d) |> Num.toStr
+        Stdout.line "Final position is h:\(hs),d:\(ds), result:\(rs)"
+    
+    Task.attempt task \result ->
+        when result is
+            Ok {} -> Process.exit 0
+            Err _ -> Process.exit 1
 
 maybeMove : Str, Str -> Result U64 [InvalidNumStr, NotFound]
 maybeMove = \line, direction ->

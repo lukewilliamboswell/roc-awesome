@@ -1,21 +1,21 @@
 # Find the solution to Project Euler Problem 4
 
 app "app-euler-4"
-    packages { pf: "../cli-platform/main.roc" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.0/_V6HO2Dwez0xsSstgK8qC6wBLXSfNlVFyUTMg0cYiQQ.tar.br" }
     imports [
-        pf.Stdout, 
-        pf.Program.{ Program },
+        pf.Stdout,
+        pf.Task.{ Task },
     ]
     provides [main] to pf
 
-main : Program
+main : Task {} []
 main =
-    result = largestPalindrome (List.range 100 999) 
+    result = 
+        largestPalindrome (List.range 100 999) 
         |> Result.map Num.toStr
         |> Result.withDefault "Error"
          
     Stdout.line "The largest palindrome is \(result)" 
-        |> Program.quick
 
 expect List.range 1 4 == [1,2,3]
  

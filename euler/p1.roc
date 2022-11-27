@@ -1,19 +1,18 @@
 # Find the solution to Project Euler Problem 1
 
 app "app-euler-1"
-    packages { pf: "../cli-platform/main.roc" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.0/_V6HO2Dwez0xsSstgK8qC6wBLXSfNlVFyUTMg0cYiQQ.tar.br" }
     imports [
-        pf.Stdout, 
-        pf.Program.{ Program }
+        pf.Stdout,
+        pf.Task.{ Task },
     ]
     provides [main] to pf
 
-main : Program
+main : Task {} []
 main =  
     result = List.range 1 1000 |> sumMultiples
     
     Stdout.line "The sum of all the multiples of 3 or 5 below 1000 is \(result)." 
-        |> Program.quick
 
 # Calculate the sume of a list of integers
 sumMultiples : List U64 -> Str
