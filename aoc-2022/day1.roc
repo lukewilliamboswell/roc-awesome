@@ -20,14 +20,23 @@ main =
         answer = 
             Parser.parse parser input List.isEmpty
             |> Result.map \elfCalories ->
-                highestCals = 
+                sortedCals = 
                     elfCalories 
                     |> List.map List.sum
                     |> List.sortDesc
+
+                highestCals = 
+                    sortedCals
                     |> List.first
                     |> Result.map Num.toStr
                     |> Result.withDefault ""
-                "The highest calories is \(highestCals)"
+
+                topThree = 
+                    when sortedCals is
+                        [first, second, third, ..] -> first + second + third |> Num.toStr
+                        _ -> crash "should have more than three elves"
+                
+                "The highest calories is \(highestCals), and top three is \(topThree)"
                         
         when answer is
             Ok msg -> Stdout.line msg
