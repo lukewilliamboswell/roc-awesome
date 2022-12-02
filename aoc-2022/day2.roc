@@ -15,6 +15,7 @@ main =
     task =
         fileContents <- File.readUtf8 (Path.fromStr "input-day-2.txt") |> Task.await
         input = Str.toUtf8 fileContents |> List.append '\n'
+        # input = Str.toUtf8 "A Y\nB X\nC Z\n"
         parser = Parser.oneOrMore rockPaperScissorParser
         answer =
             Parser.parse parser input List.isEmpty
@@ -34,32 +35,36 @@ main =
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
 RSP : [Rock, Scissor, Paper]
+Outcome : [Loss, Draw, Win]
 
-totalScore : List { opponent : RSP, guide : RSP } -> U64
+totalScore : List { opponent : RSP, guide : Outcome } -> U64
 totalScore = \rounds ->
     rounds
-    |> List.map calculateRoundScore
+    |> List.map \round ->
+        round
+        |> determineChoice
+        |> calculateScore
     |> List.sum
 
-calculateRoundScore : { opponent : RSP, guide : RSP } -> U64
-calculateRoundScore = \{ opponent, guide } ->
+calculateScore : { opponent : RSP, choice : RSP } -> U64
+calculateScore = \{ opponent, choice } ->
     baseScore =
-        when guide is
+        when choice is
             Rock -> 1
             Paper -> 2
             Scissor -> 3
 
     winLossDrawScore =
-        when determineOutcome { opponent, guide } is
+        when determineOutcome { opponent, choice } is
             Loss -> 0
             Draw -> 3
             Win -> 6
 
     baseScore + winLossDrawScore
 
-determineOutcome : { opponent : RSP, guide : RSP } -> [Win, Loss, Draw]
-determineOutcome = \{ opponent, guide } ->
-    when P opponent guide is
+determineOutcome : { opponent : RSP, choice : RSP } -> Outcome
+determineOutcome = \{ opponent, choice } ->
+    when P opponent choice is
         P Rock Rock -> Draw
         P Rock Paper -> Win
         P Rock Scissor -> Loss
@@ -70,7 +75,16 @@ determineOutcome = \{ opponent, guide } ->
         P Scissor Paper -> Loss
         P Scissor Scissor -> Draw
 
-rockPaperScissorParser : Parser (List U8) { opponent : RSP, guide : RSP }
+determineChoice : { opponent : RSP, guide : Outcome } -> { opponent : RSP, choice : RSP }
+determineChoice = \{ opponent, guide } ->
+    if determineOutcome { opponent, choice: Rock } == guide then
+        { opponent, choice: Rock }
+    else if determineOutcome { opponent, choice: Paper } == guide then
+        { opponent, choice: Paper }
+    else
+        { opponent, choice: Scissor }
+
+rockPaperScissorParser : Parser (List U8) { opponent : RSP, guide : Outcome }
 rockPaperScissorParser =
     Parser.const (\opponent -> \_ -> \guide -> \_ -> { opponent, guide })
     |> Parser.apply opponentParser
@@ -89,9 +103,9 @@ opponentParser =
 
 guideParser =
     Parser.oneOf [
-        parseUtf8 'X' |> Parser.map \_ -> Rock,
-        parseUtf8 'Y' |> Parser.map \_ -> Paper,
-        parseUtf8 'Z' |> Parser.map \_ -> Scissor,
+        parseUtf8 'X' |> Parser.map \_ -> Loss,
+        parseUtf8 'Y' |> Parser.map \_ -> Draw,
+        parseUtf8 'Z' |> Parser.map \_ -> Win,
     ]
 
 # Crashing roc test :sadface:
