@@ -20,25 +20,24 @@ main =
         answer =
             Parser.parse parser input List.isEmpty
             |> Result.map \rucksacks ->
-                sum =
+                part1 =
                     rucksacks
                     |> List.map typesInBothCompartments
-                    |> List.map \commonItems ->
-                        when Set.toList commonItems is
-                            [first] -> first
-                            _ ->
-                                items =
-                                    commonItems
-                                    |> Set.toList
-                                    |> List.map rucksackToStr
-                                    |> Str.joinWith ","
-
-                                crash (Str.concat "more than one common item" items)
+                    |> List.map getCommonItem
                     |> List.map itemPriority
                     |> List.sum
                     |> Num.toStr
 
-                "The sum of rucksack commoin items is \(sum) "
+                part2 =
+                    rucksacks
+                    |> groupRucksackIntoThrees []
+                    |> List.map detectGroupType
+                    |> List.map getCommonItem
+                    |> List.map itemPriority
+                    |> List.sum
+                    |> Num.toStr
+
+                "The sum of rucksack items part 1: \(part1), part 2: \(part2)"
 
         when answer is
             Ok msg -> Stdout.line msg
@@ -50,6 +49,24 @@ main =
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
+RuckSack : { leftCompartnent : List RuckSackItem, rightCompartnent : List RuckSackItem }
+RuckSackGroup : { first : List RuckSackItem, second : List RuckSackItem, third : List RuckSackItem }
+RuckSackItem : [LowerCase U8, UpperCase U8]
+
+groupRucksackIntoThrees : List RuckSack, List RuckSackGroup -> List RuckSackGroup
+groupRucksackIntoThrees = \rucksacks, groups ->
+    when rucksacks is
+        [first, second, third, ..] ->
+            group = {
+                first: List.concat first.leftCompartnent first.rightCompartnent,
+                second: List.concat second.leftCompartnent second.rightCompartnent,
+                third: List.concat third.leftCompartnent third.rightCompartnent,
+            }
+
+            groupRucksackIntoThrees (List.drop rucksacks 3) (List.append groups group)
+
+        _ -> groups
+
 itemPriority : RuckSackItem -> U64
 itemPriority = \item ->
     when item is
@@ -59,7 +76,7 @@ itemPriority = \item ->
         UpperCase char ->
             char - 'A' + 27 |> Num.toU64
 
-typesInBothCompartments : { leftCompartnent : List RuckSackItem, rightCompartnent : List RuckSackItem } -> Set RuckSackItem
+typesInBothCompartments : RuckSack -> Set RuckSackItem
 typesInBothCompartments = \{ leftCompartnent, rightCompartnent } ->
     # Wanted to use Set.intersection but I think it is blocked on [#4415](https://github.com/roc-lang/roc/pull/4415)
     List.walk
@@ -71,7 +88,21 @@ typesInBothCompartments = \{ leftCompartnent, rightCompartnent } ->
             else
                 commonItems
 
-rucksackParser : Parser (List U8) { leftCompartnent : List RuckSackItem, rightCompartnent : List RuckSackItem }
+detectGroupType : RuckSackGroup -> Set RuckSackItem
+detectGroupType = \{ first, second, third } ->
+    List.walk
+        first
+        Set.empty
+        \commonItems, item ->
+            inSecond = List.contains second item
+            inThird = List.contains third item
+
+            if inSecond && inThird then
+                Set.insert commonItems item
+            else
+                commonItems
+
+rucksackParser : Parser (List U8) RuckSack
 rucksackParser =
     const
         (\items -> \_ ->
@@ -97,8 +128,6 @@ rucksaskItemParser =
             Err ListWasEmpty ->
                 Err (ParsingFailure "empty list")
 
-RuckSackItem : [LowerCase U8, UpperCase U8]
-
 codepoint : U8 -> Parser (List U8) U8
 codepoint = \x ->
     buildPrimitiveParser \input ->
@@ -112,11 +141,7 @@ codepoint = \x ->
             Err ListWasEmpty ->
                 Err (ParsingFailure "empty list")
 
-rucksackToStr : RuckSackItem -> Str
-rucksackToStr = \item ->
-    when item is
-        UpperCase char ->
-            Str.fromUtf8 [char] |> Result.withDefault ""
-
-        LowerCase char ->
-            Str.fromUtf8 [char] |> Result.withDefault ""
+getCommonItem = \commonItems ->
+    when (Set.toList commonItems |> List.first) is
+        Ok value -> value
+        Err _ -> crash "more than one common item"
