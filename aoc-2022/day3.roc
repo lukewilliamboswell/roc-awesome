@@ -78,15 +78,10 @@ itemPriority = \item ->
 
 typesInBothCompartments : RuckSack -> Set RuckSackItem
 typesInBothCompartments = \{ leftCompartnent, rightCompartnent } ->
-    # Wanted to use Set.intersection but I think it is blocked on [#4415](https://github.com/roc-lang/roc/pull/4415)
-    List.walk
-        leftCompartnent
-        Set.empty
-        \commonItems, item ->
-            if List.contains rightCompartnent item then
-                Set.insert commonItems item
-            else
-                commonItems
+    left = Set.fromList leftCompartnent
+    right = Set.fromList rightCompartnent
+
+    Set.intersection right left
 
 detectGroupType : RuckSackGroup -> Set RuckSackItem
 detectGroupType = \{ first, second, third } ->
