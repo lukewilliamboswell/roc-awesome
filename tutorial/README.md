@@ -2,7 +2,7 @@
 ## Running
 
 ```bash
-roc run static-tutorial.roc -- input/ output/
+roc run tutorial.roc -- input/ output/
 ```
 
 ## Serve files
