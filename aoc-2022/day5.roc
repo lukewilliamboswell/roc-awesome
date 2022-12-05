@@ -51,17 +51,17 @@ main =
     task =
         # Process sample input
         sampleInput = Str.toUtf8 "move 1 from 2 to 1\nmove 3 from 1 to 3\nmove 2 from 2 to 1\nmove 1 from 1 to 2"
-        {} <- runSampleInputTask "Sample" sampleStacks (many moveParser) sampleInput |> Task.await
+        {} <- process "Sample" sampleStacks (many moveParser) sampleInput |> Task.await
 
         # Process file input
         fileInput <- File.readUtf8 (Path.fromStr "input-day-5.txt") |> Task.map Str.toUtf8 |> Task.await
-        {} <- runSampleInputTask "Input" fileInputStacks (many moveParser) fileInput |> Task.await
+        {} <- process "Input" fileInputStacks (many moveParser) fileInput |> Task.await
 
         Stdout.line "Completed"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
-runSampleInputTask = \name, stackStart, parser, input ->
+process = \name, stackStart, parser, input ->
     instructions = when parse parser input List.isEmpty is
         Ok a -> a
         Err (ParsingFailure _) -> crash "Parsing sample failed"
