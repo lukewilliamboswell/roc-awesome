@@ -13,6 +13,9 @@ app "app-aoc-2022-day-5"
         instructionsToStr, # only needed for debugging, putting here to silence warning
     ] to pf
 
+MoveInstruction : { count : Nat, fromIndex : Nat, toIndex : Nat }
+Stack : List Str
+
 # Hardcode stack starting state becuase this looks like a challenge to parse 
 #     [D]
 # [N] [C]
@@ -49,19 +52,19 @@ main : Task {} []
 main =
 
     task =
-        # Process sample input
         sampleInput = Str.toUtf8 "move 1 from 2 to 1\nmove 3 from 1 to 3\nmove 2 from 2 to 1\nmove 1 from 1 to 2"
-        {} <- process "Sample" sampleStacks (many moveParser) sampleInput |> Task.await
-
-        # Process file input
         fileInput <- File.readUtf8 (Path.fromStr "input-day-5.txt") |> Task.map Str.toUtf8 |> Task.await
-        {} <- process "Input" fileInputStacks (many moveParser) fileInput |> Task.await
 
-        Stdout.line "Completed"
+        {} <- process "Part 1 CrateMover9000 Sample" sampleStacks (many moveParser) sampleInput moveOneAtATime |> Task.await
+        {} <- process "Part 1 CrateMover9000 Input" fileInputStacks (many moveParser) fileInput moveOneAtATime |> Task.await
+        {} <- process "Part 2 CrateMover9001 Sample" sampleStacks (many moveParser) sampleInput moveMultipleAtOnce |> Task.await
+        {} <- process "Part 2 CrateMover9001 Input" fileInputStacks (many moveParser) fileInput moveMultipleAtOnce |> Task.await
+
+        Stdout.line "Completed processing"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
-process = \name, stackStart, parser, input ->
+process = \name, stackStart, parser, input, moveFn ->
     instructions = when parse parser input List.isEmpty is
         Ok a -> a
         Err (ParsingFailure _) -> crash "Parsing sample failed"
@@ -70,17 +73,14 @@ process = \name, stackStart, parser, input ->
 
             crash "Parsing sample incomplete \(ls)"
 
-    # Used for debugging
+    # Used for debugging to print out the parsed instructions
     # {} <- Stdout.line (instructionsToStr instructions) |> Task.await
 
     answer =
-        List.walk instructions stackStart moveOneAtATime
+        List.walk instructions stackStart moveFn
         |> stacksToStr
 
-    Stdout.line "\(name) stack after moving one at a time\n\(answer)" # ", Part 1: \(countContained), Part 2: \(countAnyOverlap)"
-
-# model the stack as a list
-Stack : List Str
+    Stdout.line "\(name) stack after moving\n\(answer)"
 
 # implement stack operations
 pop : Stack -> { stack : Stack, value : Str }
@@ -96,8 +96,26 @@ push = \stack, value ->
 expect pop ["D", "C", "M"] == { stack: ["C", "M"], value: "D" }
 expect push ["C", "M"] "D" == ["D", "C", "M"]
 
-# model move instructions 
-MoveInstruction : { count : Nat, fromIndex : Nat, toIndex : Nat }
+moveMultipleAtOnce : Dict Nat Stack, MoveInstruction -> Dict Nat Stack
+moveMultipleAtOnce = \stacks, { count, fromIndex, toIndex } ->
+    fromStack =
+        when Dict.get stacks fromIndex is
+            Ok a -> a
+            Err _ -> crash "getting empty from stack"
+
+    toStack =
+        when Dict.get stacks toIndex is
+            Ok a -> a
+            Err _ -> crash "getting empty to stack"
+
+    values = List.takeFirst fromStack count
+
+    updatedFromStack = List.drop fromStack count
+    updatedToStack = List.concat values toStack
+
+    stacks
+    |> Dict.insert fromIndex updatedFromStack
+    |> Dict.insert toIndex updatedToStack
 
 moveOneAtATime : Dict Nat Stack, MoveInstruction -> Dict Nat Stack
 moveOneAtATime = \stacks, { count, fromIndex, toIndex } ->
