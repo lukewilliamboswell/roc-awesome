@@ -74,10 +74,10 @@ runSampleInputTask = \name, stackStart, parser, input ->
     # {} <- Stdout.line (instructionsToStr instructions) |> Task.await
 
     answer =
-        List.walk instructions stackStart move
+        List.walk instructions stackStart moveOneAtATime
         |> stacksToStr
 
-    Stdout.line "\(name) stack after moves\n\(answer)" # ", Part 1: \(countContained), Part 2: \(countAnyOverlap)"
+    Stdout.line "\(name) stack after moving one at a time\n\(answer)" # ", Part 1: \(countContained), Part 2: \(countAnyOverlap)"
 
 # model the stack as a list
 Stack : List Str
@@ -99,9 +99,8 @@ expect push ["C", "M"] "D" == ["D", "C", "M"]
 # model move instructions 
 MoveInstruction : { count : Nat, fromIndex : Nat, toIndex : Nat }
 
-move : Dict Nat Stack, MoveInstruction -> Dict Nat Stack
-move = \stacks, { count, fromIndex, toIndex } ->
-
+moveOneAtATime : Dict Nat Stack, MoveInstruction -> Dict Nat Stack
+moveOneAtATime = \stacks, { count, fromIndex, toIndex } ->
     if count == 0 then
         stacks
     else
@@ -130,7 +129,7 @@ move = \stacks, { count, fromIndex, toIndex } ->
                     |> Dict.insert fromIndex updatedFromStack
                     |> Dict.insert toIndex updatedToStack
 
-                move updatedStacks { count: count - 1, fromIndex, toIndex }
+                moveOneAtATime updatedStacks { count: count - 1, fromIndex, toIndex }
 
 moveParser : Parser (List U8) MoveInstruction
 moveParser =
