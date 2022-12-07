@@ -5,8 +5,11 @@ app "app-aoc-2022-day-7"
         pf.Task.{ Task },
         # pf.File,
         # pf.Path.{ Path },
-        Parser.Core.{ Parser, parsePartial, parse, const, oneOf, keep, skip, chompUntil },
+        Parser.Core.{ Parser, parsePartial, parse, const, oneOf,many,keep, skip, chompUntil, chompWhile },
         Parser.Str.{ string, codeunit },
+        Decode,
+        Json,
+        TerminalColor.{Color, withColor},
     ]
     provides [
         main,
@@ -16,15 +19,149 @@ main : Task {} []
 main =
 
     task =
-        # sampleInput = Str.toUtf8 "move 1 from 2 to 1\nmove 3 from 1 to 3\nmove 2 from 2 to 1\nmove 1 from 1 to 2"
         # fileInput <- File.readUtf8 (Path.fromStr "input-day-5.txt") |> Task.map Str.toUtf8 |> Task.await
-        # {} <- process "Part 1 CrateMover9000 Sample" sampleStacks (many moveParser) sampleInput moveOneAtATime |> Task.await
+        {} <- process (withColor "Part 1 Sample\n" Green) sampleInput |> Task.await
         # {} <- process "Part 1 CrateMover9000 Input" fileInputStacks (many moveParser) fileInput moveOneAtATime |> Task.await
         # {} <- process "Part 2 CrateMover9001 Sample" sampleStacks (many moveParser) sampleInput moveMultipleAtOnce |> Task.await
         # {} <- process "Part 2 CrateMover9001 Input" fileInputStacks (many moveParser) fileInput moveMultipleAtOnce |> Task.await
-        Stdout.line "Completed processing"
+        Stdout.line (withColor "Completed processing" Green)
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
+
+process : Str, List U8 -> Task {} []
+process = \name, input ->
+    lineOutput = when parse lineOutputParser (List.concat input  (Str.toUtf8 "\n")) List.isEmpty is
+        Ok a -> a
+        Err (ParsingFailure _) -> crash "Parsing sample failed"
+        Err (ParsingIncomplete leftover) ->
+            ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
+            crash "Parsing sample incomplete \(ls)"
+    # Used for debugging to print out the parsed instructions
+    lines = 
+        lineOutput 
+        |> List.map lineToStr
+        |> Str.joinWith "\n"
+    
+    Stdout.line "\(name)\(lines)"
+
+Name : List U8
+
+nameToStr = \name -> when Str.fromUtf8 name is 
+    Ok a -> a
+    Err _ -> crash "couldn't convert name to string"
+
+LineOutput : [
+    ChangeDirectory Name,
+    ChangeDirectoryOutOneLevel,
+    ListDirectory, 
+    DirectoryListing Name, 
+    FileListing U128 Name,
+]
+
+lineOutputParser =
+    many (oneOf [
+        changeDirectoryParser,
+        listDirectoryParser,
+        directoryListingParser,
+        fileListingParser,
+    ])
+
+# Mostly used for debuggind and testing
+lineToStr : LineOutput -> Str 
+lineToStr = \line ->
+    when line is 
+        ChangeDirectoryOutOneLevel ->
+            "$ cd .."
+        ChangeDirectory name -> 
+            n = nameToStr name
+            "$ cd \(n)"
+        ListDirectory -> 
+            "$ ls"
+        DirectoryListing name ->
+            n = nameToStr name
+            "dir \(n)"
+        FileListing size name ->
+            s = Num.toStr size
+            n = nameToStr name
+            "\(s) \(n)"
+
+changeDirectoryParser : Parser (List U8) LineOutput
+changeDirectoryParser =
+    const (\target ->
+        if target == ['.','.'] then 
+            ChangeDirectoryOutOneLevel
+        else 
+            ChangeDirectory target
+    )
+    |> skip (string "$ cd ")
+    |> keep (chompUntil '\n')
+    |> skip (codeunit '\n')
+
+expect 
+    input = Str.toUtf8 "$ cd a.z\n"
+    expected =  Ok { val : ChangeDirectory ['a','.','z'], input : [] }
+    parsePartial changeDirectoryParser input == expected
+
+expect 
+    input = Str.toUtf8 "$ cd ..\n"
+    expected =  Ok { val : ChangeDirectoryOutOneLevel, input : [] }
+    parsePartial changeDirectoryParser input == expected
+
+expect 
+    input = Str.toUtf8 "$ cd \\\n"
+    expected =  Ok { val : ChangeDirectory ['\\'], input : [] }
+    parsePartial changeDirectoryParser input == expected
+
+listDirectoryParser : Parser (List U8) LineOutput
+listDirectoryParser =
+    const (\_-> ListDirectory)
+    |> keep (string "$ ls")
+    |> skip (chompUntil '\n')
+    |> skip (codeunit '\n')
+
+expect 
+    input = Str.toUtf8 "$ ls\nab"
+    expected =  Ok { val : ListDirectory, input : ['a','b'] }
+    parsePartial listDirectoryParser input == expected
+
+directoryListingParser : Parser (List U8) LineOutput
+directoryListingParser =
+    const (\name -> DirectoryListing name)
+    |> skip (string "dir ")
+    |> keep (chompUntil '\n')
+    |> skip (codeunit '\n')
+
+expect 
+    input = Str.toUtf8 "dir z\n"
+    expected =  Ok { val : DirectoryListing ['z'], input : [] }
+    parsePartial directoryListingParser input == expected
+
+fileListingParser : Parser (List U8) LineOutput
+fileListingParser =
+    const (\sizeUtf8 -> \name ->
+        size : U128 # crashes without this with 'specialization var not derivable!: Underivable'
+        size = when Decode.fromBytes sizeUtf8 Json.fromUtf8 is
+            Ok n -> n 
+            Err _ -> crash "failed to parse size"
+
+        FileListing size name 
+    )
+    |> keep (chompWhile isDigit)
+    |> skip (string " ")
+    |> keep (chompUntil '\n')
+    |> skip (string "\n")
+
+expect 
+    input = Str.toUtf8 "1234 abc\n"
+    expected = Ok { val : FileListing 1234 ['a','b','c'], input : [] }
+    parsePartial fileListingParser input == expected
+
+isDigit : U8 -> Bool
+isDigit = \char ->
+    when char is 
+        '0' | '1' | '2' | '3' | '4' | '5' |'6' | '7' | '8' | '9' -> Bool.true
+        _ -> Bool.false
+
 
 sampleInput =
     """
@@ -52,43 +189,4 @@ sampleInput =
     5626152 d.ext
     7214296 k
     """
-
-Command : [ChangeDirectory (List U8), ListDirectory (List U8)]
-
-commandParser : Parser (List U8) Command
-commandParser =
-    const
-        (\cmd -> \target ->
-            when cmd is
-                "cd " -> ChangeDirectory target
-                "ls " -> ListDirectory target
-                _ -> crash "unable to recognise cmd"
-        )
-    |> skip (string "$ ")
-    |> keep (oneOf [string "cd ", string "ls "])
-    |> keep (chompUntil '\n')
-    |> skip (codeunit '\n')
-
-expect 
-    input = Str.toUtf8 "$ cd a.z\n"
-    expected =  Ok { val : ChangeDirectory ['a','.','z'], input : [] }
-    parsePartial commandParser input == expected
-
-expect 
-    input = Str.toUtf8 "$ ls z\nabc"
-    expected =  Ok { val : ListDirectory ['z'], input : ['a','b','c'] }
-    parsePartial commandParser input == expected
-
-# process = \name, stackStart, parser, input, moveFn ->
-#     instructions = when parse parser input List.isEmpty is
-#         Ok a -> a
-#         Err (ParsingFailure _) -> crash "Parsing sample failed"
-#         Err (ParsingIncomplete leftover) ->
-#             ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
-#             crash "Parsing sample incomplete \(ls)"
-#     # Used for debugging to print out the parsed instructions
-#     # {} <- Stdout.line (instructionsToStr instructions) |> Task.await
-#     answer =
-#         List.walk instructions stackStart moveFn
-#         |> stacksToStr
-#     Stdout.line "\(name) stack after moving\n\(answer)"
+    |> Str.toUtf8
