@@ -6,7 +6,7 @@ app "app-aoc-2022-day-1"
         pf.Task.{ Task },
         pf.File,
         pf.Path.{ Path },
-        Parser.{Parser},
+        Parser.Core.{Parser, parse, buildPrimitiveParser, keep, const, oneOrMore},
     ]
     provides [main] to pf
 
@@ -16,9 +16,9 @@ main =
         fileContents <- File.readUtf8 (Path.fromStr "input-day-1.txt") |> Task.await
         # note elf parser wants a trailing empty line to get the last elf
         input = Str.split fileContents "\n" |> List.append "" 
-        parser = Parser.oneOrMore elfParser
+        parser = oneOrMore elfParser
         answer = 
-            Parser.parse parser input List.isEmpty
+            parse parser input List.isEmpty
             |> Result.map \elfCalories ->
                 sortedCals = 
                     elfCalories 
@@ -47,13 +47,13 @@ main =
 
 elfParser : Parser (List Str) (List U64)
 elfParser =
-    Parser.const (\foods -> \_ -> foods)
-    |> Parser.apply (Parser.oneOrMore foodParser)
-    |> Parser.apply emptyLineParser
+    const (\foods -> \_ -> foods)
+    |> keep (oneOrMore foodParser)
+    |> keep emptyLineParser
 
 foodParser : Parser (List Str) U64
 foodParser =
-    Parser.buildPrimitiveParser (\input ->
+    buildPrimitiveParser (\input ->
         when List.first input is 
             Ok value -> 
                 when Str.toU64 value is 
@@ -65,7 +65,7 @@ foodParser =
 
 emptyLineParser : Parser (List Str) {}
 emptyLineParser =
-    Parser.buildPrimitiveParser (\input ->
+    buildPrimitiveParser (\input ->
         when List.first input is
             Ok value -> 
                 if Str.isEmpty value then 
