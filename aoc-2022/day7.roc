@@ -5,7 +5,7 @@ app "app-aoc-2022-day-7"
         pf.Task.{ Task },
         # pf.File,
         # pf.Path.{ Path },
-        Parser.Core.{ Parser, parsePartial, parse, const, oneOf,many,keep, skip, chompUntil, chompWhile },
+        Parser.Core.{ Parser, parsePartial, parse, const,sepBy, oneOf,many,keep, skip, chompUntil, chompWhile },
         Parser.Str.{ string, codeunit },
         Decode,
         Json,
@@ -30,19 +30,20 @@ main =
 
 process : Str, List U8 -> Task {} []
 process = \name, input ->
-    lineOutput = when parse lineOutputParser (List.concat input  (Str.toUtf8 "\n")) List.isEmpty is
-        Ok a -> a
-        Err (ParsingFailure _) -> crash "Parsing sample failed"
-        Err (ParsingIncomplete leftover) ->
-            ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
-            crash "Parsing sample incomplete \(ls)"
-    # Used for debugging to print out the parsed instructions
-    lines = 
-        lineOutput 
-        |> List.map lineToStr
-        |> Str.joinWith "\n"
+    # lineOutput = when parse lineOutputParser input List.isEmpty is
+    #     Ok a -> a
+    #     Err (ParsingFailure _) -> crash "Parsing sample failed"
+    #     Err (ParsingIncomplete leftover) ->
+    #         ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
+    #         crash "Parsing sample incomplete \(ls)"
+    # # Used for debugging to print out the parsed instructions
+    # # lines = 
+    #     lineOutput 
+    #     |> List.map lineToStr
+    #     |> Str.joinWith "\n"
     
-    Stdout.line "\(name)\(lines)"
+    # Stdout.line "\(name)\(lines)"
+    Stdout.line ""
 
 Name : List U8
 
@@ -58,13 +59,28 @@ LineOutput : [
     FileListing U128 Name,
 ]
 
-lineOutputParser =
-    many (oneOf [
-        changeDirectoryParser,
-        listDirectoryParser,
-        directoryListingParser,
-        fileListingParser,
-    ])
+# lineOutputParser =
+#     lineContent = 
+#         oneOf [
+#             changeDirectoryParser,
+#             listDirectoryParser,
+#             directoryListingParser,
+#             fileListingParser,
+#         ]
+    
+#     lineEnding =
+#         codeunit '\n'
+
+#     line = sepBy lineContent lineEnding
+
+#     many line
+
+
+expect 
+    input = Str.toUtf8 "a\na"
+    parser = sepBy (codeunit 'a') (codeunit '\n')
+    expected = Ok { val : ['a','a'], input : [] }
+    parsePartial parser input == expected
 
 # Mostly used for debuggind and testing
 lineToStr : LineOutput -> Str 
@@ -95,20 +111,19 @@ changeDirectoryParser =
     )
     |> skip (string "$ cd ")
     |> keep (chompUntil '\n')
-    |> skip (codeunit '\n')
 
 expect 
-    input = Str.toUtf8 "$ cd a.z\n"
+    input = Str.toUtf8 "$ cd a.z"
     expected =  Ok { val : ChangeDirectory ['a','.','z'], input : [] }
     parsePartial changeDirectoryParser input == expected
 
 expect 
     input = Str.toUtf8 "$ cd ..\n"
-    expected =  Ok { val : ChangeDirectoryOutOneLevel, input : [] }
+    expected =  Ok { val : ChangeDirectoryOutOneLevel, input : ['\n'] }
     parsePartial changeDirectoryParser input == expected
 
 expect 
-    input = Str.toUtf8 "$ cd \\\n"
+    input = Str.toUtf8 "$ cd \\"
     expected =  Ok { val : ChangeDirectory ['\\'], input : [] }
     parsePartial changeDirectoryParser input == expected
 
@@ -117,11 +132,10 @@ listDirectoryParser =
     const (\_-> ListDirectory)
     |> keep (string "$ ls")
     |> skip (chompUntil '\n')
-    |> skip (codeunit '\n')
 
 expect 
     input = Str.toUtf8 "$ ls\nab"
-    expected =  Ok { val : ListDirectory, input : ['a','b'] }
+    expected =  Ok { val : ListDirectory, input : ['\n','a','b'] }
     parsePartial listDirectoryParser input == expected
 
 directoryListingParser : Parser (List U8) LineOutput
@@ -129,7 +143,6 @@ directoryListingParser =
     const (\name -> DirectoryListing name)
     |> skip (string "dir ")
     |> keep (chompUntil '\n')
-    |> skip (codeunit '\n')
 
 expect 
     input = Str.toUtf8 "dir z\n"
@@ -139,7 +152,6 @@ expect
 fileListingParser : Parser (List U8) LineOutput
 fileListingParser =
     const (\sizeUtf8 -> \name ->
-        size : U128 # crashes without this with 'specialization var not derivable!: Underivable'
         size = when Decode.fromBytes sizeUtf8 Json.fromUtf8 is
             Ok n -> n 
             Err _ -> crash "failed to parse size"
@@ -149,11 +161,10 @@ fileListingParser =
     |> keep (chompWhile isDigit)
     |> skip (string " ")
     |> keep (chompUntil '\n')
-    |> skip (string "\n")
 
 expect 
     input = Str.toUtf8 "1234 abc\n"
-    expected = Ok { val : FileListing 1234 ['a','b','c'], input : [] }
+    expected = Ok { val : FileListing 1234 ['a','b','c'], input : ['\n'] }
     parsePartial fileListingParser input == expected
 
 isDigit : U8 -> Bool

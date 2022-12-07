@@ -6,9 +6,9 @@ app "app-aoc-2022-day-4"
         pf.Task.{ Task },
         pf.File,
         pf.Path.{ Path },
-        Parser.{ Parser, const, apply, many, map, oneOrMore, buildPrimitiveParser },
+        Parser.Core.{ Parser, parse, const, many, map, keep, skip, oneOrMore, buildPrimitiveParser },
     ]
-    provides [main] to pf
+    provides [main, assignmentPairToStr] to pf
 
 main : Task {} []
 main =
@@ -18,7 +18,7 @@ main =
         # input = Str.toUtf8 "2-4,6-8\n2-3,4-5\n5-7,7-9\n2-8,3-7\n6-6,4-6\n2-6,4-8"
         parser = many assignmentPairParser
         answer =
-            Parser.parse parser input List.isEmpty
+            parse parser input List.isEmpty
             |> Result.map \pairs ->
                 countContained =
                     pairs
@@ -85,20 +85,20 @@ assignmentPairToStr = \{ startElfA, endElfA, startElfB, endElfB } ->
 assignmentPairParser : Parser (List U8) AssignmentPair
 assignmentPairParser =
     const
-        (\_ -> \a -> \_ -> \b -> \_ -> \c -> \_ -> \d -> {
+        (\a -> \b -> \c -> \d -> {
             startElfA: a,
             endElfA: b,
             startElfB: c,
             endElfB: d,
         })
-    |> apply (many (codepoint '\n'))
-    |> apply numberParser
-    |> apply (codepoint '-')
-    |> apply numberParser
-    |> apply (codepoint ',')
-    |> apply numberParser
-    |> apply (codepoint '-')
-    |> apply numberParser
+    |> skip (many (codepoint '\n'))
+    |> keep numberParser
+    |> skip (codepoint '-')
+    |> keep numberParser
+    |> skip (codepoint ',')
+    |> keep numberParser
+    |> skip (codepoint '-')
+    |> keep numberParser
 
 # ## --- below should be in a Parser package
 codepoint : U8 -> Parser (List U8) U8
