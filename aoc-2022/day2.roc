@@ -6,7 +6,7 @@ app "app-aoc-2022-day-2"
         pf.Task.{ Task },
         pf.File,
         pf.Path.{ Path },
-        Parser.{ Parser },
+        Parser.Core.{ Parser, parse, const, keep, oneOf,map, oneOrMore, buildPrimitiveParser },
     ]
     provides [main] to pf
 
@@ -16,9 +16,9 @@ main =
         fileContents <- File.readUtf8 (Path.fromStr "input-day-2.txt") |> Task.await
         input = Str.toUtf8 fileContents |> List.append '\n'
         # input = Str.toUtf8 "A Y\nB X\nC Z\n"
-        parser = Parser.oneOrMore rockPaperScissorParser
+        parser = oneOrMore rockPaperScissorParser
         answer =
-            Parser.parse parser input List.isEmpty
+            parse parser input List.isEmpty
             |> Result.map \rounds ->
                 ts = totalScore rounds |> Num.toStr
 
@@ -86,46 +86,46 @@ determineChoice = \{ opponent, guide } ->
 
 rockPaperScissorParser : Parser (List U8) { opponent : RSP, guide : Outcome }
 rockPaperScissorParser =
-    Parser.const (\opponent -> \_ -> \guide -> \_ -> { opponent, guide })
-    |> Parser.apply opponentParser
-    |> Parser.apply parseBlankSpace
-    |> Parser.apply guideParser
-    |> Parser.apply parseNewLine
+    const (\opponent -> \_ -> \guide -> \_ -> { opponent, guide })
+    |> keep opponentParser
+    |> keep parseBlankSpace
+    |> keep guideParser
+    |> keep parseNewLine
 
 parseBlankSpace = parseUtf8 ' '
 parseNewLine = parseUtf8 '\n'
 opponentParser =
-    Parser.oneOf [
-        parseUtf8 'A' |> Parser.map \_ -> Rock,
-        parseUtf8 'B' |> Parser.map \_ -> Paper,
-        parseUtf8 'C' |> Parser.map \_ -> Scissor,
+    oneOf [
+        parseUtf8 'A' |> map \_ -> Rock,
+        parseUtf8 'B' |> map \_ -> Paper,
+        parseUtf8 'C' |> map \_ -> Scissor,
     ]
 
 guideParser =
-    Parser.oneOf [
-        parseUtf8 'X' |> Parser.map \_ -> Loss,
-        parseUtf8 'Y' |> Parser.map \_ -> Draw,
-        parseUtf8 'Z' |> Parser.map \_ -> Win,
+    oneOf [
+        parseUtf8 'X' |> map \_ -> Loss,
+        parseUtf8 'Y' |> map \_ -> Draw,
+        parseUtf8 'Z' |> map \_ -> Win,
     ]
 
 # Crashing roc test :sadface:
 expect
     input = ['X']
     parser = guideParser
-    result = Parser.parse parser input List.isEmpty
+    result = parse parser input List.isEmpty
 
     result == Ok Rock
 
 expect
     input = ['\n']
     parser = parseNewLine
-    result = Parser.parse parser input List.isEmpty
+    result = parse parser input List.isEmpty
 
     result == Ok '\n'
 
 parseUtf8 : U8 -> Parser (List U8) U8
 parseUtf8 = \x ->
-    Parser.buildPrimitiveParser \input ->
+    buildPrimitiveParser \input ->
         when List.first input is
             Ok value ->
                 if x == value then
