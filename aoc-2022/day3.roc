@@ -6,7 +6,7 @@ app "app-aoc-2022-day-3"
         pf.Task.{ Task },
         pf.File,
         pf.Path.{ Path },
-        Parser.{ Parser, const, apply, many, buildPrimitiveParser },
+        Parser.Core.{ Parser, parse, const, keep, many, buildPrimitiveParser },
     ]
     provides [main] to pf
 
@@ -18,7 +18,7 @@ main =
         # input = Str.toUtf8 "vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw\n"
         parser = many rucksackParser
         answer =
-            Parser.parse parser input List.isEmpty
+            parse parser input List.isEmpty
             |> Result.map \rucksacks ->
                 part1 =
                     rucksacks
@@ -105,8 +105,8 @@ rucksackParser =
 
                 { leftCompartnent: before, rightCompartnent: others }
         )
-    |> apply (many rucksaskItemParser)
-    |> apply (codepoint '\n')
+    |> keep (many rucksaskItemParser)
+    |> keep (codepoint '\n')
 
 rucksaskItemParser : Parser (List U8) RuckSackItem
 rucksaskItemParser =
