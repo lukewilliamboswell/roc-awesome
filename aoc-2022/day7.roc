@@ -22,13 +22,12 @@ main =
         fileInput <- File.readUtf8 (Path.fromStr "input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
         {} <- process (withColor "Part 1 Sample:" Green) sampleInput part1 |> Task.await
         {} <- process (withColor "Part 1 File Input:" Green) fileInput part1 |> Task.await
-        # {} <- process "Part 2 CrateMover9001 Sample" sampleStacks (many moveParser) sampleInput moveMultipleAtOnce |> Task.await
-        # {} <- process "Part 2 CrateMover9001 Input" fileInputStacks (many moveParser) fileInput moveMultipleAtOnce |> Task.await
+        {} <- process (withColor "Part 2 Sample:" Green) sampleInput part2 |> Task.await
+        {} <- process (withColor "Part 2 File Input:" Green) fileInput part2 |> Task.await
         Stdout.line "Completed processing"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
-# process : Str, List U8, (FileSystem -> U64) -> Task {} []
 process = \name, input, calc ->
     lineOutput = when parse lineOutputParser input List.isEmpty is
         Ok a -> a
@@ -57,30 +56,41 @@ part1 = \fs ->
     |> Dict.values
     |> List.keepOks \{type} -> 
         when type is 
-            Folder name -> Ok (dirSize fs name)
+            Folder path -> Ok (dirSize fs path)
             _ -> Err ""
     |> List.keepIf \size -> size <= 100_000
     |> List.sum
 
-FileSystem : Dict Str {
-    parent : Str,
-    type : [File U64 Str, Folder Str]
+part2 : FileSystem -> U64
+part2 = \fs ->
+    unused = 70_000_000 - (dirSize fs ["/"])
+    toDelete = 30_000_000 - unused
+
+    Dict.keys fs
+    |> List.map \dir -> dirSize fs dir
+    |> List.keepIf \n -> n >= toDelete
+    |> List.min
+    |> Result.withDefault 0
+
+FileSystem : Dict (List Str) {
+    parent : List Str,
+    type : [File U64 (List Str), Folder (List Str)]
 }
 
 Context : {
-    cwd : Str,
+    cwd : List Str,
     fs : FileSystem,
 }
 
 root : Str 
 root = "/"
 
-dirSize : FileSystem, Str -> U64
-dirSize = \fs, name ->
+dirSize : FileSystem, (List Str) -> U64
+dirSize = \fs, path ->
     fs
     |> Dict.values 
     |> List.keepOks \{parent, type} ->
-        if parent == name then 
+        if parent == path then 
             when type is 
                 File size _ -> Ok size
                 Folder name2 -> Ok (dirSize fs name2)
@@ -92,12 +102,12 @@ buildDirectoryListing : List LineOutput -> FileSystem
 buildDirectoryListing = \lineOutputs ->
     startingFs =
         Dict.empty 
-        |> Dict.insert root {parent : "", type : Folder root}
+        |> Dict.insert [root] {parent : [""], type : Folder [root]}
     
     state = 
         List.walk 
             lineOutputs 
-            { cwd : root, fs : startingFs }
+            { cwd : [root], fs : startingFs }
             reduceFileSystem
 
     state.fs
@@ -106,16 +116,16 @@ reduceFileSystem : Context, LineOutput -> Context
 reduceFileSystem = \{cwd, fs}, line ->
     when line is
         ChangeDirectory name -> 
-            {cwd : name, fs}
-        ChangeDirectoryOutOneLevel ->
-            when Dict.get fs cwd is 
-                Ok current -> {cwd : current.parent, fs}
-                Err _ -> crash "couldn't find directory"
-        DirectoryListing name -> 
-            xfs = Dict.insert fs name {parent : cwd, type : Folder name}
+            path = List.prepend cwd name
+            {cwd : path, fs}
+        ChangeDirectoryOutOneLevel -> {cwd : List.dropFirst cwd, fs}
+        DirectoryListing name ->
+            path = List.prepend cwd name
+            xfs = Dict.insert fs path {parent : cwd, type : Folder path}
             {cwd, fs : xfs}
         FileListing size name ->
-            xfs = Dict.insert fs name {parent : cwd, type : File size name}
+            path = List.prepend cwd name
+            xfs = Dict.insert fs path {parent : cwd, type : File size path}
             {cwd, fs : xfs}
         _ -> 
             {cwd, fs}
