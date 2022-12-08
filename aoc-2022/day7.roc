@@ -13,6 +13,7 @@ app "app-aoc-2022-day-7"
     ]
     provides [
         main,
+        lineToStr,
     ] to pf
 
 main : Task {} []
@@ -22,7 +23,6 @@ main =
         fileInput <- File.readUtf8 (Path.fromStr "input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
         {} <- process (withColor "Part 1 Sample:" Green) sampleInput part1 |> Task.await
         {} <- process (withColor "Part 1 File Input:" Green) fileInput part1 |> Task.await
-        {} <- process (withColor "Part 2 Sample:" Green) sampleInput part2 |> Task.await
         {} <- process (withColor "Part 2 File Input:" Green) fileInput part2 |> Task.await
         Stdout.line "Completed processing"
 
@@ -35,100 +35,83 @@ process = \name, input, calc ->
         Err (ParsingIncomplete leftover) ->
             ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
             crash "Parsing sample incomplete \(ls)"
-    
-    # lines =
-    #     lineOutput
-    #     |> List.map lineToStr
-    #     |> Str.joinWith "\n"
-    # lineCount = lineOutput |> List.len |> Num.toStr
-    # {} <- Stdout.line "LINE COUNT:\(lineCount)" |> Task.await
 
-    answer = 
-        buildDirectoryListing lineOutput
-        |> calc
-        |> Num.toStr
+    fs = buildDirectoryListing lineOutput
+    answer = calc fs |> Num.toStr
 
     Stdout.line "\(name)\(answer)"
 
 part1 : FileSystem -> U64
 part1 = \fs ->
     fs 
-    |> Dict.values
-    |> List.keepOks \{type} -> 
-        when type is 
-            Folder path -> Ok (dirSize fs path)
-            _ -> Err ""
+    |> Dict.keys
+    |> List.keepOks \path -> dirSize fs path
     |> List.keepIf \size -> size <= 100_000
     |> List.sum
 
 part2 : FileSystem -> U64
 part2 = \fs ->
-    unused = 70_000_000 - (dirSize fs ["/"])
+    rootSize = dirSize fs ["/"] |> Result.withDefault 0
+    unused = 70_000_000 - rootSize
     toDelete = 30_000_000 - unused
 
-    Dict.keys fs
-    |> List.map \dir -> dirSize fs dir
+    fs
+    |> Dict.keys 
+    |> List.keepOks \path -> dirSize fs path
     |> List.keepIf \n -> n >= toDelete
     |> List.min
     |> Result.withDefault 0
 
-FileSystem : Dict (List Str) {
-    parent : List Str,
-    type : [File U64 (List Str), Folder (List Str)]
-}
-
-Context : {
-    cwd : List Str,
-    fs : FileSystem,
-}
-
-root : Str 
-root = "/"
-
-dirSize : FileSystem, (List Str) -> U64
-dirSize = \fs, path ->
-    fs
-    |> Dict.values 
-    |> List.keepOks \{parent, type} ->
-        if parent == path then 
-            when type is 
-                File size _ -> Ok size
-                Folder name2 -> Ok (dirSize fs name2)
-        else
-            Err "not subdirectory"
-    |> List.sum
+FileSystem : Dict (List Str) Entry
+Entry : [
+    File U64, 
+    Folder U64,
+]
 
 buildDirectoryListing : List LineOutput -> FileSystem 
-buildDirectoryListing = \lineOutputs ->
-    startingFs =
-        Dict.empty 
-        |> Dict.insert [root] {parent : [""], type : Folder [root]}
-    
+buildDirectoryListing = \lo ->
     state = 
-        List.walk 
-            lineOutputs 
-            { cwd : [root], fs : startingFs }
-            reduceFileSystem
+        List.walk lo {cwd:[], fs : Dict.empty} \{cwd, fs},line ->
+            when line is
+                ChangeDirectory name -> 
+                    path = List.prepend cwd name
+                    {cwd : path, fs}
+                ChangeDirectoryOutOneLevel -> {cwd : List.dropFirst cwd, fs}
+                DirectoryListing name ->
+                    path = List.prepend cwd name
+                    entry = Folder 0
+                    {cwd, fs : Dict.insert fs path entry}
+                FileListing size name ->
+                    path = List.prepend cwd name
+                    entry = File size
+                    xfs = 
+                        fs 
+                        |> Dict.insert path entry
+                        |> updateParentSizes cwd size
 
+                    {cwd, fs : xfs}
+                _ ->
+                    {cwd, fs}
     state.fs
 
-reduceFileSystem : Context, LineOutput -> Context
-reduceFileSystem = \{cwd, fs}, line ->
-    when line is
-        ChangeDirectory name -> 
-            path = List.prepend cwd name
-            {cwd : path, fs}
-        ChangeDirectoryOutOneLevel -> {cwd : List.dropFirst cwd, fs}
-        DirectoryListing name ->
-            path = List.prepend cwd name
-            xfs = Dict.insert fs path {parent : cwd, type : Folder path}
-            {cwd, fs : xfs}
-        FileListing size name ->
-            path = List.prepend cwd name
-            xfs = Dict.insert fs path {parent : cwd, type : File size path}
-            {cwd, fs : xfs}
-        _ -> 
-            {cwd, fs}
+updateParentSizes : FileSystem, List Str, U64 -> FileSystem
+updateParentSizes = \fs, path, size ->
+    newSize =
+        dirSize fs path
+        |> Result.withDefault 0
+        |> Num.add size
+
+    xfs = Dict.insert fs path (Folder newSize)
+
+    when List.dropFirst path is 
+        [] -> xfs
+        parent -> updateParentSizes xfs parent size    
+
+dirSize : FileSystem, List Str -> Result U64 [NotFolder]
+dirSize = \fs, path ->
+    when Dict.get fs path is 
+        Ok (Folder currentSize) -> Ok currentSize
+        _ -> Err NotFolder
 
 LineOutput : [
     ChangeDirectory Str,
@@ -152,17 +135,17 @@ lineOutputParser =
 
     sepBy lineContent lineEnding
 
-# For debuggind and testing
-# lineToStr : LineOutput -> Str
-# lineToStr = \line ->
-#     when line is
-#         ChangeDirectoryOutOneLevel -> "$ cd .."
-#         ChangeDirectory name -> "$ cd \(name)"
-#         ListDirectory -> "$ ls"
-#         DirectoryListing name -> "dir \(name)"
-#         FileListing size name ->
-#             s = Num.toStr size
-#             "\(s) \(name)"
+# For debugging and testing
+lineToStr : LineOutput -> Str
+lineToStr = \line ->
+    when line is
+        ChangeDirectoryOutOneLevel -> "$ cd .."
+        ChangeDirectory name -> "$ cd \(name)"
+        ListDirectory -> "$ ls"
+        DirectoryListing name -> "dir \(name)"
+        FileListing size name ->
+            s = Num.toStr size
+            "\(s) \(name)"
 
 changeDirectoryParser : Parser (List U8) LineOutput
 changeDirectoryParser =
@@ -184,13 +167,11 @@ expect
 expect
     input = Str.toUtf8 "$ cd ..\n"
     expected = Ok { val: ChangeDirectoryOutOneLevel, input: ['\n'] }
-
     parsePartial changeDirectoryParser input == expected
 
 expect
     input = Str.toUtf8 "$ cd /"
-    expected = Ok { val: ChangeDirectory root, input: [] }
-
+    expected = Ok { val: ChangeDirectory "/", input: [] }
     parsePartial changeDirectoryParser input == expected
 
 listDirectoryParser : Parser (List U8) LineOutput
@@ -202,7 +183,6 @@ listDirectoryParser =
 expect
     input = Str.toUtf8 "$ ls\nab"
     expected = Ok { val: ListDirectory, input: ['\n', 'a', 'b'] }
-
     parsePartial listDirectoryParser input == expected
 
 directoryListingParser : Parser (List U8) LineOutput
@@ -233,7 +213,6 @@ fileListingParser =
 expect
     input = Str.toUtf8 "1234 abc"
     expected = Ok { val: FileListing 1234 "abc", input: [] }
-
     parsePartial fileListingParser input == expected
 
 isDigit : U8 -> Bool
