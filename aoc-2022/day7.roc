@@ -20,15 +20,17 @@ main : Task {} []
 main =
 
     task =
+        fsSample = process sampleInput 
         fileInput <- File.readUtf8 (Path.fromStr "input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
-        {} <- process (withColor "Sample:" Green) sampleInput part1 |> Task.await
-        {} <- process (withColor "Part 1:" Green) fileInput part1 |> Task.await
-        {} <- process (withColor "Part 2:" Green) fileInput part2 |> Task.await
+        fsFile = process fileInput
+        {} <- run (withColor "Sample:" Green) fsSample part1 |> Task.await
+        {} <- run (withColor "Part 1:" Green) fsFile part1 |> Task.await
+        {} <- run (withColor "Part 2:" Green) fsFile part2 |> Task.await
         Stdout.line "Done"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
-process = \name, input, calc ->
+process = \input ->
     lineOutput = when parse lineOutputParser input List.isEmpty is
         Ok a -> a
         Err (ParsingFailure _) -> crash "Parsing sample failed"
@@ -36,7 +38,9 @@ process = \name, input, calc ->
             ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
             crash "Parsing sample incomplete \(ls)"
 
-    fs = buildDirectoryListing lineOutput
+    buildDirectoryListing lineOutput
+    
+run = \name, fs, calc ->
     answer = calc fs |> Num.toStr
 
     Stdout.line "\(name)\(answer)"
@@ -48,6 +52,7 @@ part1 = \fs ->
     |> List.keepOks \path -> dirSize fs path
     |> List.keepIf \size -> size <= 100_000
     |> List.sum
+    
 
 part2 : FileSystem -> U64
 part2 = \fs ->
