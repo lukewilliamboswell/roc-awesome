@@ -71,10 +71,7 @@ LineOutput : [
 #     lineEnding =
 #         codeunit '\n'
 
-#     line = sepBy lineContent lineEnding
-
-#     many line
-
+#     sepBy lineContent lineEnding
 
 expect 
     input = Str.toUtf8 "a\na"
@@ -109,69 +106,69 @@ changeDirectoryParser =
         else 
             ChangeDirectory target
     )
-    |> skip (string "$ cd ")
+    |> skip (string "$ cd \n")
     |> keep (chompUntil '\n')
 
 expect 
     input = Str.toUtf8 "$ cd a.z"
-    expected =  Ok { val : ChangeDirectory ['a','.','z'], input : [] }
+    expected =  Ok { val : ChangeDirectory ['a','.','z'], input : ['\n'] }
     parsePartial changeDirectoryParser input == expected
 
-expect 
-    input = Str.toUtf8 "$ cd ..\n"
-    expected =  Ok { val : ChangeDirectoryOutOneLevel, input : ['\n'] }
-    parsePartial changeDirectoryParser input == expected
+# expect 
+#     input = Str.toUtf8 "$ cd ..\n"
+#     expected =  Ok { val : ChangeDirectoryOutOneLevel, input : ['\n'] }
+#     parsePartial changeDirectoryParser input == expected
 
-expect 
-    input = Str.toUtf8 "$ cd \\"
-    expected =  Ok { val : ChangeDirectory ['\\'], input : [] }
-    parsePartial changeDirectoryParser input == expected
+# expect 
+#     input = Str.toUtf8 "$ cd \\"
+#     expected =  Ok { val : ChangeDirectory ['\\'], input : [] }
+#     parsePartial changeDirectoryParser input == expected
 
-listDirectoryParser : Parser (List U8) LineOutput
-listDirectoryParser =
-    const (\_-> ListDirectory)
-    |> keep (string "$ ls")
-    |> skip (chompUntil '\n')
+# listDirectoryParser : Parser (List U8) LineOutput
+# listDirectoryParser =
+#     const (\_-> ListDirectory)
+#     |> keep (string "$ ls")
+#     |> skip (chompUntil '\n')
 
-expect 
-    input = Str.toUtf8 "$ ls\nab"
-    expected =  Ok { val : ListDirectory, input : ['\n','a','b'] }
-    parsePartial listDirectoryParser input == expected
+# expect 
+#     input = Str.toUtf8 "$ ls\nab"
+#     expected =  Ok { val : ListDirectory, input : ['\n','a','b'] }
+#     parsePartial listDirectoryParser input == expected
 
-directoryListingParser : Parser (List U8) LineOutput
-directoryListingParser =
-    const (\name -> DirectoryListing name)
-    |> skip (string "dir ")
-    |> keep (chompUntil '\n')
+# directoryListingParser : Parser (List U8) LineOutput
+# directoryListingParser =
+#     const (\name -> DirectoryListing name)
+#     |> skip (string "dir ")
+#     |> keep (chompUntil '\n')
 
-expect 
-    input = Str.toUtf8 "dir z\n"
-    expected =  Ok { val : DirectoryListing ['z'], input : [] }
-    parsePartial directoryListingParser input == expected
+# expect 
+#     input = Str.toUtf8 "dir z\n"
+#     expected =  Ok { val : DirectoryListing ['z'], input : [] }
+#     parsePartial directoryListingParser input == expected
 
-fileListingParser : Parser (List U8) LineOutput
-fileListingParser =
-    const (\sizeUtf8 -> \name ->
-        size = when Decode.fromBytes sizeUtf8 Json.fromUtf8 is
-            Ok n -> n 
-            Err _ -> crash "failed to parse size"
+# fileListingParser : Parser (List U8) LineOutput
+# fileListingParser =
+#     const (\sizeUtf8 -> \name ->
+#         size = when Decode.fromBytes sizeUtf8 Json.fromUtf8 is
+#             Ok n -> n 
+#             Err _ -> crash "failed to parse size"
 
-        FileListing size name 
-    )
-    |> keep (chompWhile isDigit)
-    |> skip (string " ")
-    |> keep (chompUntil '\n')
+#         FileListing size name 
+#     )
+#     |> keep (chompWhile isDigit)
+#     |> skip (string " ")
+#     |> keep (chompUntil '\n')
 
-expect 
-    input = Str.toUtf8 "1234 abc\n"
-    expected = Ok { val : FileListing 1234 ['a','b','c'], input : ['\n'] }
-    parsePartial fileListingParser input == expected
+# expect 
+#     input = Str.toUtf8 "1234 abc"
+#     expected = Ok { val : FileListing 1234 ['a','b','c'], input : [] }
+#     parsePartial fileListingParser input == expected
 
-isDigit : U8 -> Bool
-isDigit = \char ->
-    when char is 
-        '0' | '1' | '2' | '3' | '4' | '5' |'6' | '7' | '8' | '9' -> Bool.true
-        _ -> Bool.false
+# isDigit : U8 -> Bool
+# isDigit = \char ->
+#     when char is 
+#         '0' | '1' | '2' | '3' | '4' | '5' |'6' | '7' | '8' | '9' -> Bool.true
+#         _ -> Bool.false
 
 
 sampleInput =
