@@ -71,27 +71,27 @@ Entry : [
 buildDirectoryListing : List LineOutput -> FileSystem 
 buildDirectoryListing = \lo ->
     state = 
-        List.walk lo {cwd:[], fs : Dict.empty} \{cwd, fs},line ->
-            when line is
-                ChangeDirectory name -> 
-                    path = List.prepend cwd name
-                    {cwd : path, fs}
-                ChangeDirectoryOutOneLevel -> {cwd : List.dropFirst cwd, fs}
-                DirectoryListing name ->
-                    path = List.prepend cwd name
-                    entry = Folder 0
-                    {cwd, fs : Dict.insert fs path entry}
-                FileListing size name ->
-                    path = List.prepend cwd name
-                    entry = File size
-                    xfs = 
-                        fs 
-                        |> Dict.insert path entry
-                        |> updateParentSizes cwd size
+        {cwd, fs}, line <- List.walk lo {cwd:[], fs : Dict.empty}
+        when line is
+            ChangeDirectory name -> 
+                path = List.prepend cwd name
+                {cwd : path, fs}
+            ChangeDirectoryOutOneLevel -> {cwd : List.dropFirst cwd, fs}
+            DirectoryListing name ->
+                path = List.prepend cwd name
+                entry = Folder 0
+                {cwd, fs : Dict.insert fs path entry}
+            FileListing size name ->
+                path = List.prepend cwd name
+                entry = File size
+                xfs = 
+                    fs 
+                    |> Dict.insert path entry
+                    |> updateParentSizes cwd size
 
-                    {cwd, fs : xfs}
-                _ ->
-                    {cwd, fs}
+                {cwd, fs : xfs}
+            _ ->
+                {cwd, fs}
     state.fs
 
 updateParentSizes : FileSystem, List Str, U64 -> FileSystem
@@ -149,13 +149,12 @@ lineToStr = \line ->
 
 changeDirectoryParser : Parser (List U8) LineOutput
 changeDirectoryParser =
-    const
-        (\target ->
-            if target == ['.', '.'] then
-                ChangeDirectoryOutOneLevel
-            else
-                ChangeDirectory (strOrCrash target)
-        )
+    const (\target ->
+        if target == ['.', '.'] then
+            ChangeDirectoryOutOneLevel
+        else
+            ChangeDirectory (strOrCrash target)
+    )
     |> skip (string "$ cd ")
     |> keep (chompWhile isPermittedFileName)
 
@@ -198,14 +197,13 @@ expect
 
 fileListingParser : Parser (List U8) LineOutput
 fileListingParser =
-    const
-        (\sizeUtf8 -> \name ->
-                size = when Decode.fromBytes sizeUtf8 Json.fromUtf8 is
-                    Ok n -> n
-                    Err _ -> crash "failed to parse size"
+    const (\sizeUtf8 -> \name ->
+        size = when Decode.fromBytes sizeUtf8 Json.fromUtf8 is
+            Ok n -> n
+            Err _ -> crash "failed to parse size"
 
-                FileListing size (strOrCrash name)
-        )
+        FileListing size (strOrCrash name)
+    )
     |> keep (chompWhile isDigit)
     |> skip (string " ")
     |> keep (chompWhile isPermittedFileName)
