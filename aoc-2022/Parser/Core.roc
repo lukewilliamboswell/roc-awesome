@@ -321,7 +321,7 @@ skip = \funParser, skipParser ->
                     Err msg2 -> Err msg2
                     Ok { val: _, input: rest2 } -> Ok { val: funVal, input: rest2 }
     
-chompUntil : U8 -> Parser (List U8) (List U8)
+chompUntil : a -> Parser (List a) (List a) | a has Eq
 chompUntil = \char ->
     buildPrimitiveParser \input ->
         when List.findFirstIndex input (\x -> Bool.isEq x char) is
@@ -332,7 +332,8 @@ chompUntil = \char ->
 
 expect 
     input = "# H\nR" |> Str.toUtf8
-    parsePartial (chompUntil '\n') input == Ok {val : ['#',' ','H'], input : ['\n','R']}
+    result = parsePartial (chompUntil '\n') input 
+    result == Ok {val : ['#',' ','H'], input : ['\n','R']}
 
 expect when parsePartial (chompUntil '\n') [] is 
     Ok _ -> Bool.false
@@ -341,20 +342,36 @@ expect when parsePartial (chompUntil '\n') [] is
 
 # Chomp zero or more characters if they pass the test. This is useful for chomping
 # whitespace or variable names. Note: a chompWhile parser always succeeds!
-chompWhile : (U8 -> Bool) -> Parser (List U8) (List U8)
+chompWhile : (a -> Bool) -> Parser (List a) (List a) | a has Eq
 chompWhile = \check ->
-    buildPrimitiveParser \input ->
-        {chomped, buffer} = chompWhileHelp check {chomped : List.withCapacity 10, buffer : input} 
-        Ok {val : chomped, input: buffer }
+    buildPrimitiveParser \input ->      
+        index : Nat 
+        index = List.walkUntil input 0 \i, elem ->
+            if check elem then 
+                Continue (i + 1)
+            else 
+                Break i
+        
+        if index == 0 then
+            Ok {val : [], input : input }
+        else
+            Ok {
+                val : List.sublist input {start : 0, len : index},
+                input : List.drop input index,
+            }
 
-chompWhileHelp : (U8 -> Bool), {chomped : List U8, buffer : List U8} -> {chomped : List U8, buffer : List U8}
-chompWhileHelp = \check, {chomped, buffer} ->
-    when buffer is 
-        [first, ..] if check first -> 
-            chompWhileHelp check {chomped : List.append chomped first, buffer : List.dropFirst buffer}
-        _ -> {chomped, buffer}
+#         {chomped, buffer} = chompWhileHelp check {chomped : List.withCapacity 10, buffer : input} 
+#         Ok {val : chomped, input: buffer }
+
+# chompWhileHelp : (U8 -> Bool), {chomped : List U8, buffer : List U8} -> {chomped : List U8, buffer : List U8}
+# chompWhileHelp = \check, {chomped, buffer} ->
+#     when buffer is 
+#         [first, ..] if check first -> 
+#             chompWhileHelp check {chomped : List.append chomped first, buffer : List.dropFirst buffer}
+#         _ -> {chomped, buffer}
 
 expect
-    input = "as\ndf" |> Str.toUtf8
+    input = [97u8,'s','\n', 'd', 'f']
     notEOL = \x -> Bool.isNotEq x '\n'
-    parsePartial (chompWhile notEOL) input == Ok {val : ['a','s'], input : ['\n', 'd', 'f']}
+    result = parsePartial (chompWhile notEOL) input 
+    result == Ok {val : [97u8,'s'], input : ['\n', 'd', 'f']}
