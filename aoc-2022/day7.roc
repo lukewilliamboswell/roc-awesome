@@ -3,8 +3,8 @@ app "app-aoc-2022-day-7"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        # pf.File,
-        # pf.Path.{ Path },
+        pf.File,
+        pf.Path.{ Path },
         Parser.Core.{ Parser, parsePartial, parse, const, sepBy, oneOf, keep, skip, chompUntil, chompWhile },
         Parser.Str.{ string, codeunit },
         Decode,
@@ -19,17 +19,17 @@ main : Task {} []
 main =
 
     task =
-        # fileInput <- File.readUtf8 (Path.fromStr "input-day-5.txt") |> Task.map Str.toUtf8 |> Task.await
-        {} <- process (withColor "Part 1 Sample\n" Green) sampleInput |> Task.await
-        # {} <- process "Part 1 CrateMover9000 Input" fileInputStacks (many moveParser) fileInput moveOneAtATime |> Task.await
+        fileInput <- File.readUtf8 (Path.fromStr "input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
+        {} <- process (withColor "Part 1 Sample:" Green) sampleInput part1 |> Task.await
+        {} <- process (withColor "Part 1 File Input:" Green) fileInput part1 |> Task.await
         # {} <- process "Part 2 CrateMover9001 Sample" sampleStacks (many moveParser) sampleInput moveMultipleAtOnce |> Task.await
         # {} <- process "Part 2 CrateMover9001 Input" fileInputStacks (many moveParser) fileInput moveMultipleAtOnce |> Task.await
-        Stdout.line (withColor "Completed processing" Green)
+        Stdout.line "Completed processing"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
-process : Str, List U8 -> Task {} []
-process = \name, input ->
+# process : Str, List U8, (FileSystem -> U64) -> Task {} []
+process = \name, input, calc ->
     lineOutput = when parse lineOutputParser input List.isEmpty is
         Ok a -> a
         Err (ParsingFailure _) -> crash "Parsing sample failed"
@@ -37,25 +37,95 @@ process = \name, input ->
             ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
             crash "Parsing sample incomplete \(ls)"
     
-    lines =
-        lineOutput
-        |> List.map lineToStr
-        |> Str.joinWith "\n"
+    # lines =
+    #     lineOutput
+    #     |> List.map lineToStr
+    #     |> Str.joinWith "\n"
+    # lineCount = lineOutput |> List.len |> Num.toStr
+    # {} <- Stdout.line "LINE COUNT:\(lineCount)" |> Task.await
 
-    Stdout.line "\(name)\(lines)"
+    answer = 
+        buildDirectoryListing lineOutput
+        |> calc
+        |> Num.toStr
 
-Name : List U8
+    Stdout.line "\(name)\(answer)"
 
-nameToStr = \name -> when Str.fromUtf8 name is
-        Ok a -> a
-        Err _ -> crash "couldn't convert name to string"
+part1 : FileSystem -> U64
+part1 = \fs ->
+    fs 
+    |> Dict.values
+    |> List.keepOks \{type} -> 
+        when type is 
+            Folder name -> Ok (dirSize fs name)
+            _ -> Err ""
+    |> List.keepIf \size -> size <= 100_000
+    |> List.sum
+
+FileSystem : Dict Str {
+    parent : Str,
+    type : [File U64 Str, Folder Str]
+}
+
+Context : {
+    cwd : Str,
+    fs : FileSystem,
+}
+
+root : Str 
+root = "/"
+
+dirSize : FileSystem, Str -> U64
+dirSize = \fs, name ->
+    fs
+    |> Dict.values 
+    |> List.keepOks \{parent, type} ->
+        if parent == name then 
+            when type is 
+                File size _ -> Ok size
+                Folder name2 -> Ok (dirSize fs name2)
+        else
+            Err "not subdirectory"
+    |> List.sum
+
+buildDirectoryListing : List LineOutput -> FileSystem 
+buildDirectoryListing = \lineOutputs ->
+    startingFs =
+        Dict.empty 
+        |> Dict.insert root {parent : "", type : Folder root}
+    
+    state = 
+        List.walk 
+            lineOutputs 
+            { cwd : root, fs : startingFs }
+            reduceFileSystem
+
+    state.fs
+
+reduceFileSystem : Context, LineOutput -> Context
+reduceFileSystem = \{cwd, fs}, line ->
+    when line is
+        ChangeDirectory name -> 
+            {cwd : name, fs}
+        ChangeDirectoryOutOneLevel ->
+            when Dict.get fs cwd is 
+                Ok current -> {cwd : current.parent, fs}
+                Err _ -> crash "couldn't find directory"
+        DirectoryListing name -> 
+            xfs = Dict.insert fs name {parent : cwd, type : Folder name}
+            {cwd, fs : xfs}
+        FileListing size name ->
+            xfs = Dict.insert fs name {parent : cwd, type : File size name}
+            {cwd, fs : xfs}
+        _ -> 
+            {cwd, fs}
 
 LineOutput : [
-    ChangeDirectory Name,
+    ChangeDirectory Str,
     ChangeDirectoryOutOneLevel,
     ListDirectory,
-    DirectoryListing Name,
-    FileListing U128 Name,
+    DirectoryListing Str,
+    FileListing U64 Str,
 ]
 
 lineOutputParser =
@@ -72,38 +142,17 @@ lineOutputParser =
 
     sepBy lineContent lineEnding
 
-expect
-    input = Str.toUtf8 "a\na"
-    parser = sepBy (codeunit 'a') (codeunit '\n')
-    expected = Ok { val: ['a', 'a'], input: [] }
-
-    parsePartial parser input == expected
-
-# Mostly used for debuggind and testing
-lineToStr : LineOutput -> Str
-lineToStr = \line ->
-    when line is
-        ChangeDirectoryOutOneLevel ->
-            "$ cd .."
-
-        ChangeDirectory name ->
-            n = nameToStr name
-
-            "$ cd \(n)"
-
-        ListDirectory ->
-            "$ ls"
-
-        DirectoryListing name ->
-            n = nameToStr name
-
-            "dir \(n)"
-
-        FileListing size name ->
-            s = Num.toStr size
-            n = nameToStr name
-
-            "\(s) \(n)"
+# For debuggind and testing
+# lineToStr : LineOutput -> Str
+# lineToStr = \line ->
+#     when line is
+#         ChangeDirectoryOutOneLevel -> "$ cd .."
+#         ChangeDirectory name -> "$ cd \(name)"
+#         ListDirectory -> "$ ls"
+#         DirectoryListing name -> "dir \(name)"
+#         FileListing size name ->
+#             s = Num.toStr size
+#             "\(s) \(name)"
 
 changeDirectoryParser : Parser (List U8) LineOutput
 changeDirectoryParser =
@@ -112,15 +161,14 @@ changeDirectoryParser =
             if target == ['.', '.'] then
                 ChangeDirectoryOutOneLevel
             else
-                ChangeDirectory target
+                ChangeDirectory (strOrCrash target)
         )
     |> skip (string "$ cd ")
     |> keep (chompWhile isPermittedFileName)
 
 expect
     input = Str.toUtf8 "$ cd a\n"
-    expected = Ok { val: ChangeDirectory ['a'], input: ['\n'] }
-
+    expected = Ok { val: ChangeDirectory "a", input: ['\n'] }
     parsePartial changeDirectoryParser input == expected
 
 expect
@@ -131,7 +179,7 @@ expect
 
 expect
     input = Str.toUtf8 "$ cd /"
-    expected = Ok { val: ChangeDirectory ['/'], input: [] }
+    expected = Ok { val: ChangeDirectory root, input: [] }
 
     parsePartial changeDirectoryParser input == expected
 
@@ -149,16 +197,14 @@ expect
 
 directoryListingParser : Parser (List U8) LineOutput
 directoryListingParser =
-    const (\name -> DirectoryListing name)
+    const (\name -> DirectoryListing (strOrCrash name))
     |> skip (string "dir ")
     |> keep (chompWhile isPermittedFileName)
 
 expect
     input = Str.toUtf8 "dir z\n"
-    expected = Ok { val: DirectoryListing ['z'], input: ['\n'] }
-    result = parsePartial directoryListingParser input
-
-    result == expected
+    expected = Ok { val: DirectoryListing "z", input: ['\n'] }
+    parsePartial directoryListingParser input == expected
 
 fileListingParser : Parser (List U8) LineOutput
 fileListingParser =
@@ -168,7 +214,7 @@ fileListingParser =
                     Ok n -> n
                     Err _ -> crash "failed to parse size"
 
-                FileListing size name
+                FileListing size (strOrCrash name)
         )
     |> keep (chompWhile isDigit)
     |> skip (string " ")
@@ -176,7 +222,7 @@ fileListingParser =
 
 expect
     input = Str.toUtf8 "1234 abc"
-    expected = Ok { val: FileListing 1234 ['a', 'b', 'c'], input: [] }
+    expected = Ok { val: FileListing 1234 "abc", input: [] }
 
     parsePartial fileListingParser input == expected
 
@@ -227,3 +273,9 @@ sampleInput =
     7214296 k
     """
     |> Str.toUtf8
+
+strOrCrash : List U8 -> Str 
+strOrCrash = \input ->
+    when (Str.fromUtf8 input) is 
+        Ok str -> str
+        Err _ -> crash "couldn't make string"
