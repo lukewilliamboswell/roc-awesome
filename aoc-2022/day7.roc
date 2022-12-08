@@ -21,10 +21,10 @@ main =
 
     task =
         fileInput <- File.readUtf8 (Path.fromStr "input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
-        {} <- process (withColor "Part 1 Sample:" Green) sampleInput part1 |> Task.await
-        {} <- process (withColor "Part 1 File Input:" Green) fileInput part1 |> Task.await
-        {} <- process (withColor "Part 2 File Input:" Green) fileInput part2 |> Task.await
-        Stdout.line "Completed processing"
+        {} <- process (withColor "Sample:" Green) sampleInput part1 |> Task.await
+        {} <- process (withColor "Part 1:" Green) fileInput part1 |> Task.await
+        {} <- process (withColor "Part 2:" Green) fileInput part2 |> Task.await
+        Stdout.line "Done"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
