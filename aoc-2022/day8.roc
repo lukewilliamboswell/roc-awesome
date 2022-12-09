@@ -16,13 +16,16 @@ main : Task {} []
 main =
 
     task =
-        # Sample
-        {} <- part1 (withColor "Sample:" Green) sampleState |> Task.await
-
-        # Part 1
         fileInput <- File.readUtf8 (Path.fromStr "input-day-8.txt") |> Task.map Str.toUtf8 |> Task.await
         fileState = processInput fileInput
+
+        # Part 1
+        {} <- part1 (withColor "P1 Sample:" Green) sampleState |> Task.await
         {} <- part1 (withColor "Part 1:" Green) fileState |> Task.await
+
+        # Part 2
+        {} <- part2 (withColor "P2 Sample:" Red) sampleState |> Task.await
+        {} <- part2 (withColor "Part 2:" Red) fileState |> Task.await
 
         # Completed
         Stdout.line "Done"
@@ -62,6 +65,21 @@ part1 = \name, state ->
         |> Num.toStr
 
     Stdout.line "\(name)\(answer)"
+
+# Part 2
+part2 = \name, state ->
+    List.range {start : At 0, end : Before state.cols} |> List.map \col ->
+        List.range {start : At 0, end : Before state.rows} |> List.map \row ->
+            cl = treesVisibleInDirection state Left {row, col}
+            cr = treesVisibleInDirection state Right {row, col}
+            cu = treesVisibleInDirection state Up {row, col}
+            cd = treesVisibleInDirection state Down {row, col}
+        
+            cl + cr + cu + cd 
+        |> List.sum
+    |> List.sum
+    |> Num.toStr
+    |> \answer -> Stdout.line "\(name)\(answer)"
 
 # For debugging
 arrayToStr : Array2D -> Str
@@ -120,8 +138,8 @@ index = \col, cols, row -> col + cols * row
 getHeight : Array2D, {row : Nat, col: Nat}  -> U8
 getHeight = \state, {row, col} ->
     when List.get state.hs (index col state.cols row) is 
-                Ok h -> h
-                Err _ -> crash "index out of bounds"
+        Ok h -> h
+        Err _ -> crash "index out of bounds"
 
 getVisibility : Array2D, {row : Nat, col: Nat}  -> Bool
 getVisibility = \state, {row, col} ->
@@ -219,3 +237,41 @@ setVisHelp = \{tallest, state}, {row,col,height} ->
         {state, tallest}
 
 
+treesVisibleInDirection : Array2D, [Up, Down, Left, Right], {row : Nat, col : Nat} -> Nat
+treesVisibleInDirection = \state, direction, {row,col} -> 
+    when direction is 
+        Up -> 
+            List.range {start : At row, end : At 0}
+            |> List.dropFirst
+            |> List.map \n -> {col, row : n}
+            |> List.walk {tallest : 0, count : 0, state} countTreesHelp
+            |> .count
+        Down ->
+            List.range {start : At row, end : Before state.rows}
+            |> List.dropFirst
+            |> List.map \n -> {col, row : n}
+            |> List.walk {tallest : 0, count : 0, state} countTreesHelp
+            |> .count
+        Left -> 
+            List.range {start : At col, end : At 0}
+            |> List.dropFirst
+            |> List.map \n -> {row, col : n}
+            |> List.walk {tallest : 0, count : 0, state} countTreesHelp
+            |> .count
+        Right ->
+            List.range {start : At col, end : Before state.cols}
+            |> List.dropFirst
+            |> List.map \n -> {row, col : n}
+            |> List.walk {tallest : 0, count : 0, state} countTreesHelp
+            |> .count
+
+countTreesHelp = \s, position -> 
+    height = getHeight s.state position
+    if height > s.tallest then
+        {s & tallest : height, count : s.count + 1}
+    else 
+        s
+        
+expect 
+    got = sampleState |> treesVisibleInDirection Left {row : 1, col : 2}
+    got == 1
