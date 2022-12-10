@@ -12,18 +12,20 @@ app "app-aoc-2022-day-9"
 
 main : Task {} []
 main =
-
+    print = \description, answer -> Stdout.line "\(description)\(answer)"
     task =
         fileInput <- File.readUtf8 (Path.fromStr "input-day-9.txt") |> Task.await
         fileMoves = parse fileInput
 
-        # # Part 1
-        {} <- Stdout.line (part1 "Sample" sampleMoves) |> Task.await
-        {} <- Stdout.line (part1 "File" fileMoves) |> Task.await
+        # Part 1
+        {} <- print (withColor "Part 1 Sample:" Green) (process sampleMoves 1) |> Task.await
+        {} <- print (withColor "Part 1 File:" Green) (process fileMoves 1) |> Task.await
+        
+        # Part 2
+        {} <- print (withColor "Part 2 Sample:" Green) (process sampleMoves 9) |> Task.await
+        {} <- print (withColor "Part 2 Bigger Example:" Green) (process biggerExampleMoves 9) |> Task.await
+        {} <- print (withColor "Part 2 File:" Green) (process fileMoves 9) |> Task.await
 
-        # # Part 2
-
-        # Completed
         Stdout.line "Done"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
@@ -32,27 +34,31 @@ Move : { direction : [Right, Left, Up, Down], count : Nat }
 Position : {x : I32, y : I32}
 State : {
     head : Position,
-    tail : Position,
+    tails : List Position,
     visits : Set Position,
 }
 
-initState : State
-initState = {
-    head : {x : 0i32, y : 0i32},
-    tail : {x : 0i32, y : 0i32},
-    visits : Set.single {x : 0i32, y : 0i32},
-}
+initPosition : Position
+initPosition = {x : 0i32, y : 0i32}
 
-part1 = \name, moves ->
+initState : Nat -> State
+initState = \tailCount ->
+    tails =
+        List.range {start : At 0, end : Before tailCount}
+        |> List.map \_ -> initPosition
+    {
+        tails,
+        head : initPosition,
+        visits : Set.single initPosition,
+    }
+
+process = \moves, tailCount ->
     moves
-    |> List.walk initState reduceMoves        
-    # |> stateToStr
+    |> List.walk (initState tailCount) reduceMoves
     |> .visits
     |> Set.len
     |> Num.toStr
-    |> \i -> 
-        p = withColor "Part 1 \(name):" Green
-        "\(p) number of visits is \(i)"
+    |> \i -> "number of visits is \(i)"
 
 reduceMoves = \state, {direction, count} ->
     if count == 0 then 
@@ -65,26 +71,38 @@ reduceMoves = \state, {direction, count} ->
             Up -> { x : state.head.x, y : state.head.y + 1 }
             Down -> { x : state.head.x, y : state.head.y - 1 }
 
-        # Tail moves?
-        distX = head.x - state.tail.x
-        distY = head.y - state.tail.y
-        step = \h, t -> when Num.compare h t is
-            LT -> -1
-            GT -> 1
-            EQ -> 0
+        # Move tails
+        tails = 
+            List.walk state.tails {leader : head, tails : []} reduceTails 
+            |> .tails
 
-        tail = 
-            if abs distX <= 1 && abs distY <= 1 then
-                state.tail
-            else
-                { 
-                    x : state.tail.x + step head.x state.tail.x, 
-                    y : state.tail.y + step head.y state.tail.y 
-                }
+        visits = when List.last tails is 
+            Ok lastTail -> Set.insert state.visits lastTail
+            Err _ -> crash "expected at least one tail"
 
-        visits = Set.insert state.visits tail
+        reduceMoves {state & head, tails, visits} {direction, count : count - 1}
 
-        reduceMoves {state & head, tail, visits} {direction, count : count - 1}
+reduceTails = \{leader, tails}, tail ->
+    distX = leader.x - tail.x
+    distY = leader.y - tail.y
+    step = \h, t -> when Num.compare h t is
+        LT -> -1
+        GT -> 1
+        EQ -> 0
+
+    updatedTail = 
+        if abs distX <= 1 && abs distY <= 1 then
+            tail 
+        else
+            { 
+                x : tail.x + step leader.x tail.x, 
+                y : tail.y + step leader.y tail.y 
+            }
+    
+    {
+        leader : updatedTail, 
+        tails : List.append tails updatedTail,
+    }
 
 parse : Str -> List Move 
 parse = \input ->
@@ -100,7 +118,11 @@ parse = \input ->
             _ -> crash "unexpected input"
 
 sampleInput = "R 4\nU 4\nL 3\nD 1\nR 4\nD 1\nL 5\nR 2"  
+biggerExampleInput = "R 5\nU 8\nL 8\nD 3\nR 17\nD 10\nL 25\nU 20"
+
 sampleMoves = parse sampleInput
+biggerExampleMoves = parse biggerExampleInput
+
 expect sampleMoves == [
         {direction : Right, count : 4},
         {direction : Up, count : 4},
