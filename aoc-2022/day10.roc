@@ -3,8 +3,8 @@ app "app-aoc-2022-day-9"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        # pf.File,
-        # pf.Path.{ Path },
+        pf.File,
+        pf.Path.{ Path },
         Encode, Json,
         TerminalColor.{ Color, withColor },
     ]
@@ -14,13 +14,11 @@ main : Task {} []
 main =
     print = \description, answer -> Stdout.line "\(description)\(answer)"
     task =
-        # fileInput <- File.readUtf8 (Path.fromStr "input-day-9.txt") |> Task.await
-        # fileMoves = parse fileInput
+        fileInput <- File.readUtf8 (Path.fromStr "input-day-10.txt") |> Task.await
+        fileInstructions = parse fileInput
         {} <- print (withColor "Part 1 Small sample:" Green) (process smaleInstructions) |> Task.await
         {} <- print (withColor "Part 1 Bigger example:" Green) (process biggerInstructions) |> Task.await
-
-
-
+        {} <- print (withColor "Part 1 Input file:" Green) (process fileInstructions) |> Task.await
         Stdout.line "Done"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
@@ -39,7 +37,7 @@ State : {
 
 initState : State
 initState = {
-    cycle : 0, 
+    cycle : 1, 
     register : 1,
     history : [],
     current : NOOP,
@@ -49,12 +47,11 @@ initState = {
 process = \instructions ->
     List.walk instructions initState reduceInstructions
     |> .history
-    |> stateToStr
-    # |> filterSignalStrength
-    # |> List.map \{cycle, register } -> cycle*register
-    # |> List.sum
-    # |> Num.toStr
-    # |> \answer -> "sum of signals strengths is \(answer)"
+    |> filterSignalStrength
+    |> List.map \{cycle, register } -> cycle*register
+    |> List.sum
+    |> Num.toStr
+    |> \answer -> "sum of signals strengths is \(answer)"
 
 filterSignalStrength = \history ->
     check = \{cycle} -> 
@@ -72,29 +69,25 @@ reduceInstructions = \state, instruction ->
 
 tick : State -> State
 tick = \state ->
-    if state.cyclesRemaining == 0 then
-        state
-    else 
 
-        cycle = state.cycle + 1
+    current = state.current
 
-        cyclesRemaining = state.cyclesRemaining - 1
+    cycle = state.cycle + 1
 
-        offset = 
-            if cyclesRemaining == 0 then 
-                when state.current  is 
-                    ADDX value -> value
-                    _ -> 0
-            else 
-                0
+    cyclesRemaining = state.cyclesRemaining - 1
 
-        register = state.register + offset 
-            
-        history = List.append state.history {cycle, register}
+    offset = when P cyclesRemaining current is 
+        P 0 (ADDX value) -> value
+        _ -> 0
 
-        current = state.current
+    register = state.register + offset
 
-        tick { cycle, register, history, current, cyclesRemaining} 
+    history = List.append state.history {cycle, register}
+
+    if cyclesRemaining == 0 then
+        { cycle, register, history, current, cyclesRemaining } 
+    else
+        tick { cycle, register, history, current, cyclesRemaining } 
 
 parse : Str -> List Instruction 
 parse = \input ->
