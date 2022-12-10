@@ -16,9 +16,16 @@ main =
     task =
         fileInput <- File.readUtf8 (Path.fromStr "input-day-10.txt") |> Task.await
         fileInstructions = parse fileInput
-        {} <- print (withColor "Part 1 Small sample:" Green) (process smaleInstructions) |> Task.await
-        {} <- print (withColor "Part 1 Bigger example:" Green) (process biggerInstructions) |> Task.await
-        {} <- print (withColor "Part 1 Input file:" Green) (process fileInstructions) |> Task.await
+
+        # Part 1
+        {} <- print (withColor "Part 1 Small sample:" Green) (part1 smaleInstructions) |> Task.await
+        {} <- print (withColor "Part 1 Bigger example:" Green) (part1 biggerInstructions) |> Task.await
+        {} <- print (withColor "Part 1 Input file:" Green) (part1 fileInstructions) |> Task.await
+
+        # Part 2
+        {} <- print (withColor "Part 2 Bigger example:" Green) (part2 biggerInstructions) |> Task.await
+        {} <- print (withColor "Part 2 Input file:" Green) (part2 fileInstructions) |> Task.await
+
         Stdout.line "Done"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
@@ -26,10 +33,10 @@ main =
 
 
 Instruction : [NOOP, ADDX I32]
-Sample : {cycle : I32, register : I32}
+Sample : {cycle : I32, start : I32, end : I32}
 State : {
     cycle : I32,
-    register : I32, 
+    register : I32,
     history : List Sample,
     current : Instruction,
     cyclesRemaining : Nat,
@@ -37,21 +44,27 @@ State : {
 
 initState : State
 initState = {
-    cycle : 1, 
+    cycle : 0, 
     register : 1,
     history : [],
     current : NOOP,
     cyclesRemaining : 0,
 }
 
-process = \instructions ->
+part1 = \instructions ->
     List.walk instructions initState reduceInstructions
     |> .history
     |> filterSignalStrength
-    |> List.map \{cycle, register } -> cycle*register
+    |> List.map \{cycle, start } -> cycle*start
     |> List.sum
     |> Num.toStr
-    |> \answer -> "sum of signals strengths is \(answer)"
+    |> \answer -> "sum of signal strength is \(answer)"
+
+part2 = \instructions ->
+    List.walk instructions initState reduceInstructions 
+    |> .history
+    |> renderPixels    
+    |> \answer -> "\n\(answer)"
 
 filterSignalStrength = \history ->
     check = \{cycle} -> 
@@ -70,11 +83,11 @@ reduceInstructions = \state, instruction ->
 tick : State -> State
 tick = \state ->
 
+    start = state.register
+
     current = state.current
 
     cycle = state.cycle + 1
-
-    cyclesRemaining = state.cyclesRemaining - 1
 
     offset = when P cyclesRemaining current is 
         P 0 (ADDX value) -> value
@@ -82,12 +95,48 @@ tick = \state ->
 
     register = state.register + offset
 
-    history = List.append state.history {cycle, register}
+    end = register
+
+    history = List.append state.history {cycle, start, end}
+
+    cyclesRemaining = state.cyclesRemaining - 1
 
     if cyclesRemaining == 0 then
         { cycle, register, history, current, cyclesRemaining } 
     else
         tick { cycle, register, history, current, cyclesRemaining } 
+
+toPixels : List Sample -> List Str
+toPixels = \samples ->
+    {cycle, start} <- List.map samples
+
+    position = (cycle - 1) % 40
+    
+    drawSprite = 
+        List.range {start : At (start - 1), end : At (start + 1)}
+        |> List.contains position
+    
+    if drawSprite then 
+        "#"
+    else 
+        "."
+
+renderPixels : List Sample -> Str
+renderPixels = \samples -> 
+    toPixels samples
+    |> List.walk {buffer:"", index : 0} \state, pixel ->
+    
+        buffer = 
+            if index % 40 == 0 then
+                Str.concat state.buffer "\(pixel)\n"
+            else 
+                Str.concat state.buffer pixel
+
+        index = state.index + 1
+
+        {buffer, index}
+
+    |> .buffer
 
 parse : Str -> List Instruction 
 parse = \input ->
