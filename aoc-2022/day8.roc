@@ -1,4 +1,4 @@
-app "app-aoc-2022-day-8"
+app "aoc-2022"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.2/3bKbbmgtIfOyC6FviJ9o8F8xqKutmXgjCJx3bMfVTSo.tar.br" }
     imports [
         pf.Stdout,

@@ -1,4 +1,4 @@
-app "app-aoc-2022-day-7"
+app "aoc-2022"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.2/3bKbbmgtIfOyC6FviJ9o8F8xqKutmXgjCJx3bMfVTSo.tar.br" }
     imports [
         pf.Stdout,
@@ -76,23 +76,23 @@ Entry : [
 buildDirectoryListing : List LineOutput -> FileSystem 
 buildDirectoryListing = \lo ->
     state = 
-        {cwd, fs}, line <- List.walk lo {cwd:[], fs : Dict.empty}
+        {cwd, fs}, line <- List.walk lo {cwd:List.withCapacity 10, fs : Dict.empty}
         when line is
             ChangeDirectory name -> 
-                path = List.prepend cwd name
+                path = List.append cwd name
                 {cwd : path, fs}
-            ChangeDirectoryOutOneLevel -> {cwd : List.dropFirst cwd, fs}
+            ChangeDirectoryOutOneLevel -> {cwd : List.dropLast cwd, fs}
             DirectoryListing name ->
-                path = List.prepend cwd name
+                path = List.append cwd name |> Str.joinWith "/"
                 entry = Folder 0
                 {cwd, fs : Dict.insert fs path entry}
             FileListing size name ->
-                path = List.prepend cwd name
+                path = List.append cwd name |> Str.joinWith "/"
                 entry = File size
                 xfs = 
                     fs 
                     |> Dict.insert path entry
-                    |> updateParentSizes cwd size
+                    |> updateParentSizes (Str.joinWith cwd "/") size
 
                 {cwd, fs : xfs}
             _ ->
@@ -108,7 +108,7 @@ updateParentSizes = \fs, path, size ->
 
     xfs = Dict.insert fs path (Folder newSize)
 
-    when List.dropFirst path is 
+    when List.dropLast path is 
         [] -> xfs
         parent -> updateParentSizes xfs parent size    
 
