@@ -7,10 +7,7 @@ app "app-aoc-2022-day-8"
         pf.Path.{ Path },
         TerminalColor.{ Color, withColor },
     ]
-    provides [
-        main,
-        arrayToStr,
-    ] to pf
+    provides [ main, arrayToStr ] to pf
 
 main : Task {} []
 main =
@@ -24,20 +21,16 @@ main =
         {} <- part1 (withColor "Part 1:" Green) fileState |> Task.await
 
         # Part 2
-        {} <- part2 (withColor "P2 Sample:" Red) sampleState |> Task.await
-        {} <- part2 (withColor "Part 2:" Red) fileState |> Task.await
+        {} <- part2 (withColor "P2 Sample:" Green) sampleState |> Task.await
+        {} <- part2 (withColor "Part 2:" Green) fileState |> Task.await
 
         # Completed
         Stdout.line "Done"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
 
-# 2D array, note must be square
-# R C O L U M N S
-# O
-# W
-# S
-Array2D : {
+# 2D array of trees
+Trees : {
     hs : List U8, # heights
     vs : List Bool, # vibilities
     rows : Nat, # zero indexed 
@@ -54,9 +47,6 @@ part1 = \name, state ->
         |> setRowVisibility Right
         |> setColVisibility Up
         |> setColVisibility Down
-    
-    # FOR DEBUGGING
-    # {} <- Stdout.line (arrayToStr processed) |> Task.await
 
     answer =
         processed
@@ -70,19 +60,21 @@ part1 = \name, state ->
 part2 = \name, state ->
     List.range {start : At 0, end : Before state.cols} |> List.map \col ->
         List.range {start : At 0, end : Before state.rows} |> List.map \row ->
-            cl = treesVisibleInDirection state Left {row, col}
-            cr = treesVisibleInDirection state Right {row, col}
-            cu = treesVisibleInDirection state Up {row, col}
-            cd = treesVisibleInDirection state Down {row, col}
+            cl = treesIn state Left {row, col}
+            cr = treesIn state Right {row, col}
+            cu = treesIn state Up {row, col}
+            cd = treesIn state Down {row, col}
         
-            cl + cr + cu + cd 
-        |> List.sum
-    |> List.sum
+            # calculate scenic score 
+            cl * cr * cu * cd
+    |> List.join
+    |> List.max
+    |> Result.withDefault 0
     |> Num.toStr
     |> \answer -> Stdout.line "\(name)\(answer)"
 
 # For debugging
-arrayToStr : Array2D -> Str
+arrayToStr : Trees -> Str
 arrayToStr = \state ->
     hs = state.hs |> List.map Num.toStr |> Str.joinWith ","
     vs = state.vs |> List.map (\v -> if v then "Y" else "N") |> Str.joinWith ","
@@ -91,7 +83,7 @@ arrayToStr = \state ->
     count = state.count |> Num.toStr
     "count:\(count),rows:\(rows),cols:\(cols),\nHEIGHTS:\n\(hs)\nVISIBILITIES:\n\(vs)"
 
-initialArray : Array2D
+initialArray : Trees
 initialArray = {
     hs : List.withCapacity (100*100),
     vs : List.withCapacity (100*100),
@@ -100,7 +92,7 @@ initialArray = {
     count : 0, 
 }
 
-processInput : List U8 {} -> Array2D
+processInput : List U8 {} -> Trees
 processInput = \data ->
     state, elem <- List.walk data initialArray
 
@@ -135,19 +127,19 @@ sampleInput =
 index : Nat, Nat, Nat -> Nat
 index = \col, cols, row -> col + cols * row
 
-getHeight : Array2D, {row : Nat, col: Nat}  -> U8
+getHeight : Trees, {row : Nat, col: Nat}  -> U8
 getHeight = \state, {row, col} ->
     when List.get state.hs (index col state.cols row) is 
         Ok h -> h
         Err _ -> crash "index out of bounds"
 
-getVisibility : Array2D, {row : Nat, col: Nat}  -> Bool
+getVisibility : Trees, {row : Nat, col: Nat}  -> Bool
 getVisibility = \state, {row, col} ->
     when List.get state.vs (index col state.cols row) is 
         Ok v -> v
         Err _ -> crash "index out of bounds"
 
-setVisible : Array2D, {row : Nat, col: Nat} -> Array2D
+setVisible : Trees, {row : Nat, col: Nat} -> Trees
 setVisible = \state, {row, col} ->
     {state & vs : List.set state.vs (index col state.cols row) Bool.true}
 
@@ -207,7 +199,7 @@ expect
     got == expected
 
 
-setRowVisibility : Array2D, [Left, Right] -> Array2D
+setRowVisibility : Trees, [Left, Right] -> Trees
 setRowVisibility = \state, direction ->
     rowNumbers = List.range {start : At 0, end : Before state.rows}
     state2, currentRow <- List.walk rowNumbers state 
@@ -217,7 +209,7 @@ setRowVisibility = \state, direction ->
     |> List.walk {tallest : 255, state : state2} setVisHelp
     |> .state
 
-setColVisibility : Array2D, [Up, Down] -> Array2D
+setColVisibility : Trees, [Up, Down] -> Trees
 setColVisibility = \state, direction ->
     colNumbers = List.range {start : At 0, end : Before state.rows}
     state2, currentCol <- List.walk colNumbers state 
@@ -227,7 +219,7 @@ setColVisibility = \state, direction ->
     |> List.walk {tallest : 255, state : state2} setVisHelp
     |> .state
 
-setVisHelp : {tallest : U8, state: Array2D }, {row: Nat, col : Nat, height : U8} -> {tallest : U8, state: Array2D }
+setVisHelp : {tallest : U8, state: Trees }, {row: Nat, col : Nat, height : U8} -> {tallest : U8, state: Trees }
 setVisHelp = \{tallest, state}, {row,col,height} -> 
     if tallest == 255 then 
         {tallest : height, state : setVisible state {row, col}}
@@ -236,42 +228,95 @@ setVisHelp = \{tallest, state}, {row,col,height} ->
     else 
         {state, tallest}
 
-
-treesVisibleInDirection : Array2D, [Up, Down, Left, Right], {row : Nat, col : Nat} -> Nat
-treesVisibleInDirection = \state, direction, {row,col} -> 
+treesIn : Trees, [Up, Down, Left, Right], {row : Nat, col : Nat} -> Nat
+treesIn = \state, direction, {row,col} ->
+    treeHouseHeight = getHeight state {row, col}
     when direction is 
         Up -> 
-            List.range {start : At row, end : At 0}
+            range {start : 0, end : row}
+            |> List.reverse
             |> List.dropFirst
             |> List.map \n -> {col, row : n}
-            |> List.walk {tallest : 0, count : 0, state} countTreesHelp
+            |> List.walk {blocked : Bool.false, tallest : 0, count : 0, state, treeHouseHeight} countTreesHelp
             |> .count
         Down ->
-            List.range {start : At row, end : Before state.rows}
+            range {start : row, end : state.rows}
+            |> List.dropLast
             |> List.dropFirst
             |> List.map \n -> {col, row : n}
-            |> List.walk {tallest : 0, count : 0, state} countTreesHelp
+            |> List.walk {blocked : Bool.false, tallest : 0, count : 0, state, treeHouseHeight} countTreesHelp
             |> .count
         Left -> 
-            List.range {start : At col, end : At 0}
+            range {start : 0, end : col}
+            |> List.reverse
             |> List.dropFirst
             |> List.map \n -> {row, col : n}
-            |> List.walk {tallest : 0, count : 0, state} countTreesHelp
+            |> List.walk {blocked : Bool.false, tallest : 0, count : 0, state, treeHouseHeight} countTreesHelp
             |> .count
         Right ->
-            List.range {start : At col, end : Before state.cols}
+            range {start : col, end : state.cols}
+            |> List.dropLast
             |> List.dropFirst
             |> List.map \n -> {row, col : n}
-            |> List.walk {tallest : 0, count : 0, state} countTreesHelp
+            |> List.walk {blocked : Bool.false, tallest : 0, count : 0, state, treeHouseHeight} countTreesHelp
             |> .count
 
 countTreesHelp = \s, position -> 
     height = getHeight s.state position
-    if height > s.tallest then
-        {s & tallest : height, count : s.count + 1}
-    else 
+    if height >= s.treeHouseHeight && s.blocked == Bool.false then
+        {s & count : s.count + 1, blocked : Bool.true}
+    else if !s.blocked then
+        {s & count : s.count + 1}
+    else
         s
-        
-expect 
-    got = sampleState |> treesVisibleInDirection Left {row : 1, col : 2}
-    got == 1
+
+expect treesIn sampleState Up {row : 1, col: 2} == 1
+expect treesIn sampleState Left {row : 1, col: 2} == 1
+expect treesIn sampleState Right {row : 1, col: 2} == 2
+expect treesIn sampleState Down {row : 1, col: 2} == 2
+expect treesIn sampleState Up {row : 3, col: 2} == 2
+expect treesIn sampleState Left {row : 3, col: 2} == 2 
+expect treesIn sampleState Right {row : 3, col: 2} == 2
+expect treesIn sampleState Down {row : 3, col: 2} == 1
+expect treesIn sampleState Up {row : 2, col: 3} == 2
+expect treesIn sampleState Left {row : 2, col: 3} == 1
+expect treesIn sampleState Right {row : 2, col: 3} == 1
+expect treesIn sampleState Down {row : 2, col: 3} == 1
+expect treesIn sampleState Up {row : 0, col: 0} == 0
+expect treesIn sampleState Left {row : 0, col: 0} == 0 
+expect treesIn sampleState Right {row : 0, col: 0} == 2
+expect treesIn sampleState Down {row : 0, col: 0} == 2
+expect treesIn sampleState Up {row : 4, col: 0} == 1
+expect treesIn sampleState Left {row : 4, col: 0} == 0
+expect treesIn sampleState Right {row : 4, col: 0} == 1
+expect treesIn sampleState Down {row : 4, col: 0} == 0
+expect treesIn sampleState Up {row : 1, col: 3} == 1
+expect treesIn sampleState Left {row : 1, col: 3} == 1
+expect treesIn sampleState Right {row : 1, col: 3} == 1
+expect treesIn sampleState Down {row : 1, col: 3} == 1
+expect treesIn sampleState Up {row : 2, col: 1} == 1
+expect treesIn sampleState Left {row : 2, col: 1} == 1
+expect treesIn sampleState Right {row : 2, col: 1} == 3
+expect treesIn sampleState Down {row : 2, col: 1} == 2
+
+range : {start : Nat, end : Nat} -> List Nat
+range = \{start, end} ->
+    if start < end then 
+        rangeHelp (1 + end - start) []
+        |> List.map (\n -> n + start)
+        |> List.reverse
+    else if start == end then 
+        [start]
+    else 
+        crash "start must be less than end"
+
+rangeHelp : Nat, List Nat -> List Nat 
+rangeHelp = \count, list -> 
+    if count == 0 then 
+        list
+    else 
+        rangeHelp (count - 1) (List.append list (count - 1))
+
+expect range {start : 2, end : 4} == [2,3,4]
+expect range {start : 0, end : 4} == [0,1,2,3,4]
+
