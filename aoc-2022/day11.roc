@@ -3,7 +3,7 @@ app "aoc-2022"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        Parser.Core.{ Parser, parsePartial, parse, map, many, oneOrMore, between, const, sepBy, oneOf, keep, skip, buildPrimitiveParser },
+        Parser.Core.{ Parser, parsePartial, parse, map, many, oneOrMore, const, sepBy, oneOf, keep, skip, buildPrimitiveParser },
         Parser.Str.{ string, codeunit },
     ]
     provides [ main ] to pf
@@ -28,16 +28,18 @@ monkeyP =
         op : \n -> n+1, # TODO fix me
         test : \n -> n-1, # TODO fix me
     })
-    |> keep (between (string "Monkey ") digits (string ":\n  Starting items: "))
+    |> skip (string "Monkey ") 
+    |> keep digits
+    |> skip (string ":\n  Starting items: ")
     |> keep (sepBy digits (string ","))
     |> skip (string "\n  Operation: ")
     |> keep tokenP
     |> skip (string "\n  Test: divisible by ")
     |> keep (digits |> map Num.toI32)
     |> skip (string "\n    If true: throw to monkey ")
-    |> keep (digits)
+    |> keep digits
     |> skip (string "\n    If false: throw to monkey ")
-    |> keep (digits)
+    |> keep digits
     |> skip (string "\n\n")
 
 sampleMonkeys = 
