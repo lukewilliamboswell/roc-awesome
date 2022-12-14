@@ -6,24 +6,11 @@ app "aoc-2022"
     ]
     provides [ main, stateToStr ] to pf
 
-
-Monkey : {
-    items : List U64, 
-    op : (U64 -> U64), 
-    test : (U64 -> Nat), 
-    inspectionCount : U16, 
-    # Changing this ^^ inspectionCount type does crazy things
-    # U8 - panicked at 'encountered allocation error: Layout { size: 2882303761517117440, align: 8 (1 << 3) }'
-    # U16 - panicked at 'encountered allocation error: Layout { size: 11258999068426240, align: 8 (1 << 3) }'
-    # I32/U32 - segfaults
-    # I64/U64/Nat - runs but does crazy things with Dict
-}
-
 main : Task {} []
 main =
     task = 
-        {} <- part1 "Part 1 Sample:" { current : 0, monkeys : sampleMonkeys, round : 0 } |> Task.await
-        # {} <- part1 "Part 1 File Input:" { current : 0, monkeys : inputMonkeys, round : 0 } |> Task.await
+        # {} <- part1 "Part 1 Sample:" { current : 0, monkeys : sampleMonkeys, round : 0 } |> Task.await
+        {} <- part1 "Part 1 File Input:" { current : 0, monkeys : inputMonkeys, round : 0 } |> Task.await
 
         Stdout.line "Complete"
     
@@ -38,10 +25,18 @@ part1 = \name, state ->
     |> List.sortDesc
     |> \counts ->
         when counts is 
-            [first, second, ..] -> first*second
+            [first, second, ..] -> (Num.toF64 first) * (Num.toF64 second)
             _ -> crash "expected more monkeys!!"
     |> Num.toStr
     |> \ans -> Stdout.line "\(name) the level of monkey business is \(ans)"
+
+
+Monkey : {
+    items : List U64, 
+    op : (U64 -> U64), 
+    test : (U64 -> Nat), 
+    inspectionCount : U16,
+}
 
 State : {
     round : Nat,
