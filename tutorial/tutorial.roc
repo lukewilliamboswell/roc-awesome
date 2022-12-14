@@ -1,5 +1,5 @@
 app "roc-tutorial"
-    packages { pf: "https://github.com/lukewilliamboswell/roc-static-site/releases/download/0.0.1/VetiCXRM8Ty_wCa6R_oHuC2ZVqjgmaNGTrMsG0tUV0s.tar.br" }
+    packages { pf: "https://github.com/lukewilliamboswell/roc-static-site/releases/download/0.0.2/b4_Ubh62NXv4iyfh7dyo7KOzZWgUwb2MRllTpjQO52g.tar.br" }    
     imports [
         pf.Html.{ html, head, body, div, main, p, section, h1, label, ol, input, text, nav, a, li, link, meta },
         pf.Html.Attributes.{ httpEquiv, content, name, for, id, type, placeholder, href, rel, lang, class, title },
@@ -69,10 +69,9 @@ tocLinks =
         { tag: "crashing", value: "Crashing" },
         { tag: "tests-and-expectations", value: "Tests and Expectations" },
         { tag: "modules", value: "Modules" },
-        { tag: "modules", value: "Platforms and Packages" },
         { tag: "tasks", value: "Tasks" },
         { tag: "abilities", value: "Abilities" },
-        { tag: "advanced-concepts", value: "Advanced Concepts" },
+        { tag: "appendix-advanced-concepts", value: "Advanced Concepts" },
         { tag: "operator-desugaring-table", value: "Operator Desugaring Table" },
     ]
     |> List.map (\{ tag, value } -> li [] [a [href(Str.concat "#" tag)] [text value]])

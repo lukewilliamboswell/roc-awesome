@@ -11,8 +11,8 @@
   --repl-prompt: #0ff4f4;
   --body-bg: #fff;
   --code-bg: #e7e7e7;
-  --snippet-bg: #fcfcfc;
-  --snippet-border: #bbb;
+  --language-snippet-bg: #fcfcfc;
+  --language-snippet-border: #bbb;
   --code-color: #303030;
   --toc-background: #f3f3f3;
   --toc-border: #ddd;
@@ -121,16 +121,16 @@ code, samp {
   color: var(--code-color);
 }
 
-.snippet, samp {
+.language-snippet, samp {
   display: block;
   overflow: auto;
   white-space: pre;
   padding: 10px 16px;
-  background-color: var(--snippet-bg);
+  background-color: var(--language-snippet-bg);
   margin-bottom: 16px;
   font-size: 1.2rem;
   line-height: 1.76rem;
-  border: 1px solid var(--snippet-border);
+  border: 1px solid var(--language-snippet-border);
 }
 
 .repl-prompt:before {
@@ -310,7 +310,7 @@ td:last-child {
 
 /* Mobile-friendly screen width */
 @media only screen and (max-device-width: 480px) and (orientation: portrait) {
-  p, code, samp, .snippet {
+  p, code, samp, .language-snippet {
       font-size: 16px;
   }
 
@@ -528,11 +528,11 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
       --repl-prompt: #0ff4f4;
       --body-bg: #0e0e0f;
       --code-bg: #303030;
-      --snippet-bg: #1a1a1a;
-      --snippet-border: #444;
+      --language-snippet-bg: #1a1a1a;
+      --language-snippet-border: #444;
       --code-color: #cdcdcd;
-      --toc-background: var(--snippet-bg);
-      --toc-border: var(--snippet-border);
+      --toc-background: var(--language-snippet-bg);
+      --toc-border: var(--language-snippet-border);
       --toc-search-bg: #333;
       --toc-search-border: #555;
   }
