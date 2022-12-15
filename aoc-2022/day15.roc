@@ -16,23 +16,9 @@ main : Task {} []
 main =
 
     task =
-
-        
-        part1 (withColor "Part 1 Sample:" Green) {initialState & data : sampleData} 10
-        |> Stdout.line
-
-        # 2_000_000
-
-
-        # fsSample = process sampleInput 
-        # fileInput <- File.readUtf8 (Path.fromStr "input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
-        # fsFile = process fileInput
-        # {} <- run (withColor "Sample:" Green) fsSample part1 |> Task.await
-        # {} <- run (withColor "Part 1:" Green) fsFile part1 |> Task.await
-        # {} <- run (withColor "Part 2:" Green) fsFile part2 |> Task.await
+        part1 (withColor "Part 1 Sample:" Green) {initialState & data : sampleData} 10 |> Stdout.line
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
-
 
 initialState = {
     data : [],
@@ -69,6 +55,8 @@ checkSensorInRange = \dataPoints, sensorData ->
             else 
                 count
         |> Num.add rowCount
+    
+    # TODO check if any beacons in this row??
 
 calculateSensorRanges = \state ->
     data = 
@@ -182,21 +170,20 @@ sampleInput =
 
 chompWhile : (a -> Bool) -> Parser (List a) {} | a has Eq
 chompWhile = \check ->
-    buildPrimitiveParser \input ->
+    input <- buildPrimitiveParser
 
-        index = 
-            List.walkUntil input 0 \i, elem ->
-                if check elem then 
-                    Continue (i + 1)
-                else 
-                    Break i
+    index = List.walkUntil input 0 \i, elem ->
+        if check elem then 
+            Continue (i + 1)
+        else 
+            Break i
 
-        Ok {
-            val : {},
-            input : List.drop input index,
-        }
+    Ok {
+        val : {},
+        input : List.drop input index,
+    }
 
-notDigitOrDash = \i ->
+notDigitOrDash = \i -> 
     when i is 
         '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '-' -> Bool.false
         _ -> Bool.true
@@ -209,17 +196,8 @@ digit : Parser (List U8) Nat
 digit =
     input <- buildPrimitiveParser
 
-    when input is 
-        ['0',..] -> Ok { val: 0, input: List.dropFirst input }
-        ['1',..] -> Ok { val: 1, input: List.dropFirst input }
-        ['2',..] -> Ok { val: 2, input: List.dropFirst input }
-        ['3',..] -> Ok { val: 3, input: List.dropFirst input }
-        ['4',..] -> Ok { val: 4, input: List.dropFirst input }
-        ['5',..] -> Ok { val: 5, input: List.dropFirst input }
-        ['6',..] -> Ok { val: 6, input: List.dropFirst input }
-        ['7',..] -> Ok { val: 7, input: List.dropFirst input }
-        ['8',..] -> Ok { val: 8, input: List.dropFirst input }
-        ['9',..] -> Ok { val: 9, input: List.dropFirst input }
+    when input is
+        [ c, .. ] if c >= '0' && c <= '9' -> Ok { val: Num.toNat (c - '0'), input: List.dropFirst input }
         _ -> Err (ParsingFailure "not a digit")
             
 int : Parser (List U8) I64
