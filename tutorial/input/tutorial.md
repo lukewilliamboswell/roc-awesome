@@ -1132,6 +1132,14 @@ You can write automated tests for your Roc code like so:
 
 If you put this in a file named `main.roc` and run `roc test`, Roc will execute the two `expect` expressions (that is, the two `pluralize` calls) and report any that returned `false`.
 
+If a test fails, it will not show the actual value that differs from the expected value. To show the actual value, you can write the expect like this:
+
+<pre><samp>expect
+    funcOut <span class="op">=</span> pluralize <span class="str">"cactus"</span> <span class="str">"cacti"</span> 1
+
+    funcOut <span class="op">==</span> <span class="str">"2 cactus"</span>
+</samp></pre>
+
 ### [Inline Expectations](#inline-expects) {#inline-expects}
 
 For example:
