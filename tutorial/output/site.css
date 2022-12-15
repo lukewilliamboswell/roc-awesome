@@ -153,9 +153,14 @@ samp .autovar {
   color: #3dbd0f;
 }
 
-samp .kw, samp .op {
-  /* language keywords, e.g. `if`, or operators, e.g. `+` */
+samp .kw {
+  /* language keywords, e.g. `if`*/
   color: #3474db;
+} 
+
+samp .op {
+  /* operators, e.g. `+` */
+  color: #b157df;
 }
 
 samp .paren, samp .brace, samp .comma {
@@ -163,19 +168,19 @@ samp .paren, samp .brace, samp .comma {
   color: #3474db;
 }
 
-samp .str, samp .number {
+samp .str {
   /* string literals */
   color: #158086;
 }
 
-samp .str-esc {
-  /* escapes inside string literals, e.g. \t */
-  color: #3474db;
+samp .number {
+  /* number literals */
+  color: #153e86;
 }
 
-samp .str-interp {
-  /* interpolated variables inside string literals */
-  color: var(--text-color);
+samp .str-esc, samp .str-interp {
+  /* escapes inside string literals, e.g. \t */
+  color: #3474db;
 }
 
 samp .dim {
@@ -525,7 +530,7 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
       --header-link-hover: #ddd;
       --h1-color: #1bc6bd;
       --link-color: #1bc6bd;
-      --repl-prompt: #0ff4f4;
+      --repl-prompt: #1b9292;
       --body-bg: #0e0e0f;
       --code-bg: #303030;
       --language-snippet-bg: #1a1a1a;
@@ -547,17 +552,22 @@ unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+
 
   samp .paren, samp .brace, samp .comma {
       /* square braces, parens, commas */
+      color: #4f4f4f;
+  }
+
+  samp .kw {
+      /* language keywords, e.g. `if` */
       color: #67a0fb;
   }
 
-  samp .kw, samp .op {
-      /* language keywords, e.g. `if`, or operators, e.g. `+` */
-      color: #67a0fb;
+  samp .op {
+    /* operators, e.g. `+` */
+    color: #ca67fb;
   }
 
   samp .str {
       /* string literals */
-      color: #26b2b9;
+      color: #b96126;
   }
 
   samp .comment {
