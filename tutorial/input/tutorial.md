@@ -26,7 +26,7 @@ Try typing this at the REPL prompt and pressing Enter:
 
 The REPL should cheerfully display the following:
 
-<pre><samp>"Hello, World!" <span class="ann">:</span> Str <span class="autovar"># val1</span></samp></pre>
+<pre><samp><span class="str">"Hello, World!"</span> <span class="colon">:</span> Str <span class="autovar"># val1</span></samp></pre>
 
 Congratulations! You've just written your first Roc code.
 
@@ -57,7 +57,7 @@ You can combine named strings together using _string interpolation_, like so:
 
 If you put this into the REPL, you should see this output:
 
-<pre><samp>"Hi there, World!" <span class="ann">:</span> Str <span class="autovar"># val2</span></samp></pre>
+<pre><samp><span class="str">"Hi there, World!"</span> <span class="colon">:</span> Str <span class="autovar"># val2</span></samp></pre>
 
 Notice that the REPL printed `# val2` here. This works just like `# val1` did before, but it chose the name `val2` for this expression because `val1` was already taken. As we continue entering more expressions into the REPL, you'll see more and more of these generated names—but they won't be mentioned again in this tutorial, since they're just a convenience.
 
@@ -67,17 +67,17 @@ By the way, there are many other ways to put strings together! Check out the doc
 
 Now let's try using an _operator_, specifically the `+` operator. Enter this:
 
-<pre><samp class="repl-prompt">1 + 1</samp></pre>
+<pre><samp class="repl-prompt">1 <span class="op">+</span> 1</samp></pre>
 
 You should see this output:
 
-<pre><samp>2 <span class="ann">:</span> Num *</samp></pre>
+<pre><samp>2 <span class="colon">:</span> Num *</samp></pre>
 
 According to the REPL, one plus one equals two. Sounds right!
 
 Roc will respect [order of operations](https://en.wikipedia.org/wiki/Order_of_operations) when using multiple arithmetic operators like `+` and `-`, but you can use parentheses to specify exactly how they should be grouped.
 
-<pre><samp><span class="repl-prompt">1 + 2 * (3 - 4)</span></pre>
+<pre><samp><span class="repl-prompt">1 <span class="op">+</span> 2 <span class="op">*</span> (3 <span class="op">-</span> 4)</span></pre>
 
 ### [Calling Functions](#calling-functions) {#calling-functions}
 
@@ -85,7 +85,7 @@ Remember back in the [string interpolation](#string-interpolation) section when 
 
 <pre><samp><span class="repl-prompt">Str.concat "Hi " "there!"</span>
 
-"Hi there!" <span class="ann">:</span> Str
+<span class="str">"Hi there!"</span> <span class="colon">:</span> Str
 </samp></pre>
 
 Here we're calling the `Str.concat` function passing two arguments: the string `"Hi "` and the string `"there!"`. This _concatenates_ the two strings together (that is, it puts one after the other) and returns the resulting combined string of `"Hi there!"`.
@@ -96,7 +96,7 @@ That said, just like in the arithmetic example above, we can use parentheses to 
 
 <pre><samp><span class="repl-prompt">Str.concat "Birds: " (Num.toStr 42)</span>
 
-"Birds: 42" <span class="ann">:</span> Str
+<span class="str">"Birds: 42"</span> <span class="colon">:</span> Str
 </samp></pre>
 
 This calls `Num.toStr` on the number `42`, which converts it into the string `"42"`, and then passes that string as the second argument to `Str.concat`.
@@ -263,7 +263,7 @@ This differently-indented version is equivalent to writing `else if sum < 0 then
 <pre><samp>pluralize <span class="kw">=</span> <span class="kw">\</span>singular, plural, count <span class="kw">-&gt;</span>
     <span class="kw">dbg</span> count
 
-    <span class="kw">if</span> count <span class="op">==</span> <span class="number">1</span> then
+    <span class="kw">if</span> count <span class="op">==</span> <span class="number">1</span> <span class="kw">then</span>
         singular
     <span class="kw">else</span>
         plural
@@ -348,7 +348,7 @@ Instead of writing `\record -> record.x` we can write `.x` and it will evaluate 
 <span class="comment"># and returns the `foo` field of that record.</span>
 returnFoo <span class="kw">=</span> .foo
 
-returnFoo <span class="brace">{</span> foo: <span class="str">"hi!"</span><span class="comma">,</span> bar: <span class="str">"blah"</span> <span class="brace"></span>}</span>
+returnFoo <span class="brace">{</span> foo <span class="colon">:</span> <span class="str">"hi!"</span><span class="comma">,</span> bar <span class="colon">:</span> <span class="str">"blah"</span> <span class="brace"></span>}</span>
 <span class="comment"># returns "hi!"</span>
 </samp></pre>
 
@@ -372,15 +372,15 @@ In this version, we created a `lizards` def that's assigned to the record's `igu
 
 Finally, destructuring can be used in defs too:
 
-<pre><samp><span class="brace">{</span> x<span class="comma">,</span> y <span class="brace">}</span> <span class="kw">=</span> <span class="brace">{</span> x: 5<span class="comma">,</span> y: 10 <span class="brace">}</span></samp></pre>
+<pre><samp><span class="brace">{</span> x<span class="comma">,</span> y <span class="brace">}</span> <span class="kw">=</span> <span class="brace">{</span> x <span class="colon">:</span> 5<span class="comma">,</span> y <span class="colon">:</span> 10 <span class="brace">}</span></samp></pre>
 
 ### [Making records from other records](#making-records-from-other-records) {#making-records-from-other-records}
 
 So far we've only constructed records from scratch, by specifying all of their fields. We can also construct new records by using another record to use as a starting point, and then specifying only the fields we want to be different. For example, here are two ways to get the same record:
 
-<pre><samp>original <span class="kw">=</span> <span class="brace">{</span> birds: 5<span class="comma">,</span> zebras: 2<span class="comma">,</span> iguanas: 7<span class="comma">,</span> goats: 1 <span class="brace">}</span>
-fromScratch <span class="kw">=</span> <span class="brace">{</span> birds: 4<span class="comma">,</span> zebras: 2<span class="comma">,</span> iguanas: 3<span class="comma">,</span> goats: 1 <span class="brace">}</span>
-fromOriginal <span class="kw">=</span> <span class="brace">{</span> original <span class="kw">&amp;</span> birds: 4<span class="comma">,</span> iguanas: 3<span class="comma"> <span class="brace">}</span>
+<pre><samp>original <span class="kw">=</span> <span class="brace">{</span> birds: 5<span class="comma">,</span> zebras <span class="colon">:</span> 2<span class="comma">,</span> iguanas <span class="colon">:</span> 7<span class="comma">,</span> goats <span class="colon">:</span> 1 <span class="brace">}</span>
+fromScratch <span class="kw">=</span> <span class="brace">{</span> birds <span class="colon">:</span> 4<span class="comma">,</span> zebras <span class="colon">:</span> 2<span class="comma">,</span> iguanas <span class="colon">:</span> 3<span class="comma">,</span> goats <span class="colon">:</span> 1 <span class="brace">}</span>
+fromOriginal <span class="kw">=</span> <span class="brace">{</span> original <span class="kw">&amp;</span> birds <span class="colon">:</span> 4<span class="comma">,</span> iguanas <span class="colon">:</span> 3<span class="comma"> <span class="brace">}</span>
 </samp></pre>
 
 The `fromScratch` and `fromOriginal` records are equal, although they're defined in different ways.
@@ -439,7 +439,7 @@ We can still have the equivalent of an `else` branch in our `when` if we like. I
 <pre><samp>stoplightStr <span class="kw">=</span>
 <span class="kw">    when</span> stoplightColor <span class="kw">is</span>
         Red<span class="hljs-function"> <span class="kw">-&gt;</span> <span class="str">"red"</span>
-        \_<span class="hljs-function"> <span class="kw">-&gt;</span> <span class="str">"not red"</span>
+        _<span class="hljs-function"> <span class="kw">-&gt;</span> <span class="str">"not red"</span>
 </samp></pre>
 
 This lets us more concisely handle multiple cases. However, it has the downside that if we add a new case - for example, if we introduce the possibility of `stoplightColor` being `Orange`, the compiler can no longer tell us we forgot to handle that possibility in our `when`. After all, we are handling it - just maybe not in the way we'd decide to if the compiler had drawn our attention to it!
@@ -518,14 +518,14 @@ You can also pattern match on lists, like so:
 
 <pre><samp><span class="kw">when</span> myList <span class="kw">is</span>
     <span class="brace">[]</span> <span class="kw">-&gt;</span> <span class="number">0</span> <span class="comment"># the list is empty</span>
-    <span class="brace">[</span>Foo<span class="comma">,</span> <span class="kw">..</span><span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">1</span> <span class="comment"># it starts with a Foo tag</span>
+    <span class="brace">[</span>Foo<span class="comma">,</span> ..<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">1</span> <span class="comment"># it starts with a Foo tag</span>
     <span class="brace">[</span>_<span class="comma">,</span> ..<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">2</span> <span class="comment"># it contains at least one element, which we ignore</span>
     <span class="brace">[</span>Foo<span class="comma">,</span> Bar<span class="comma">,</span> ..<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">3</span> <span class="comment"># it starts with a Foo tag followed by a Bar tag</span>
     <span class="brace">[</span>Foo<span class="comma">,</span> Bar<span class="comma">,</span> Baz<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">4</span> <span class="comment"># it has exactly 3 elements: Foo, Bar, and Baz</span>
     <span class="brace">[</span>Foo<span class="comma">,</span> a<span class="comma">,</span> ..<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">5</span> <span class="comment"># its first element is Foo, and its second we name `a`</span>
     <span class="brace">[</span>Ok a<span class="comma">,</span> ..<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">6</span> <span class="comment"># it starts with an Ok containing a payload named `a`</span>
     <span class="brace">[</span>..<span class="comma">,</span> Foo<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">7</span> <span class="comment"># it ends with a Foo tag</span>
-    <span class="brace">[</span>A<span class="comma">,</span> B, <span class="kw">..</span><span class="comma">,</span> C<span class="comma">,</span> D<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">8</span> <span class="comment"># it has certain elements at the beginning and end</span>
+    <span class="brace">[</span>A<span class="comma">,</span> B, ..<span class="comma">,</span> C<span class="comma">,</span> D<span class="brace">]</span> <span class="kw">-&gt;</span> <span class="number">8</span> <span class="comment"># it has certain elements at the beginning and end</span>
 </samp></pre>
 
 This can be both more concise and more efficient (at runtime) than calling [`List.get`](https://www.roc-lang.org/builtins/List#get) multiple times, since each call to `get` requires a separate conditional to handle the different `Result`s they return.
@@ -579,7 +579,7 @@ As such, calling `List.map [1, 2, 3] Num.isOdd` returns a new list of `[Bool.tru
 If we tried to give `List.map` a function that didn't work on the elements in the list, then we'd get an error at compile time. Here's a valid, and then an invalid example:
 
 <pre><samp><span class="comment"># working example</span>
-List.map [-<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, -<span class="number">4</span>] Num.isNegative
+List.map [<span class="number">-1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">-4</span>] Num.isNegative
 <span class="comment"># returns [Bool.<span class="hljs-literal">true</span>, Bool.<span class="hljs-literal">false</span>, Bool.<span class="hljs-literal">false</span>, Bool.<span class="hljs-literal">true</span>]</span>
 </samp></pre>
 
@@ -603,7 +603,7 @@ Ensuring all elements in a list share a type eliminates entire categories of pro
 
 We can use tags with payloads to make a list that contains a mixture of different types. For example:
 
-<pre><samp>List.map [StrElem <span class="str">"A"</span>, StrElem <span class="str">"b"</span>, NumElem <span class="number">1</span>, StrElem <span class="str">"c"</span>, NumElem -<span class="number">3</span>] \elem <span class="kw">-&gt;</span>
+<pre><samp>List.map [StrElem <span class="str">"A"</span>, StrElem <span class="str">"b"</span>, NumElem <span class="number">1</span>, StrElem <span class="str">"c"</span>, NumElem -<span class="number">3</span>] <span class="kw">\</span>elem <span class="kw">-&gt;</span>
     <span class="kw">when</span> elem <span class="kw">is</span>
         NumElem num <span class="kw">-&gt;</span> Num.isNegative num
         StrElem str <span class="kw">-&gt;</span> Str.isCapitalized str
@@ -679,13 +679,13 @@ There's also `List.dropIf`, which does the reverse:
 
 You can make your own custom operations that walk over all the elements in a list, using `List.walk`. Let's look at an example and then walk (ha!) through it.
 
-<pre><samp>List.walk [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>] { evens: [], odds: [] } <span class="kw">\</span>state, elem <span class="kw">-&gt;</span>
-    <span class="kw">if</span> Num.isEven elem then
-        { state &amp; evens: List.append state.evens elem }
+<pre><samp>List.walk [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>] { evens <span class="colon">:</span> [], odds <span class="colon">:</span> [] } <span class="kw">\</span>state, elem <span class="kw">-&gt;</span>
+    <span class="kw">if</span> Num.isEven elem <span class="kw">then</span>
+        { state &amp; evens <span class="colon">:</span> List.append state.evens elem }
     <span class="kw">else</span>
-        { state &amp; odds: List.append state.odds elem }
+        { state &amp; odds <span class="colon">:</span> List.append state.odds elem }
 
-<span class="comment"># returns { evens: [2, 4], odds: [1, 3, 5] }</span>
+<span class="comment"># returns { evens : [2, 4], odds : [1, 3, 5] }</span>
 </samp></pre>
 
 `List.walk` walks through each element of the list, building up a state as it goes. At the end, it returns the final state - whatever it ended up being after processing the last element. The `\state, elem ->` function it takes as its last argument accepts both the current state as well as the current list element it's looking at, and then returns the new state based on whatever it decides to do with that element.
@@ -739,7 +739,7 @@ When you have nested function calls, sometimes it can be clearer to write them i
 <pre><samp>Result.withDefault (List.get [<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"c"</span>] <span class="number">1</span>) <span class="str">""</span>
 </samp>
 <samp>List.get [<span class="str">"a"</span>, <span class="str">"b"</span>, <span class="str">"c"</span>] <span class="number">1</span>
-|&gt; Result.withDefault <span class="str">""</span>
+<span class="kw">|&gt;</span> Result.withDefault <span class="str">""</span>
 </samp></pre>
 
 The `|>` operator takes the value that comes before the `|>` and passes it as the first argument to whatever comes after the `|>` - so in the example above, the `|>` takes `List.get ["a", "b", "c"] 1` and passes that value as the first argument to `Result.withDefault` - making `""` the second argument to `Result.withDefault`.
@@ -788,8 +788,8 @@ Comments can be valuable documentation, but they can also get out of date and be
 
 Here's another way to document this function's type, which doesn't have that problem:
 
-<pre><samp>fullName <span class="comma">:</span> Str, Str <span class="kw">-&gt;</span> Str
-fullName <span class="kw">=</span> \firstName, lastName <span class="kw">-&gt;</span>
+<pre><samp>fullName <span class="colon">:</span> Str, Str <span class="kw">-&gt;</span> Str
+fullName <span class="kw">=</span> <span class="kw">\</span>firstName, lastName <span class="kw">-&gt;</span>
 <span class="str">    "</span><span class="str-interp">\(firstName) \(lastName)</span><span class="str">"</span>
 </samp></pre>
 
@@ -799,10 +799,10 @@ The annotation `fullName : Str, Str -> Str` says "`fullName` is a function that 
 
 We can give type annotations to any value, not just functions. For example:
 
-<pre><samp><span class="attribute">firstName</span> <span class="comma">:</span> Str
+<pre><samp><span class="attribute">firstName</span> <span class="colon">:</span> Str
 firstName <span class="kw">=</span> <span class="str">"Amy"</span>
 
-<span class="hljs-literal">last</span>Name <span class="comma">:</span> Str
+<span class="hljs-literal">last</span>Name <span class="colon">:</span> Str
 <span class="hljs-literal">last</span>Name <span class="kw">=</span> <span class="str">"Lee"</span>
 </samp></pre>
 
@@ -810,24 +810,24 @@ These annotations say that both `firstName` and `lastName` have the type `Str`.
 
 We can annotate records similarly. For example, we could move `firstName` and `lastName` into a record like so:
 
-<pre><samp>amy <span class="comma">:</span> { firstName <span class="comma">:</span> Str, lastName <span class="comma">:</span> Str }
-amy <span class="kw">=</span> { firstName <span class="comma">:</span> <span class="str">"Amy"</span>, lastName <span class="comma">:</span> <span class="str">"Lee"</span> }
+<pre><samp>amy <span class="colon">:</span> { firstName <span class="colon">:</span> Str, lastName <span class="colon">:</span> Str }
+amy <span class="kw">=</span> { firstName <span class="colon">:</span> <span class="str">"Amy"</span>, lastName <span class="colon">:</span> <span class="str">"Lee"</span> }
 
-jen <span class="comma">:</span> { firstName <span class="comma">:</span> Str, lastName <span class="comma">:</span> Str }
-jen <span class="kw">=</span> { firstName <span class="comma">:</span> <span class="str">"Jen"</span>, lastName <span class="comma">:</span> <span class="str">"Majura"</span> }
+jen <span class="colon">:</span> { firstName <span class="colon">:</span> Str, lastName <span class="colon">:</span> Str }
+jen <span class="kw">=</span> { firstName <span class="colon">:</span> <span class="str">"Jen"</span>, lastName <span class="colon">:</span> <span class="str">"Majura"</span> }
 </samp></pre>
 
 ### [Type Aliases](#type-aliases) {#type-aliases}
 
 When we have a recurring type annotation like this, it can be nice to give it its own name. We do this like so:
 
-<pre><samp><span class="str">Musician :</span> { <span class="str">firstName :</span> Str, <span class="str">lastName :</span> Str }
-<span class="str">
-amy :</span> Musician
-amy <span class="op">=</span> { <span class="str">firstName:</span> <span class="str">"Amy"</span>, <span class="str">lastName:</span> <span class="str">"Lee"</span> }
-<span class="str">
-simone :</span> Musician
-simone <span class="op">=</span> { <span class="str">firstName:</span> <span class="str">"Simone"</span>, <span class="str">lastName:</span> <span class="str">"Simons"</span> }
+<pre><samp>Musician <span class="colon">:</span> { firstName <span class="colon">:</span> Str, lastName <span class="colon">:</span> Str }
+
+amy <span class="colon">:</span> Musician
+amy <span class="kw">=</span> { firstName<span class="colon">:</span> <span class="str">"Amy"</span>, lastName<span class="colon">:</span> <span class="str">"Lee"</span> }
+
+simone <span class="colon">:</span> Musician
+simone <span class="kw">=</span> { firstName<span class="colon">:</span> <span class="str">"Simone"</span>, lastName<span class="colon">:</span> <span class="str">"Simons"</span> }
 </samp></pre>
 
 Here, `Musician` is a _type alias_. A type alias is like a def, except it gives a name to a type instead of to a value. Just like how you can read `name : Str` as "`name` has the type `Str`," you can also read `Musician : { firstName : Str, lastName : Str }` as "`Musician` has the type `{ firstName : Str, lastName : Str }`."
@@ -836,8 +836,8 @@ Here, `Musician` is a _type alias_. A type alias is like a def, except it gives 
 
 Annotations for lists must specify what type the list's elements have:
 
-<pre><samp>names : List Str
-names <span class="op">=</span> [<span class="str">"Amy"</span>, <span class="str">"Simone"</span>, <span class="str">"Tarja"</span>]
+<pre><samp>names <span class="colon">:</span> List Str
+names <span class="kw">=</span> [<span class="str">"Amy"</span>, <span class="str">"Simone"</span>, <span class="str">"Tarja"</span>]
 </samp></pre>
 
 You can read `List Str` as "a list of strings." Here, `Str` is a _type parameter_ that tells us what type of `List` we're dealing with. `List` is a _parameterized type_, which means it's a type that requires a type parameter; there's no way to give something a type of `List` without a type parameter - you have to specify what type of list it is, such as `List Str` or `List Bool` or `List { firstName : Str, lastName : Str }`.
@@ -846,7 +846,7 @@ You can read `List Str` as "a list of strings." Here, `Str` is a _type parameter
 
 There are some functions that work on any list, regardless of its type parameter. For example, `List.isEmpty` has this type:
 
-<pre><samp>isEmpty : List \* <span class="kw">-&gt;</span> Bool
+<pre><samp>isEmpty <span class="colon">:</span> List * <span class="kw">-&gt;</span> Bool
 </samp></pre>
 
 The `*` is a _wildcard type_ - that is, a type that's compatible with any other type. `List *` is compatible with any type of `List` - so, `List Str`, `List Bool`, and so on. So you can call `List.isEmpty ["I am a List Str"]` as well as `List.isEmpty [Bool.true]`, and they will both work fine.
@@ -857,11 +857,11 @@ The wildcard type also comes up with empty lists. Suppose we have one function t
 
 `List.reverse` works similarly to `List.isEmpty`, but with an important distinction. As with `isEmpty`, we can call `List.reverse` on any list, regardless of its type parameter. However, consider these calls:
 
-<pre><samp><span class="kw">strings </span>: List <span class="kw">Str
-</span><span class="kw">strings </span>= List.<span class="kw">reverse </span>[<span class="str">"a"</span>, <span class="str">"b"</span>]
+<pre><samp>strings <span class="colon">:</span> List Str
+strings <span class="kw">=</span> List.reverse [<span class="str">"a"</span>, <span class="str">"b"</span>]
 
-<span class="kw">bools </span>: List <span class="kw">Bool
-</span><span class="kw">bools </span>= List.<span class="kw">reverse </span>[<span class="kw">Bool.true, </span><span class="kw">Bool.false]</span>
+bools <span class="colon">:</span> List Bool
+bools <span class="kw">=</span> List.reverse [Bool.true, Bool.false]
 </samp></pre>
 
 In the `strings` example, we have `List.reverse` returning a `List Str`. In the `bools` example, it's returning a `List Bool`. So what's the type of `List.reverse`?
@@ -870,11 +870,11 @@ We saw that `List.isEmpty` has the type `List * -> Bool`, so we might think the 
 
 What we want is something like one of these:
 
-<pre><samp>reverse : List elem <span class="kw">-&gt;</span> List elem
+<pre><samp>reverse <span class="colon">:</span> List elem <span class="kw">-&gt;</span> List elem
 </samp>
-<samp>reverse : <span class="hljs-type">List</span> <span class="kw">value</span> <span class="kw">-&gt;</span> <span class="hljs-type">List</span> <span class="kw">value</span>
+<samp>reverse <span class="colon">:</span> <span class="hljs-type">List</span> value <span class="kw">-&gt;</span> <span class="hljs-type">List</span> value
 </samp>
-<samp>reverse : List a <span class="kw">-&gt;</span> List a
+<samp>reverse <span class="colon">:</span> List a <span class="kw">-&gt;</span> List a
 </samp></pre>
 
 Any of these will work, because `elem`, `value`, and `a` are all _type variables_. A type variable connects two or more types in the same annotation. So you can read `List elem -> List elem` as "takes a list and returns a list that has the same element type." Just like `List.reverse` does!
@@ -889,7 +889,7 @@ Similarly, the only way to have a function whose type is `a -> a` is if the func
 
 We can also annotate types that include tags:
 
-<pre><samp>colorFromStr : Str <span class="kw">-&gt;</span> <span class="brace">[</span>Red<span class="comma">,</span> Green<span class="comma">,</span> Yellow<span class="brace">]</span>
+<pre><samp>colorFromStr <span class="colon">:</span> Str <span class="kw">-&gt;</span> <span class="brace">[</span>Red<span class="comma">,</span> Green<span class="comma">,</span> Yellow<span class="brace">]</span>
 colorFromStr <span class="kw">=</span> <span class="kw">\</span>string <span class="kw">-&gt;</span>
     <span class="kw">when</span> string <span class="kw">is</span>
         <span class="str">"red"</span> <span class="kw">-&gt;</span> Red
@@ -901,7 +901,7 @@ You can read the type `[Red, Green, Yellow]` as "a tag union of the tags `Red`, 
 
 Some tag unions have only one tag in them. For example:
 
-<pre><samp>redTag <span class="comma">:</span> <span class="brace">[</span>Red<span class="brace">]</span>
+<pre><samp>redTag <span class="colon">:</span> <span class="brace">[</span>Red<span class="brace">]</span>
 redTag <span class="kw">=</span> Red
 </samp></pre>
 
@@ -920,7 +920,7 @@ Here, Roc sees that the first branch has the type `[Ok Str]` and that the `else`
 
 This means this entire `\str -> …` function has the type `Str -> [Ok Str, Err (List Str)]`. However, it would be most common to annotate it as `Result Str (List Str)` instead, because the `Result` type (for operations like `Result.withDefault`, which we saw earlier) is a type alias for a tag union with `Ok` and `Err` tags that each have one payload:
 
-<pre><samp>Result ok err <span class="comma">:</span> <span class="brace">[</span>Ok ok<span class="comma">,</span> Err err<span class="brace">]</span>
+<pre><samp>Result ok err <span class="colon">:</span> <span class="brace">[</span>Ok ok<span class="comma">,</span> Err err<span class="brace">]</span>
 </samp></pre>
 
 We just saw how tag unions get combined when different branches of a conditional return different tags. Another way tag unions can get combined is through pattern matching. For example:
@@ -1043,16 +1043,16 @@ There are some use cases where `F64` and `F32` can be better choices than `Dec` 
 
 Some operations work on specific numeric types - such as `I64` or `Dec` - but operations support multiple numeric types. For example, the `Num.abs` function works on any number, since you can take the [absolute value](https://en.wikipedia.org/wiki/Absolute_value) of integers and fractions alike. Its type is:
 
-<pre><samp>abs : Num <span class="kw">a</span> <span class="kw">-&gt;</span> Num <span class="kw">a</span>
+<pre><samp>abs <span class="colon">:</span> Num a <span class="kw">-&gt;</span> Num a
 </samp></pre>
 
 This type says `abs` takes a number and then returns a number of the same type. That's because the `Num` type is compatible with both integers and fractions.
 
 There's also an `Int` type which is only compatible with integers, and a `Frac` type which is only compatible with fractions. For example:
 
-<pre><samp>Num.xor : Int <span class="hljs-selector-tag">a</span>, Int <span class="hljs-selector-tag">a</span> <span class="kw">-&gt;</span> Int a
+<pre><samp>Num.xor <span class="colon">:</span> Int <span class="hljs-selector-tag">a</span>, Int <span class="hljs-selector-tag">a</span> <span class="kw">-&gt;</span> Int a
 </samp>
-<samp>Num.cos : Frac <span class="hljs-selector-tag">a</span> <span class="kw">-&gt;</span> Frac a
+<samp>Num.cos <span class="colon">:</span> Frac <span class="hljs-selector-tag">a</span> <span class="kw">-&gt;</span> Frac a
 </samp></pre>
 
 When you write a number literal in Roc, it has the type `Num *`. So you could call `Num.xor 1 1` and also `Num.cos 1` and have them all work as expected; the number literal `1` has the type `Num *`, which is compatible with the more constrained types `Int` and `Frac`. For the same reason, you can pass number literals to functions expecting even more constrained types, like `I32` or `F64`.
@@ -1083,8 +1083,8 @@ Crashes in Roc are not like [try/catch exceptions](https://en.wikipedia.org/wiki
 
 You can intentionally crash a Roc program, for example inside a conditional branch that you believe is unreachable. Suppose you're certain that a particular `List U8` contains valid UTF-8 bytes, which means when you call `Str.fromUtf8` on it, the `Result` it returns will always be `Ok`. In that scenario, you can use the `crash` keyword to handle the `Err` case like so:
 
-<pre><samp>answer : Str
-answer =
+<pre><samp>answer <span class="colon">:</span> Str
+answer <span class="kw">=</span>
     <span class="kw">when</span> Str.fromUtf8 definitelyValidUtf8 <span class="kw">is</span>
         Ok str <span class="kw">-&gt;</span> str
         Err _ <span class="kw">-&gt;</span> <span class="kw">crash</span> <span class="str">"This should never happen!"</span>
@@ -1118,13 +1118,13 @@ Errors that are recoverable should be represented using normal Roc types ( like 
 
 You can write automated tests for your Roc code like so:
 
-<pre><samp>pluralize <span class="op">=</span> \singular, plural, count <span class="kw">-&gt;</span>
-    countStr <span class="op">=</span> <span class="hljs-type">Num</span>.toStr count
+<pre><samp>pluralize <span class="kw">=</span> <span class="kw">\</span>singular, plural, count <span class="kw">-&gt;</span>
+    countStr <span class="kw">=</span> <span class="hljs-type">Num</span>.toStr count
 
-    <span class="kw">if</span> count <span class="op">==</span> <span class="number">1</span> then
-        <span class="str">"<span class="hljs-subst">\(countStr)</span> <span class="hljs-subst">\(singular)</span>"</span>
+    <span class="kw">if</span> count <span class="op">==</span> <span class="number">1</span> <span class="kw">then</span>
+        <span class="str">"<span class="str-interp">\(countStr)</span> <span class="str-interp">\(singular)</span>"</span>
     <span class="kw">else</span>
-        <span class="str">"<span class="hljs-subst">\(countStr)</span> <span class="hljs-subst">\(plural)</span>"</span>
+        <span class="str">"<span class="str-interp">\(countStr)</span> <span class="str-interp">\(plural)</span>"</span>
 
 <span class="kw">expect</span> pluralize <span class="str">"cactus"</span> <span class="str">"cacti"</span> <span class="number">1</span> <span class="op">==</span> <span class="str">"1 cactus"</span>
 <span class="kw">expect</span> pluralize <span class="str">"cactus"</span> <span class="str">"cacti"</span> <span class="number">2</span> <span class="op">==</span> <span class="str">"2 cacti"</span>
@@ -1136,7 +1136,7 @@ If you put this in a file named `main.roc` and run `roc test`, Roc will execute 
 
 For example:
 
-<pre><samp>    <span class="kw">if</span> count <span class="op">==</span> <span class="number">1</span> then
+<pre><samp>    <span class="kw">if</span> count <span class="op">==</span> <span class="number">1</span> <span class="kw">then</span>
         <span class="str">"<span class="hljs-subst">\(countStr)</span> <span class="hljs-subst">\(singular)</span>"</span>
     <span class="kw">else</span>
         <span class="kw">expect</span> count <span class="op">&gt;</span> <span class="number">0</span>
@@ -1190,10 +1190,10 @@ Besides being built into the compiler, the builtin modules are different from ot
 
 Let's take a closer look at the part of `main.roc` above the `main` def:
 
-<pre><samp><span class="hljs-selector-tag">app</span> "<span class="hljs-selector-tag">hello</span>"
-    <span class="kw">packages</span> <span class="brace">{</span> pf: <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
-    <span class="hljs-selector-tag">imports</span> <span class="hljs-selector-attr">[pf.Stdout]</span>
-    <span class="hljs-selector-tag">provides</span> <span class="hljs-selector-tag">main</span> <span class="hljs-selector-tag">to</span> <span class="hljs-selector-tag">pf</span>
+<pre><samp><span class="kw">app</span> "<span class="hljs-selector-tag">hello</span>"
+    <span class="kw">packages</span> <span class="brace">{</span> pf <span class="colon">:</span> <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
+    <span class="kw">imports</span> <span class="hljs-selector-attr">[pf.Stdout]</span>
+    <span class="kw">provides</span> <span class="hljs-selector-tag">main</span> <span class="kw">to</span> <span class="hljs-selector-tag">pf</span>
 </samp></pre>
 
 This is known as a _module header_. Every `.roc` file is a _module_, and there are different types of modules. We know this particular one is an _application module_ (or _app module_ for short) because it begins with the `app` keyword.
@@ -1202,7 +1202,7 @@ The line `app "hello"` states that this module defines a Roc application, and th
 
 The remaining lines all involve the _platform_ this application is built on:
 
-<pre><samp><span class="kw">packages</span> <span class="brace">{</span> pf: <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
+<pre><samp><span class="kw">packages</span> <span class="brace">{</span> pf <span class="colon">:</span> <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
 <span class="kw">imports</span> <span class="brace">[</span>pf.Stdout<span class="brace">]</span>
 <span class="kw">provides</span> <span class="brace">[</span>main<span class="brace">]</span> <span class="kw">to</span> pf
 </samp></pre>
@@ -1217,7 +1217,7 @@ The `imports [pf.Stdout]` line says that we want to import the `Stdout` module f
 
 This import has a direct interaction with our definition of `main`. Let's look at that again:
 
-<pre><samp><span class="attr">main</span> <span class="op">=</span> Stdout.line <span class="str">"I'm a Roc application!"</span>
+<pre><samp>main <span class="kw">=</span> Stdout.line <span class="str">"I'm a Roc application!"</span>
 </samp></pre>
 
 Here, `main` is calling a function called `Stdout.line`. More specifically, it's calling a function named `line` which is exposed by a module named `Stdout`.
@@ -1226,7 +1226,7 @@ When we write `imports [pf.Stdout]`, it specifies that the `Stdout` module comes
 
 If we would like to include other modules in our application, say `AdditionalModule.roc` and `AnotherModule.roc`, then they can be imported directly in `imports` like this:
 
-<pre><samp><span class="kw">imports</span> <span class="brace">[</span>pf.Stdout<span class="comma">,</span> AdditionalModule<span class="comma">,</span> AnotherModule<span class="brace">]</span></span>
+<pre><samp><span class="kw">imports</span> [pf.Stdout, AdditionalModule, AnotherModule]</span>
 </samp></pre>
 
 You can find documentation for the `Stdout.line` function in the [Stdout](https://www.roc-lang.org/packages/basic-cli/Stdout#line) module documentation.
@@ -1247,17 +1247,17 @@ We'll use these four operations to learn about tasks.
 Let's start with a basic "Hello World" program.
 
 <pre><samp><span class="kw">app</span> <span class="str">"cli-tutorial"</span>
-    <span class="kw">packages</span> <span class="brace">{</span> pf: <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
-    imports [pf.Stdout]
-    provides [main] to pf
+    <span class="kw">packages</span> <span class="brace">{</span> pf <span class="colon">:</span> <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
+    <span class="kw">imports</span> [pf.Stdout]
+    <span class="kw">provides</span> [main] <span class="kw">to</span> pf
 
-main <span class="op">=</span>
-    Stdout.<span class="kw">line</span> <span class="str">"Hello, World!"</span>
+main <span class="kw">=</span>
+    Stdout.line <span class="str">"Hello, World!"</span>
 </samp></pre>
 
 The `Stdout.line` function takes a `Str` and writes it to [standard output](<https://en.wikipedia.org/wiki/Standard_streams#Standard_output_(stdout)>). It has this type:
 
-<pre><samp>Stdout.line : <span class="hljs-type">Str</span> <span class="kw">-&gt;</span> <span class="kw">Task</span> {} *
+<pre><samp>Stdout.line <span class="colon">:</span> Str <span class="kw">-&gt;</span> Task {} *
 </samp></pre>
 
 A `Task` represents an _effect_ - that is, an interaction with state outside your Roc program, such as the console's standard output, or a file.
@@ -1268,19 +1268,19 @@ When we set `main` to be a `Task`, the task will get run when we run our program
 
 In contrast, `Stdin.line` produces a `Str` when it finishes reading from [standard input](<https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)>). That `Str` is reflected in its type:
 
-<pre><samp>Stdin.line : Task Str \*
+<pre><samp>Stdin.line <span class="colon">:</span> Task Str *
 </samp></pre>
 
 Let's change `main` to read a line from `stdin`, and then print it back out again:
 
 <pre><samp><span class="kw">app</span> <span class="str">"cli-tutorial"</span>
-    <span class="kw">packages</span> <span class="brace">{</span> pf: <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
-    imports [pf.Stdout, pf.Stdin, pf.Task]
-    provides [main] to pf
+    <span class="kw">packages</span> <span class="brace">{</span> pf <span class="colon">:</span> <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
+    <span class="kw">imports</span> [pf.Stdout, pf.Stdin, pf.Task]
+    <span class="kw">provides</span> [main] <span class="kw">to</span> pf
 
-main <span class="op">=</span>
-    Task.await Stdin.line \text <span class="kw">-&gt;</span>
-        Stdout.line <span class="str">"You just entered: \(text)"</span>
+main <span class="kw">=</span>
+    Task.await Stdin.line <span class="kw">\</span>text <span class="kw">-&gt;</span>
+        Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 If you run this program, at first it won't do anything. It's waiting for you to type something in and press Enter! Once you do, it should print back out what you entered.
@@ -1289,36 +1289,36 @@ The `Task.await` function combines two tasks into one bigger `Task` which first 
 
 The type of `Task.await` is:
 
-<pre><samp>Task.await : Task <span class="hljs-selector-tag">a</span> err, (<span class="hljs-selector-tag">a</span> <span class="kw">-&gt;</span> Task <span class="hljs-selector-tag">b</span> err) <span class="kw">-&gt;</span> Task <span class="hljs-selector-tag">b</span> err
+<pre><samp>Task.await <span class="colon">:</span> Task <span class="hljs-selector-tag">a</span> err, (<span class="hljs-selector-tag">a</span> <span class="kw">-&gt;</span> Task <span class="hljs-selector-tag">b</span> err) <span class="kw">-&gt;</span> Task <span class="hljs-selector-tag">b</span> err
 </samp></pre>
 
 The second argument to `Task.await` is a "callback function" which runs after the first task completes. This callback function receives the output of that first task, and then returns the second task. This means the second task can make use of output from the first task, like we did in our `\text -> …` callback function here:
 
-<pre><samp>\text <span class="kw">-&gt;</span>
-    Stdout.line <span class="str">"You just entered: \(text)"</span>
+<pre><samp><span class="kw">\</span>text <span class="kw">-&gt;</span>
+    Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 Notice that, just like before, we're still building `main` from a single `Task`. This is how we'll always do it! We'll keep building up bigger and bigger `Task`s out of smaller tasks, and then setting `main` to be that one big `Task`.
 
 For example, we can print a prompt before we pause to read from `stdin`, so it no longer looks like the program isn't doing anything when we start it up:
 
-<pre><samp>task <span class="op">=</span>
-    Task.await (Stdout.line <span class="str">"Type something press Enter:"</span>) \_ <span class="kw">-&gt;</span>
-        Task.await Stdin.line \text <span class="kw">-&gt;</span>
-            Stdout.line <span class="str">"You just entered: \(text)"</span>
+<pre><samp>task <span class="kw">=</span>
+    Task.await (Stdout.line <span class="str">"Type something press Enter:"</span>) <span class="kw">\</span>_ <span class="kw">-&gt;</span>
+        Task.await Stdin.line <span class="kw">\</span>text <span class="kw">-&gt;</span>
+            Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 This works, but we can make it a little nicer to read. Let's change it to the following:
 
 <pre><samp><span class="kw">app</span> <span class="str">"cli-tutorial"</span>
     <span class="kw">packages</span> <span class="brace">{</span> pf: <span class="str">"https://github.com/roc-lang/basic-cli/releases/download/0.1.3/5SXwdW7rH8QAOnD71IkHcFxCmBEPtFSLAIkclPEgjHQ.tar.br"</span> <span class="brace">}</span>
-    imports [pf.Stdout, pf.Stdin, pf.Task.{ await }]
-    provides [main] to pf
+    <span class="kw">imports</span> [pf.Stdout, pf.Stdin, pf.Task.{ await }]
+    <span class="kw">provides</span> [main] <span class="kw">to</span> pf
 
-main <span class="op">=</span>
-    await (Stdout.line <span class="str">"Type something press Enter:"</span>) \_ <span class="kw">-&gt;</span>
-        await Stdin.line \text <span class="kw">-&gt;</span>
-            Stdout.line <span class="str">"You just entered: \(text)"</span>
+main <span class="kw">=</span>
+    await (Stdout.line <span class="str">"Type something press Enter:"</span>) <span class="kw">\</span>_ <span class="kw">-&gt;</span>
+        await Stdin.line <span class="kw">\</span>text <span class="kw">-&gt;</span>
+            Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 Here we've changed how we're importing the `Task` module. Before it was `pf.Task` and now it's `pf.Task.{ await }`. The difference is that we're importing `await` in an _unqualified_ way, meaning now whenever we write `await` in this module, it will refer to `Task.await` - so we no longer need to write `Task.` every time we want to `await`.
@@ -1327,26 +1327,26 @@ It's most common in Roc to call functions from other modules in a _qualified_ wa
 
 Speaking of calling `await` repeatedly, if we keep calling it more and more on this code, we'll end up doing a lot of indenting. If we'd rather not indent so much, we can rewrite `task` into this style which looks different but does the same thing:
 
-<pre><samp>task <span class="op">=</span>
-    _ <span class="op">&lt;-</span> await (Stdout.line <span class="str">"Type something press Enter:"</span>)
-    text <span class="op">&lt;-</span> await Stdin.line
+<pre><samp>task <span class="kw">=</span>
+    _ <span class="kw">&lt;-</span> await (Stdout.line <span class="str">"Type something press Enter:"</span>)
+    text <span class="kw">&lt;-</span> await Stdin.line
 
-    Stdout.line <span class="str">"You just entered: \(text)"</span>
+    Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 This `<-` syntax is called _backpassing_. The `<-` is a way to define an anonymous function, just like `\ … ->` is.
 
 Here, we're using backpassing to define two anonymous functions. Here's one of them:
 
-<pre><samp>text &lt;-
+<pre><samp>text <span class="kw">&lt;-</span>
 
-Stdout.line <span class="str">"You just entered: \(text)"</span>
+Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 It may not look like it, but this code is defining an anonymous function! You might remember it as the anonymous function we previously defined like this:
 
-<pre><samp>\text <span class="kw">-&gt;</span>
-    Stdout.line <span class="str">"You just entered: \(text)"</span>
+<pre><samp><span class="kw">\</span>text <span class="kw">-&gt;</span>
+    Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 These two anonymous functions are the same, just defined using different syntax.
@@ -1357,42 +1357,42 @@ Let's look at these two complete expressions side by side. They are both saying 
 
 Here's the original:
 
-<pre><samp>await Stdin.line \text <span class="kw">-&gt;</span>
-    Stdout.line <span class="str">"You just entered: \(text)"</span>
+<pre><samp>await Stdin.line <span class="kw">\</span>text <span class="kw">-&gt;</span>
+    Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 And here's the equivalent expression with backpassing syntax:
 
-<pre><samp>text <span class="op">&lt;-</span> await Stdin.line
+<pre><samp>text <span class="kw">&lt;-</span> await Stdin.line
 
-Stdout.line <span class="str">"You just entered: \(text)"</span>
+Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 Here's the other function we're defining with backpassing:
 
-<pre><samp>_ &lt;-
-text <span class="op">&lt;-</span> await Stdin.line
+<pre><samp>_ <span class="kw">&lt;-</span>
+text <span class="kw">&lt;-</span> await Stdin.line
 
-Stdout.line <span class="str">"You just entered: \(text)"</span>
+Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 We could also have written that function this way if we preferred:
 
-<pre><samp>_ &lt;-
+<pre><samp>_ <span class="kw">&lt;-</span>
 
-await Stdin.line \text <span class="kw">-&gt;</span>
-    Stdout.line <span class="str">"You just entered: \(text)"</span>
+await Stdin.line <span class="kw">\</span>text <span class="kw">-&gt;</span>
+    Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 This is using a mix of a backpassing function `_ <-` and a normal function `\text ->`, which is totally allowed! Since backpassing is nothing more than syntax sugar for defining a function and passing back as an argument to another function, there's no reason we can't mix and match if we like.
 
 That said, the typical style in which this `task` would be written in Roc is using backpassing for all the `await` calls, like we had above:
 
-<pre><samp>task <span class="op">=</span>
-    _ <span class="op">&lt;-</span> await (Stdout.line <span class="str">"Type something press Enter:"</span>)
-    text <span class="op">&lt;-</span> await Stdin.line
+<pre><samp>task <span class="kw">=</span>
+    _ <span class="kw">&lt;-</span> await (Stdout.line <span class="str">"Type something press Enter:"</span>)
+    text <span class="kw">&lt;-</span> await Stdin.line
 
-    Stdout.line <span class="str">"You just entered: \(text)"</span>
+    Stdout.line <span class="str">"You just entered: </span><span class="str-interp">\(text)"</span>
 </samp></pre>
 
 This way, it reads like a series of instructions:
@@ -1419,8 +1419,8 @@ Here are some concepts you likely won't need as a beginner, but may want to know
 
 Let's say I write a function which takes a record with a `firstName` and `lastName` field, and puts them together with a space in between:
 
-<pre><samp>fullName <span class="op">=</span> \<span class="kw">user</span> <span <span class="opclass="hljs-title">-&gt;
-</span>    "\(user</span>.firstName) \(user.lastName)<span class="str">"</span>
+<pre><samp>fullName <span class="kw">=</span> <span class="kw">\</span>user <span class="kw">-&gt;
+</span>    <span class="str">"</span><span class="str-interp">\(user.firstName) \(user.lastName)</span><span class="str">"</span>
 </samp></pre>
 
 I can pass this function a record that has more fields than just `firstName` and `lastName`, as long as it has _at least_ both of those fields (and both of them are strings). So any of these calls would work:
@@ -1436,14 +1436,14 @@ In contrast, a _closed record_ is one that requires an exact set of fields (and 
 If we add a type annotation to this `fullName` function, we can choose to have it accept either an open record or a closed record:
 
 <pre><samp><span class="comment"># Closed record</span>
-fullName : { <span class="hljs-type">firstName</span> : <span class="hljs-type">Str</span>, lastName : <span class="hljs-type">Str</span> } <span class="kw">-&gt;</span> Str
-fullName <span class="op">=</span> \user <span class="kw">-&gt;</span>
-    <span class="str">"\(user.firstName) \(user.lastName)"</span>
+fullName <span class="colon">:</span> { <span class="hljs-type">firstName</span> <span class="colon">:</span> <span class="hljs-type">Str</span>, lastName <span class="colon">:</span> <span class="hljs-type">Str</span> } <span class="kw">-&gt;</span> Str
+fullName <span class="kw">=</span> <span class="kw">\</span>user <span class="kw">-&gt;</span>
+    <span class="str-interp">"\(user.firstName) \(user.lastName)"</span>
 </samp>
 <samp><span class="comment"># Open record (because of the `*`)</span>
-fullName : { firstName : Str, lastName : Str }* <span class="kw">-&gt;</span> Str
-fullName <span class="op">=</span> \user <span class="kw">-&gt;</span>
-    <span class="str">"\(user.firstName) \(user.lastName)"</span>
+fullName <span class="colon">:</span> { firstName <span class="colon">:</span> Str, lastName <span class="colon">:</span> Str }* <span class="kw">-&gt;</span> Str
+fullName <span class="kw">=</span> <span class="kw">\</span>user <span class="kw">-&gt;</span>
+    <span class="str-interp">"\(user.firstName) \(user.lastName)"</span>
 </samp></pre>
 
 The `*` in the type `{ firstName : Str, lastName : Str }*` is what makes it an open record type. This `*` is the _wildcard type_ we saw earlier with empty lists. (An empty list has the type `List *`, in contrast to something like `List Str` which is a list of strings.)
@@ -1456,9 +1456,9 @@ If the type variable in a record type is a `*` (such as in `{ first : Str, last 
 
 The type variable can also be a named type variable, like so:
 
-<pre><samp>addHttps : { <span class="hljs-type">url</span> : <span class="hljs-type">Str</span> }a <span class="kw">-&gt;</span> { url : <span class="hljs-type">Str</span> }a
-addHttps <span class="op">=</span> \<span class="kw">record</span> <span class="kw">-&gt;</span>
-    { <span class="kw">record</span> &amp; url: <span class="str">"https://\(record.url)"</span> }
+<pre><samp>addHttps <span class="colon">:</span> { <span class="hljs-type">url</span>  <span class="colon">:</span> <span class="hljs-type">Str</span> }a <span class="kw">-&gt;</span> { url  <span class="colon">:</span> <span class="hljs-type">Str</span> }a
+addHttps <span class="kw">=</span> <span class="kw">\</span>record <span class="kw">-&gt;</span>
+    { record <span class="kw">&amp;</span> url <span class="colon">:</span> <span class="str">"https://</span><span class="str-interp">\(record.url)"</span> }
 </samp></pre>
 
 This function uses _constrained records_ in its type. The annotation is saying:
@@ -1487,10 +1487,10 @@ You can add type annotations to make record types less flexible than what the co
 
 If you like, you can always annotate your functions as accepting open records. However, in practice this may not always be the nicest choice. For example, let's say you have a `User` type alias, like so:
 
-<pre><samp>User : {
-    email : <span class="hljs-type">Str</span>,
-    firstName : <span class="hljs-type">Str</span>,
-    lastName : <span class="hljs-type">Str</span>,
+<pre><samp>User <span class="colon">:</span> {
+    email <span class="colon">:</span> <span class="hljs-type">Str</span>,
+    firstName <span class="colon">:</span> <span class="hljs-type">Str</span>,
+    lastName <span class="colon">:</span> <span class="hljs-type">Str</span>,
 }
 </samp></pre>
 
@@ -1498,26 +1498,26 @@ This defines `User` to be a closed record, which in practice is the most common 
 
 If you want to have a function take a `User`, you might write its type like so:
 
-<pre><samp>isValid : <span class="kw">User</span> <span class="opclass="hljs-title">-&gt; </span>Bool</span></samp></pre>
+<pre><samp>isValid <span class="colon">:</span> User <span class="kw">-&gt;</span> </span>Bool</span></samp></pre>
 
 If you want to have a function return a `User`, you might write its type like so:
 
-<pre><samp>userFromEmail : Str -&gt; <span class="kw">User</span>
+<pre><samp>userFromEmail <span class="colon">:</span> Str <span class="kw">-&gt;</span> User
 </samp></pre>
 
 A function which takes a user and returns a user might look like this:
 
-<pre><samp>capitalizeNames : <span class="kw">User</span> <span class="opclass="hljs-title">-&gt; </span><span class="kw">User</span></span>
+<pre><samp>capitalizeNames <span class="colon">:</span> User <span class="kw">-&gt;</span> </span>">n></span>
 </samp></pre>
 
 This is a perfectly reasonable way to write all of these functions. However, I might decide that I really want the `isValid` function to take an open record - that is, a record with _at least_ the fields of this `User` record, but possibly others as well.
 
 Since open records have a type variable (like `*` in `{ email : Str }*` or `a` in `{ email : Str }a -> { email : Str }a`), in order to do this I'd need to add a type variable to the `User` type alias:
 
-<pre><samp><span class="kw">User a</span> : {
-    email : <span class="kw">Str</span>,
-    firstName : <span class="kw">Str</span>,
-    lastName : <span class="kw">Str</span>,
+<pre><samp>User a <span class="kw">:</span> {
+    email <span class="kw">:</span> Str
+    firstName <span class="kw">:</span> Str
+    lastName <span class="kw">:</span> Str
 }a
 </samp></pre>
 
@@ -1525,12 +1525,12 @@ Notice that the `a` type variable appears not only in `User a` but also in `}a` 
 
 Using `User a` type alias, I can still write the same three functions, but now their types need to look different. This is what the first one would look like:
 
-<pre><samp>isValid : <span class="kw">User * </span><span>-&gt;</span> <span class="kw">Bool</span>
+<pre><samp>isValid <span class="colon">:</span> User * <span class="kw">-&gt;</span> Bool
 </samp></pre>
 
 Here, the `User *` type alias substitutes `*` for the type variable `a` in the type alias, which takes it from `{ email : Str, … }a` to `{ email : Str, … }*`. Now I can pass it any record that has at least the fields in `User`, and possibly others as well, which was my goal.
 
-<pre><samp>userFromEmail : Str <span class="kw">-&gt;</span> <span class="kw">User</span> <span class="hljs-title">{}</span>
+<pre><samp>userFromEmail <span class="colon">:</span> Str <span class="kw">-&gt;</span> User {}
 </samp></pre>
 
 Here, the `User {}` type alias substitutes `{}` for the type variable `a` in the type alias, which takes it from `{ email : Str, … }a` to `{ email : Str, … }{}`. As noted earlier, this is another way to specify a closed record: putting a `{}` after it, in the same place that you'd find a `*` in an open record.
@@ -1541,14 +1541,14 @@ This function still returns the same record as it always did, it just needs to b
 
 The third function might need to use a named type variable:
 
-<pre><samp>capitalizeNames : <span class="kw">User</span> <span class="hljs-title">a</span> <span class="kw">-&gt;</span> <span class="kw">User</span> <span class="hljs-title">a</span>
+<pre><samp>capitalizeNames <span class="colon">:</span> User a <span class="kw">-&gt;</span> User a
 </samp></pre>
 
 If this function does a record update on the given user, and returns that - for example, if its definition were `capitalizeNames = \user -> { user & email: "blah" }` - then it needs to use the same named type variable for both the argument and return value.
 
 However, if returns a new `User` that it created from scratch, then its type could instead be:
 
-<pre><samp>capitalizeNames : <span class="kw">User</span> <span class="hljs-title">* <span class="kw">-&gt;</span> User</span> {}
+<pre><samp>capitalizeNames <span class="colon">:</span> User * <span class="kw">-&gt;</span> User {}
 </samp></pre>
 
 This says that it takes a record with at least the fields specified in the `User` type alias, and possibly others...and then returns a record with exactly the fields specified in the `User` type alias, and no others.
@@ -1565,8 +1565,8 @@ The _open tag union_ (or _open union_ for short) `[Foo Str, Bar Bool]*` represen
 
 Because an open union represents possibilities that are impossible to know ahead of time, any `when` I use on a `[Foo Str, Bar Bool]*` value must include a catch-all `_ ->` branch. Otherwise, if one of those unknown tags were to come up, the `when` would not know what to do with it! For example:
 
-<pre><samp>example : [Foo Str, Bar Bool]* <span class="kw">-&gt;</span> Bool
-example <span class="op">=</span> \tag <span class="kw">-&gt;</span>
+<pre><samp>example <span class="kw">:</span> [Foo Str, Bar Bool]* <span class="kw">-&gt;</span> Bool
+example <span class="kw">=</span> <span class="kw">\</span>tag <span class="kw">-&gt;</span>
     <span class="kw">when</span> tag <span class="kw">is</span>
         Foo str <span class="kw">-&gt;</span> Str.isEmpty str
         Bar bool <span class="kw">-&gt;</span> bool
@@ -1575,8 +1575,8 @@ example <span class="op">=</span> \tag <span class="kw">-&gt;</span>
 
 In contrast, a _closed tag union_ (or _closed union_) like `[Foo Str, Bar Bool]` (without the `*`) represents an exhaustive set of possible tags. If I use a `when` on one of these, I can match on `Foo` only and then on `Bar` only, with no need for a catch-all branch. For example:
 
-<pre><samp>example : [Foo Str, Bar Bool] <span class="kw">-&gt;</span> Bool
-example <span class="op">=</span> \tag <span class="kw">-&gt;</span>
+<pre><samp>example <span class="kw">:</span> [Foo Str, Bar Bool] <span class="kw">-&gt;</span> Bool
+example <span class="kw">=</span> <span class="kw">\</span>tag <span class="kw">-&gt;</span>
     <span class="kw">when</span> tag <span class="kw">is</span>
         Foo str <span class="kw">-&gt;</span> Str.isEmpty str
         Bar bool <span class="kw">-&gt;</span> bool
@@ -1590,7 +1590,7 @@ It would infer `tag : [Foo Str, Bar Bool]*` for the former example because the `
 
 Putting these together, whether a tag union is inferred to be open or closed depends on which possibilities the implementation actually handles.
 
-> **Aside:** As with open and closed records, we can use type annotations to make tag union types less flexible than what would be inferred. If we added a `_ ->` branch to the second example above, the compiler would still accept `example : [Foo Str, Bar Bool] -> Bool` as the type annotation, even though the catch-all branch would permit the more flexible `example : [Foo Str, Bar Bool]* -> Bool` annotation instead.
+> **Aside:** As with open and closed records, we can use type annotations to make tag union types less flexible than what would be inferred. If we added a `_ ->` branch to the second example above, the compiler would still accept `example <span class="kw">:</span> [Foo Str, Bar Bool] -> Bool` as the type annotation, even though the catch-all branch would permit the more flexible `example <span class="kw">:</span> [Foo Str, Bar Bool]* -> Bool` annotation instead.
 
 ### [Combining Open Unions](#combining-open-unions) {#combining-open-unions}
 
@@ -1606,7 +1606,7 @@ This is because open unions can accumulate additional tags based on how they're 
 
 This will be a type mismatch because the two branches have incompatible types. Strings and numbers are not type-compatible! Now let's look at another example:
 
-<pre><samp><span class="kw">if</span> x <span class="op">&gt;</span> <span class="number">5</span> then
+<pre><samp><span class="kw">if</span> x <span class="op">&gt;</span> <span class="number">5</span> <span class="kw">then</span>
     <span class="hljs-literal">Ok</span> <span class="str">"foo"</span>
 <span class="kw">else</span>
     <span class="hljs-literal">Err</span> <span class="str">"bar"</span>
@@ -1648,15 +1648,15 @@ In summary, here's a way to think about the difference between open unions in a 
 
 Earlier we saw these two examples, one with an open tag union and the other with a closed one:
 
-<pre><samp>example : [Foo Str, Bar Bool]* <span class="kw">-&gt;</span> Bool
-example <span class="op">=</span> \tag <span class="kw">-&gt;</span>
+<pre><samp>example <span class="kw">:</span> [Foo Str, Bar Bool]* <span class="kw">-&gt;</span> Bool
+example <span class="kw">=</span> <span class="kw">\</span>tag <span class="kw">-&gt;</span>
     <span class="kw">when</span> tag <span class="kw">is</span>
         Foo str <span class="kw">-&gt;</span> Str.isEmpty str
         Bar bool <span class="kw">-&gt;</span> bool
         _ <span class="kw">-&gt;</span> Bool.<span class="hljs-literal">false</span>
 </samp>
-<samp>example : [Foo Str, Bar Bool] <span class="kw">-&gt;</span> Bool
-example <span class="op">=</span> \tag <span class="kw">-&gt;</span>
+<samp>example <span class="kw">:</span> [Foo Str, Bar Bool] <span class="kw">-&gt;</span> Bool
+example <span class="kw">=</span> <span class="kw">\</span>tag <span class="kw">-&gt;</span>
     <span class="kw">when</span> tag <span class="kw">is</span>
         Foo str <span class="kw">-&gt;</span> Str.isEmpty str
         Bar bool <span class="kw">-&gt;</span> bool
@@ -1664,9 +1664,9 @@ example <span class="op">=</span> \tag <span class="kw">-&gt;</span>
 
 Similarly to how there are open records with a `*`, closed records with nothing, and constrained records with a named type variable, we can also have _constrained tag unions_ with a named type variable. Here's an example:
 
-```snippet
-addHttps : { url : Str }a \-> { url : Str }a addHttps \= \\record \-> { record & url: "https://\\(record.url)" }
-```
+<pre><samp>addHttps <span class="colon">:</span> { url <span class="colon">:</span> Str }a <span class="kw">-></span> { url <span class="colon">:</span> Str }a 
+addHttps <span class="kw">=</span> <span class="kw">\</span>record <span class="kw">-></span> { record <span class="kw">&</span> url<span class="colon">:</span> <span class="str">"https://</span><span class="str-interp">\(record.url)"</span> }</samp></pre>
+
 This type says that the `example` function will take either a `Foo Str` tag, or a `Bar Bool` tag, or possibly another tag we don't know about at compile time - and it also says that the function's return type is the same as the type of its argument.
 
 So if we give this function a `[Foo Str, Bar Bool, Baz (List Str)]` argument, then it will be guaranteed to return a `[Foo Str, Bar Bool, Baz (List Str)]` value. This is more constrained than a function that returned `[Foo Str, Bar Bool]*` because that would say it could return _any_ other tag (in addition to the `Foo Str` and `Bar Bool` we already know about).
