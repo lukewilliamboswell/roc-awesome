@@ -8,7 +8,7 @@ app "aoc-2022"
         Parser.Core.{ Parser, parsePartial, parse, oneOrMore, maybe, const, sepBy, keep, skip, buildPrimitiveParser },
         Parser.Str.{ codeunit },
         Json,
-        # TerminalColor.{ Color, withColor },
+        TerminalColor.{ Color, withColor },
     ]
     provides [ main, stateToStr ] to pf
 
@@ -17,9 +17,11 @@ main =
 
     task =
 
-        {initialState & data : sampleData}
-        |> part1
+        
+        part1 (withColor "Part 1 Sample:" Green) {initialState & data : sampleData} 10
         |> Stdout.line
+
+        # 2_000_000
 
 
         # fsSample = process sampleInput 
@@ -40,11 +42,49 @@ initialState = {
     maxY : 0
 }
 
-part1 = \state -> {}
-    state 
-    |> updateRanges
-    |> .minX 
-    |> Num.toStr
+part1 = \name, state, rowNumber ->
+    
+    sensorData =
+        state 
+        |> updateRanges
+        |> calculateSensorRanges
+        |> .data
+
+    List.range {start : At state.minX, end : At state.maxX }
+    |> List.map \x -> {x : x, y : rowNumber}
+    |> checkSensorInRange sensorData
+    |> Num.toStr 
+    |> \answer -> "\(name) there are \(answer) positions where a beacon cannot be present."
+
+checkSensorInRange = \dataPoints, sensorData ->
+    List.walk dataPoints 0 \rowCount, {x,y} ->
+        List.walk sensorData 0 \count, {sx, sy, range} ->
+
+            pointToSensor = calculateDistance x y sx sy
+
+            if range > pointToSensor then 
+                # data point is in range of sensor, 
+                # => a beacon cannot be present here
+                count + 1
+            else 
+                count
+        |> Num.add rowCount
+
+calculateSensorRanges = \state ->
+    data = 
+        elem <- List.map state.data
+        {elem & range : calculateDistance elem.sx elem.sy elem.bx elem.by}
+
+    {state & data}
+
+calculateDistance = \x1, y1, x2, y2 ->
+    x = if x1 < x2 then x2 - x1 else x1 - x2
+    y = if y1 < y2 then y2 - y1 else y1 - y2
+
+    x + y
+
+expect calculateDistance 0 0 6 6 == 12
+expect calculateDistance -2 0 -8 6 == 12
 
 updateRanges = \state ->
     
@@ -100,7 +140,7 @@ sampleData =
             l = leftover |> Str.fromUtf8 |> Result.withDefault "badUtf8"
             crash "Oops, didn't parse everything, leftover:\(l)"
 
-expect List.get sampleData 0 == Ok {sx: 2, sy : 18, bx : -2, by : 15}
+expect List.get sampleData 0 == Ok {sx: 2, sy : 18, bx : -2, by : 15, range : 0}
 
 inputParser =
 
@@ -108,7 +148,7 @@ inputParser =
     
     line = 
         const (\sx -> \sy -> \bx -> \by ->
-            {sx, sy, bx, by}
+            {sx, sy, bx, by, range : 0}
         )
         |> skip stuff
         |> keep int 
