@@ -3,8 +3,8 @@ app "aoc-2022"
     imports [
         pf.Stdout,
         pf.Task.{ Task },
-        # pf.File,
-        # pf.Path.{ Path },
+        pf.File,
+        pf.Path.{ Path },
         Parser.Core.{ Parser, parsePartial, parse, oneOrMore, maybe, const, sepBy, keep, skip, buildPrimitiveParser },
         Parser.Str.{ codeunit },
         Json,
@@ -12,51 +12,68 @@ app "aoc-2022"
     ]
     provides [ main, stateToStr ] to pf
 
+Data : {sx : I64, sy : I64, bx : I64, by : I64, range : I64 }
+State : {data : List Data, minX : I64, maxX   : I64, minY : I64, maxY : I64}
+
 main : Task {} []
 main =
 
-    task =
-        part1 (withColor "Part 1 Sample:" Green) {initialState & data : sampleData} 10 |> Stdout.line
+    fileInput <-
+        File.readUtf8 (Path.fromStr "input-day-15.txt")
+        |> Task.mapFail \_ -> crash "couldn't read input"
+        |> Task.await
 
-    Task.onFail task \_ -> crash "Oops, something went wrong."
+    fileData = parseInput (Str.toUtf8 fileInput)
 
-initialState = {
-    data : [],
-    minX : 0, 
-    maxX : 0,
-    minY : 0,
-    maxY : 0
-}
+    {} <- part1 "Sample" {initState & data : sampleData} 10 |> Stdout.line |> Task.await
+    {} <- part1 "File" {initState & data : fileData} 2_000_000 |> Stdout.line |> Task.await
 
-part1 = \name, state, rowNumber ->
-    
-    sensorData =
-        state 
+    Stdout.line "Completed processsing 😊"
+
+part1 : Str, State, I64 -> Str
+part1 = \name, init, rowNumber ->  
+
+    state =
+        init 
         |> updateRanges
         |> calculateSensorRanges
-        |> .data
 
-    List.range {start : At state.minX, end : At state.maxX }
-    |> List.map \x -> {x : x, y : rowNumber}
-    |> checkSensorInRange sensorData
-    |> Num.toStr 
-    |> \answer -> "\(name) there are \(answer) positions where a beacon cannot be present."
+    dataPoints = 
+        List.range {start : At state.minX, end : At state.maxX } 
+        |> List.map \x -> {x : x, y : rowNumber}
+    
+    answer = 
+        dataPoints
+        |> checkSensorInRange state.data
+        |> Num.toStr
+
+    n =  withColor "Part 1 \(name)" Green
+    
+    "\(n): there are \(answer) positions where a beacon cannot be present."
+
+initState : State
+initState = { data : [], minX : 0,  maxX : 0, minY : 0, maxY : 0 }
 
 checkSensorInRange = \dataPoints, sensorData ->
     List.walk dataPoints 0 \rowCount, {x,y} ->
-        List.walk sensorData 0 \count, {sx, sy, range} ->
 
-            pointToSensor = calculateDistance x y sx sy
+        inRange = 
+            List.walkUntil sensorData Bool.false \isInRange, {sx, sy, range, bx, by} ->
 
-            if range > pointToSensor then 
-                # data point is in range of sensor, 
-                # => a beacon cannot be present here
-                count + 1
-            else 
-                count
-        |> Num.add rowCount
-    
-    # TODO check if any beacons in this row??
+                if calculateDistance x y bx by == 0 then 
+                    # dont want to count point if it is a beacon
+                    Break Bool.false
+                else if calculateDistance x y sx sy <= range  then 
+                    # data point is in range of sensor, 
+                    # => a beacon cannot be present here
+                    Continue Bool.true
+                else
+                    Continue isInRange
+        
+        if inRange then 
+            rowCount + 1
+        else 
+            rowCount
 
 calculateSensorRanges = \state ->
     data = 
@@ -100,7 +117,7 @@ updateRanges = \state ->
     
     {state & minX, maxX, minY, maxY}
 
-testRanges = updateRanges {initialState & data : sampleData }
+testRanges = updateRanges {initState & data : sampleData }
 
 expect testRanges.minX == -2
 expect testRanges.maxX == 25
@@ -120,13 +137,16 @@ expect
     result = getMinMax sampleData .bx
     result == [-2, 25]
 
-sampleData =
-    when parse inputParser (Str.toUtf8 sampleInput) List.isEmpty is 
+parseInput : List U8 -> List Data
+parseInput = \input ->
+    when parse inputParser input List.isEmpty is 
         Ok data -> data 
         Err (ParsingFailure msg) -> crash "Oops, something went wrong parsing input:\(msg)"
         Err (ParsingIncomplete leftover) -> 
             l = leftover |> Str.fromUtf8 |> Result.withDefault "badUtf8"
             crash "Oops, didn't parse everything, leftover:\(l)"
+
+sampleData = parseInput sampleInput
 
 expect List.get sampleData 0 == Ok {sx: 2, sy : 18, bx : -2, by : 15, range : 0}
 
@@ -167,6 +187,7 @@ sampleInput =
     Sensor at x=14, y=3: closest beacon is at x=15, y=3
     Sensor at x=20, y=1: closest beacon is at x=15, y=3
     """
+    |> Str.toUtf8
 
 chompWhile : (a -> Bool) -> Parser (List a) {} | a has Eq
 chompWhile = \check ->
@@ -218,7 +239,23 @@ expect
     result = parsePartial int (Str.toUtf8 "-123456789abc") 
     result == Ok {val : -123456789i64, input : ['a', 'b', 'c']}
 
+dataToStr : Data -> Str 
+dataToStr = \data ->
+    sx = Num.toStr data.sx
+    sy = Num.toStr data.sy
+    bx = Num.toStr data.bx
+    by = Num.toStr data.by
+    range = Num.toStr data.range
+    "s:\(sx),\t\(sy)\tb:\(bx),\t\(by)\tr:\(range)"
+
+stateToStr : State -> Str 
 stateToStr = \state ->
-    when Str.fromUtf8 (Encode.toBytes state Json.toUtf8) is 
-        Ok str -> str
-        Err _ -> crash "unable to encode state to Json"
+    minX = Num.toStr state.minX
+    maxX = Num.toStr state.maxX
+    minY = Num.toStr state.minY
+    maxY = Num.toStr state.maxY
+    data = List.map state.data dataToStr |> Str.joinWith "\n"
+
+    "Range X [\(minX) -> \(maxX)], Range Y [\(minY) -> \(maxY)]\nData:\n\(data)\n"
+
+
