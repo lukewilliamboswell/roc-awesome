@@ -9,14 +9,15 @@ app "aoc-2022"
 main : Task {} []
 main =
     task = 
-        # {} <- part1 "Part 1 Sample:" { current : 0, monkeys : sampleMonkeys, round : 0 } |> Task.await
-        {} <- part1 "Part 1 File Input:" { current : 0, monkeys : inputMonkeys, round : 0 } |> Task.await
+        # CRASHES [#4795](https://github.com/roc-lang/roc/issues/4759)
+        # {} <- run "Part 1 Sample:" { current : 0, monkeys : sampleMonkeys, roundsRemaining : 20 } |> Task.await
+        {} <- run "Part 1 File Input:" { current : 0, monkeys : inputMonkeys, roundsRemaining : 20 } |> Task.await
 
         Stdout.line "Complete"
     
     Task.onFail task \_ -> crash "oops, something went wrong"
 
-part1 = \name, state ->
+run = \name, state ->
     state
     |> runRound 
     |> .monkeys
@@ -39,14 +40,14 @@ Monkey : {
 }
 
 State : {
-    round : Nat,
+    roundsRemaining : Nat,
     current : Nat,
     monkeys : Dict Nat Monkey,
 }
 
 runRound : State -> State
 runRound = \state ->
-    if state.round >= 20 then 
+    if state.roundsRemaining == 0 then 
         state
     else     
         when Dict.get state.monkeys state.current is
@@ -59,7 +60,7 @@ runRound = \state ->
                         if state.current == Dict.len state.monkeys - 1 then
                             state
                             |> incrementCurrentMonkey
-                            |> incrementRound
+                            |> decrementRound
                             |> runRound
                         else
                             state
@@ -102,8 +103,8 @@ dropItem = \m ->
         Present monkey -> 
             Present {monkey & items : List.dropFirst monkey.items}
 
-incrementRound : State -> State
-incrementRound = \state -> {state & round : state.round + 1}
+decrementRound : State -> State
+decrementRound = \state -> {state & roundsRemaining : state.roundsRemaining - 1}
 
 incrementCurrentMonkey : State -> State
 incrementCurrentMonkey = \state -> 
@@ -122,7 +123,7 @@ expect calcItemToThrow (\n -> n * 19) 98 == 620
 expect calcIdToThrow 620 (\n -> if n % 23 == 0 then 2 else 3) == 3
 expect  
     got = 
-        { current : 0, monkeys : sampleMonkeys, round : 0 }
+        { current : 0, monkeys : sampleMonkeys, roundsRemaining : 0 }
         |> updateMonkey 0 incrementInspection
         |> updateMonkey 0 (receiveItem 999)
         |> updateMonkey 0 dropItem
@@ -146,7 +147,7 @@ sampleMonkeys =
 # For debugging
 stateToStr : State -> Str
 stateToStr = \state ->
-    round = Num.toStr state.round
+    round = Num.toStr state.roundsRemaining
     monkeys = 
         state.monkeys
         |> Dict.toList 
