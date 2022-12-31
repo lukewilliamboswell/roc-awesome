@@ -64,8 +64,8 @@ isFullyContained = \{ startElfA, endElfA, startElfB, endElfB } ->
 
 isAnyOverlap : AssignmentPair -> Bool
 isAnyOverlap = \{ startElfA, endElfA, startElfB, endElfB } ->
-    elf1 = List.range startElfA (endElfA + 1) |> Set.fromList
-    elf2 = List.range startElfB (endElfB + 1) |> Set.fromList
+    elf1 = List.range { start: At startElfA, end : At (endElfA + 1)} |> Set.fromList
+    elf2 = List.range { start: At startElfB, end : At (endElfB + 1)} |> Set.fromList
 
     Set.intersection elf1 elf2
     |> Set.toList
