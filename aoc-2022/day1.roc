@@ -1,5 +1,5 @@
 app "aoc-2022"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.1/zAoiC9xtQPHywYk350_b7ust04BmWLW00sjb9ZPtSQk.tar.br" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
         pf.Stderr,
@@ -53,25 +53,27 @@ elfParser =
 
 foodParser : Parser (List Str) U64
 foodParser =
-    buildPrimitiveParser (\input ->
-        when List.first input is 
-            Ok value -> 
-                when Str.toU64 value is 
-                    Ok num -> Ok { val : num, input : List.dropFirst input }
-                    Err _ -> Err (ParsingFailure value)
-            Err ListWasEmpty -> 
-                Err (ParsingFailure "empty list")
-    )
+    input <- buildPrimitiveParser
+
+    when List.first input is 
+        Ok value -> 
+            when Str.toU64 value is 
+                Ok num -> Ok { val : num, input : List.dropFirst input }
+                Err _ -> Err (ParsingFailure value)
+        Err ListWasEmpty -> 
+            Err (ParsingFailure "empty list")
+    
 
 emptyLineParser : Parser (List Str) {}
 emptyLineParser =
-    buildPrimitiveParser (\input ->
-        when List.first input is
-            Ok value -> 
-                if Str.isEmpty value then 
-                    Ok { val : {}, input : List.dropFirst input }
-                else
-                    Err (ParsingFailure value)
-            Err ListWasEmpty -> 
-                Err (ParsingFailure "empty list")
-    )
+    input <- buildPrimitiveParser
+    
+    when List.first input is
+        Ok value -> 
+            if Str.isEmpty value then 
+                Ok { val : {}, input : List.dropFirst input }
+            else
+                Err (ParsingFailure value)
+        Err ListWasEmpty -> 
+            Err (ParsingFailure "empty list")
+    

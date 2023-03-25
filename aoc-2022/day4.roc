@@ -1,5 +1,5 @@
 app "aoc-2022"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.1/zAoiC9xtQPHywYk350_b7ust04BmWLW00sjb9ZPtSQk.tar.br" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
         pf.Stderr,
@@ -103,50 +103,51 @@ assignmentPairParser =
 # ## --- below should be in a Parser package
 codepoint : U8 -> Parser (List U8) U8
 codepoint = \x ->
-    buildPrimitiveParser \input ->
-        when List.first input is
-            Ok value ->
-                if x == value then
-                    Ok { val: x, input: List.dropFirst input }
-                else
-                    Err (ParsingFailure "")
+    input <- buildPrimitiveParser
 
-            Err ListWasEmpty ->
-                Err (ParsingFailure "empty list")
+    when List.first input is
+        Ok value ->
+            if x == value then
+                Ok { val: x, input: List.dropFirst input }
+            else
+                Err (ParsingFailure "")
+
+        Err ListWasEmpty ->
+            Err (ParsingFailure "empty list")
 
 digitParser : Parser (List U8) U64
 digitParser =
-    buildPrimitiveParser \input ->
-        first = List.first input
+    input <- buildPrimitiveParser
+    
+    first = List.first input
 
-        if first == Ok '0' then
-            Ok { val: 0u64, input: List.dropFirst input }
-        else if first == Ok '1' then
-            Ok { val: 1u64, input: List.dropFirst input }
-        else if first == Ok '2' then
-            Ok { val: 2u64, input: List.dropFirst input }
-        else if first == Ok '3' then
-            Ok { val: 3u64, input: List.dropFirst input }
-        else if first == Ok '4' then
-            Ok { val: 4u64, input: List.dropFirst input }
-        else if first == Ok '5' then
-            Ok { val: 5u64, input: List.dropFirst input }
-        else if first == Ok '6' then
-            Ok { val: 6u64, input: List.dropFirst input }
-        else if first == Ok '7' then
-            Ok { val: 7u64, input: List.dropFirst input }
-        else if first == Ok '8' then
-            Ok { val: 8u64, input: List.dropFirst input }
-        else if first == Ok '9' then
-            Ok { val: 9u64, input: List.dropFirst input }
-        else
-            Err (ParsingFailure "Not a digit")
+    if first == Ok '0' then
+        Ok { val: 0u64, input: List.dropFirst input }
+    else if first == Ok '1' then
+        Ok { val: 1u64, input: List.dropFirst input }
+    else if first == Ok '2' then
+        Ok { val: 2u64, input: List.dropFirst input }
+    else if first == Ok '3' then
+        Ok { val: 3u64, input: List.dropFirst input }
+    else if first == Ok '4' then
+        Ok { val: 4u64, input: List.dropFirst input }
+    else if first == Ok '5' then
+        Ok { val: 5u64, input: List.dropFirst input }
+    else if first == Ok '6' then
+        Ok { val: 6u64, input: List.dropFirst input }
+    else if first == Ok '7' then
+        Ok { val: 7u64, input: List.dropFirst input }
+    else if first == Ok '8' then
+        Ok { val: 8u64, input: List.dropFirst input }
+    else if first == Ok '9' then
+        Ok { val: 9u64, input: List.dropFirst input }
+    else
+        Err (ParsingFailure "Not a digit")
 
 numberParser : Parser (List U8) U64
 numberParser =
-    oneOrMore digitParser
-    |> map \digits ->
-        List.walk
-            digits
-            0
-            \sum, digit -> sum * 10 + digit
+    digits <- digitParser |> oneOrMore |> map
+    
+    sum, digit <- List.walk digits 0
+        
+    sum * 10 + digit

@@ -1,5 +1,5 @@
 app "aoc-2022"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.1/zAoiC9xtQPHywYk350_b7ust04BmWLW00sjb9ZPtSQk.tar.br" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
         pf.Stderr,
@@ -108,14 +108,6 @@ guideParser =
         parseUtf8 'Z' |> map \_ -> Win,
     ]
 
-# Crashing roc test :sadface:
-expect
-    input = ['X']
-    parser = guideParser
-    result = parse parser input List.isEmpty
-
-    result == Ok Rock
-
 expect
     input = ['\n']
     parser = parseNewLine
@@ -125,13 +117,14 @@ expect
 
 parseUtf8 : U8 -> Parser (List U8) U8
 parseUtf8 = \x ->
-    buildPrimitiveParser \input ->
-        when List.first input is
-            Ok value ->
-                if x == value then
-                    Ok { val: x, input: List.dropFirst input }
-                else
-                    Err (ParsingFailure "")
+    input <- buildPrimitiveParser
+    
+    when List.first input is
+        Ok value ->
+            if x == value then
+                Ok { val: x, input: List.dropFirst input }
+            else
+                Err (ParsingFailure "")
 
-            Err ListWasEmpty ->
-                Err (ParsingFailure "empty list")
+        Err ListWasEmpty ->
+            Err (ParsingFailure "empty list")

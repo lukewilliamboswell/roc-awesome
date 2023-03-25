@@ -1,5 +1,5 @@
 app "aoc-2022"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.2/3bKbbmgtIfOyC6FviJ9o8F8xqKutmXgjCJx3bMfVTSo.tar.br" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
         pf.Task.{ Task },
@@ -10,14 +10,15 @@ main : Task {} []
 main =
     task = 
         # CRASHES [#4795](https://github.com/roc-lang/roc/issues/4759)
-        # {} <- run "Part 1 Sample:" { current : 0, monkeys : sampleMonkeys, roundsRemaining : 20 } |> Task.await
-        {} <- run "Part 1 File Input:" { current : 0, monkeys : inputMonkeys, roundsRemaining : 20 } |> Task.await
+        {} <- part1 "Part 1 Sample:" { current : 0, monkeys : sampleMonkeys, roundsRemaining : 20 } |> Task.await
+        {} <- part1 "Part 1 File Input:" { current : 0, monkeys : inputMonkeys, roundsRemaining : 20 } |> Task.await
 
         Stdout.line "Complete"
     
     Task.onFail task \_ -> crash "oops, something went wrong"
 
-run = \name, state ->
+part1 : Str, _ -> Task {} []
+part1 = \name, state ->
     state
     |> runRound 
     |> .monkeys
@@ -29,7 +30,8 @@ run = \name, state ->
             [first, second, ..] -> (Num.toF64 first) * (Num.toF64 second)
             _ -> crash "expected more monkeys!!"
     |> Num.toStr
-    |> \ans -> Stdout.line "\(name) the level of monkey business is \(ans)"
+    |> \ans -> 
+        Stdout.line "\(name) the level of monkey business is \(ans)"
 
 
 Monkey : {
@@ -138,7 +140,7 @@ expect
 # Hardcoding this... wasted waaayyy too much time on parsers :D
 sampleMonkeys : Dict Nat Monkey
 sampleMonkeys = 
-    Dict.empty 
+    Dict.empty {}
     |> Dict.insert 0 { items: [79,98], op : \n -> n * 19, test : \n -> if n % 23 == 0 then 2 else 3, inspectionCount : 0 }
     |> Dict.insert 1 { items: [54,65,75,74], op : \n -> n + 6, test : \n -> if n % 19 == 0 then 2 else 0, inspectionCount : 0 }
     |> Dict.insert 2 { items: [79,60,97], op : \n -> n * n, test : \n -> if n % 13 == 0 then 1 else 3, inspectionCount : 0 }
@@ -163,7 +165,7 @@ stateToStr = \state ->
 
 inputMonkeys : Dict Nat Monkey
 inputMonkeys =
-    Dict.empty 
+    Dict.empty {}
     |> Dict.insert 0 { items: [71, 56, 50, 73], op : \n -> n * 11, test : \n -> if n % 13 == 0 then 1 else 7, inspectionCount : 0 }
     |> Dict.insert 1 { items: [70, 89, 82], op : \n -> n + 1, test : \n -> if n % 7 == 0 then 3 else 6, inspectionCount : 0 }
     |> Dict.insert 2 { items: [52, 95], op : \n -> n * n, test : \n -> if n % 3 == 0 then 5 else 4, inspectionCount : 0 }

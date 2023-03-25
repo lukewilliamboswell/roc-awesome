@@ -1,5 +1,5 @@
 app "aoc-2022"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.1/zAoiC9xtQPHywYk350_b7ust04BmWLW00sjb9ZPtSQk.tar.br" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
         pf.Task.{ Task },
@@ -22,7 +22,7 @@ Stack : List Str
 # [Z] [M] [P]
 #  1   2   3
 sampleStacks =
-    Dict.empty
+    Dict.empty {}
     |> Dict.insert 1 (["Z", "N"] |> List.reverse)
     |> Dict.insert 2 (["M", "C", "D"] |> List.reverse)
     |> Dict.insert 3 (["P"])
@@ -37,7 +37,7 @@ sampleStacks =
 # [N] [D] [M] [G] [Z] [F] [W] [S] [S]
 #  1   2   3   4   5   6   7   8   9
 fileInputStacks =
-    Dict.empty
+    Dict.empty {}
     |> Dict.insert 1 (["N", "C", "R", "T", "M", "Z", "P"] |> List.reverse)
     |> Dict.insert 2 (["D", "N", "T", "S", "B", "Z"] |> List.reverse)
     |> Dict.insert 3 (["M", "H", "Q", "R", "F", "C", "T", "G"] |> List.reverse)
@@ -168,18 +168,16 @@ expect
 # Helpers for debugging to pretty print
 stacksToStr : Dict Nat Stack -> Str
 stacksToStr = \stacks ->
-    Dict.walk
-        stacks
-        ""
-        \state, k, v ->
-            stackNumber = Num.toStr k
-            stackContents =
-                v
-                |> List.reverse
-                |> List.map \x -> Str.joinWith ["[", x, "]"] ""
-                |> Str.joinWith ","
+    state, k, v <- Dict.walk stacks ""
+    
+    stackNumber = Num.toStr k
+    stackContents =
+        v
+        |> List.reverse
+        |> List.map \x -> Str.joinWith ["[", x, "]"] ""
+        |> Str.joinWith ","
 
-            Str.concat state "\(stackNumber) : \(stackContents)\n"
+    Str.concat state "\(stackNumber) : \(stackContents)\n"
 
 instructionsToStr : List MoveInstruction -> Str
 instructionsToStr = \instructions ->

@@ -1,5 +1,5 @@
 app "aoc-2022"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.1/zAoiC9xtQPHywYk350_b7ust04BmWLW00sjb9ZPtSQk.tar.br" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
         pf.Stderr,
@@ -85,58 +85,57 @@ typesInBothCompartments = \{ leftCompartnent, rightCompartnent } ->
 
 detectGroupType : RuckSackGroup -> Set RuckSackItem
 detectGroupType = \{ first, second, third } ->
-    List.walk
-        first
-        Set.empty
-        \commonItems, item ->
-            inSecond = List.contains second item
-            inThird = List.contains third item
+    commonItems, item <- List.walk first (Set.empty {})
+        
+    inSecond = List.contains second item
+    inThird = List.contains third item
 
-            if inSecond && inThird then
-                Set.insert commonItems item
-            else
-                commonItems
+    if inSecond && inThird then
+        Set.insert commonItems item
+    else
+        commonItems
 
 rucksackParser : Parser (List U8) RuckSack
 rucksackParser =
-    const
-        (\items -> \_ ->
+    const (\items -> \_ ->
                 { before, others } = List.split items (List.len items // 2)
 
                 { leftCompartnent: before, rightCompartnent: others }
-        )
+    )
     |> keep (many rucksaskItemParser)
     |> keep (codepoint '\n')
 
 rucksaskItemParser : Parser (List U8) RuckSackItem
 rucksaskItemParser =
-    buildPrimitiveParser \input ->
-        when List.first input is
-            Ok x ->
-                if x >= 'a' && x <= 'z' then
-                    Ok { val: LowerCase x, input: List.dropFirst input }
-                else if x >= 'A' && x <= 'Z' then
-                    Ok { val: UpperCase x, input: List.dropFirst input }
-                else
-                    Err (ParsingFailure "")
+    input <- buildPrimitiveParser
+    
+    when List.first input is
+        Ok x ->
+            if x >= 'a' && x <= 'z' then
+                Ok { val: LowerCase x, input: List.dropFirst input }
+            else if x >= 'A' && x <= 'Z' then
+                Ok { val: UpperCase x, input: List.dropFirst input }
+            else
+                Err (ParsingFailure "")
 
-            Err ListWasEmpty ->
-                Err (ParsingFailure "empty list")
+        Err ListWasEmpty ->
+            Err (ParsingFailure "empty list")
 
 codepoint : U8 -> Parser (List U8) U8
 codepoint = \x ->
-    buildPrimitiveParser \input ->
-        when List.first input is
-            Ok value ->
-                if x == value then
-                    Ok { val: x, input: List.dropFirst input }
-                else
-                    Err (ParsingFailure "")
+    input <- buildPrimitiveParser
+    
+    when List.first input is
+        Ok value ->
+            if x == value then
+                Ok { val: x, input: List.dropFirst input }
+            else
+                Err (ParsingFailure "")
 
-            Err ListWasEmpty ->
-                Err (ParsingFailure "empty list")
+        Err ListWasEmpty ->
+            Err (ParsingFailure "empty list")
 
 getCommonItem = \commonItems ->
-    when (Set.toList commonItems |> List.first) is
+    when commonItems |> Set.toList |> List.first is
         Ok value -> value
         Err _ -> crash "more than one common item"

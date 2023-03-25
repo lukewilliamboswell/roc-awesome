@@ -1,5 +1,5 @@
 app "aoc-2022"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.2/3bKbbmgtIfOyC6FviJ9o8F8xqKutmXgjCJx3bMfVTSo.tar.br" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
         pf.Task.{ Task },
@@ -25,7 +25,8 @@ main =
         fsFile = process fileInput
         {} <- run (withColor "Sample:" Green) fsSample part1 |> Task.await
         {} <- run (withColor "Part 1:" Green) fsFile part1 |> Task.await
-        {} <- run (withColor "Part 2:" Green) fsFile part2 |> Task.await
+        # Broken "integer subtraction overflowed!"
+        # {} <- run (withColor "Part 2:" Green) fsFile part2 |> Task.await
         Stdout.line "Done"
 
     Task.onFail task \_ -> crash "Oops, something went wrong."
@@ -53,19 +54,18 @@ part1 = \fs ->
     |> List.keepIf \size -> size <= 100_000
     |> List.sum
     
+# part2 : FileSystem -> U64
+# part2 = \fs ->
+#     rootSize = dirSize fs ["/"] |> Result.withDefault 0
+#     unused = 70_000_000 - rootSize
+#     toDelete = 30_000_000 - unused
 
-part2 : FileSystem -> U64
-part2 = \fs ->
-    rootSize = dirSize fs ["/"] |> Result.withDefault 0
-    unused = 70_000_000 - rootSize
-    toDelete = 30_000_000 - unused
-
-    fs
-    |> Dict.keys 
-    |> List.keepOks \path -> dirSize fs path
-    |> List.keepIf \n -> n >= toDelete
-    |> List.min
-    |> Result.withDefault 0
+#     fs
+#     |> Dict.keys 
+#     |> List.keepOks \path -> dirSize fs path
+#     |> List.keepIf \n -> n >= toDelete
+#     |> List.min
+#     |> Result.withDefault 0
 
 FileSystem : Dict (List Str) Entry
 Entry : [
@@ -75,29 +75,28 @@ Entry : [
 
 buildDirectoryListing : List LineOutput -> FileSystem 
 buildDirectoryListing = \lo ->
-    state = 
-        {cwd, fs}, line <- List.walk lo {cwd:List.withCapacity 10, fs : Dict.empty}
+    List.walk lo {cwd:List.withCapacity 10, fs : (Dict.empty {})} \{cwd, fs}, line ->
         when line is
             ChangeDirectory name -> 
                 path = List.append cwd name
                 {cwd : path, fs}
             ChangeDirectoryOutOneLevel -> {cwd : List.dropLast cwd, fs}
             DirectoryListing name ->
-                path = List.append cwd name |> Str.joinWith "/"
+                path = [List.append cwd name |> Str.joinWith "/"]
                 entry = Folder 0
                 {cwd, fs : Dict.insert fs path entry}
             FileListing size name ->
-                path = List.append cwd name |> Str.joinWith "/"
+                path = [List.append cwd name |> Str.joinWith "/"]
                 entry = File size
                 xfs = 
                     fs 
                     |> Dict.insert path entry
-                    |> updateParentSizes (Str.joinWith cwd "/") size
+                    |> updateParentSizes [Str.joinWith cwd "/"] size
 
                 {cwd, fs : xfs}
             _ ->
                 {cwd, fs}
-    state.fs
+    |> .fs
 
 updateParentSizes : FileSystem, List Str, U64 -> FileSystem
 updateParentSizes = \fs, path, size ->
