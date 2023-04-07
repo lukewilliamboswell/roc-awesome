@@ -3,6 +3,7 @@ app "aoc"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.1/97mY3sUwo433-pcnEQUlMhn-sWiIf_J9bPhcAFZoqY4.tar.br" }
     imports [
         pf.Stdout,
+        pf.Stderr,
         pf.File,
         pf.Path,
         pf.Task,
@@ -12,27 +13,29 @@ app "aoc"
     ]
     provides [main] to pf
 
-readFile = \pathStr ->
-    Path.fromStr pathStr
-    |> File.readBytes
-    |> Task.mapFail \_ -> crash "couldn't read input file at \"\(pathStr)\""
+TaskErrors : [InvalidArg, InvalidFile Str]
 
 main =
-    args <- Arg.list |> Task.await
+    task =
+        path <- readPath |> Task.await
+        fileBytes <- readFile path |> Task.await
 
-    filePath = List.get args 1 |> Result.withDefault ""
+        [
+            part1 "Part 1 Sample" sampleBytes,
+            part1 "Part 1 File" fileBytes,
+            part2 "Part 2 Sample" sampleBytes,
+            part2 "Part 2 File" fileBytes,
+        ]
+        |> List.keepOks \x -> x
+        |> Str.joinWith "\n"
+        |> Task.succeed
 
-    fileBytes <- readFile filePath |> Task.await
+    taskResult <- Task.attempt task
 
-    [
-        part1 "Part 1 Sample" sampleBytes,
-        part1 "Part 1 File" fileBytes,
-        part2 "Part 2 Sample" sampleBytes,
-        part2 "Part 2 File" fileBytes,
-    ]
-    |> List.keepOks \x -> x
-    |> Str.joinWith "\n"
-    |> Stdout.line
+    when taskResult is
+        Ok answers -> Stdout.line answers
+        Err InvalidArg -> Stderr.line "Error: expected arg file.roc -- path/to/input.txt"
+        Err (InvalidFile path) -> Stderr.line "Error: couldn't read input file at \"\(path)\""
 
 part1 = \source, input ->
     { numbers, rest } = parseNumbers { numbers: [], rest: input }
@@ -101,3 +104,21 @@ sampleBytes =
     1456
     """
     |> Str.toUtf8
+
+readPath : Task.Task Str TaskErrors
+readPath =
+    # Read command line arguments
+    Arg.list
+    |> Task.mapFail \_ -> InvalidArg
+    |> Task.await \args ->
+        # Get the second argument, note first is the executable
+        List.get args 1
+        |> Result.mapErr \_ -> InvalidArg
+        |> Task.fromResult
+
+readFile : Str -> Task.Task (List U8) TaskErrors
+readFile = \path ->
+    # Read input file at the given path
+    Path.fromStr path
+    |> File.readBytes
+    |> Task.mapFail \_ -> InvalidFile path
