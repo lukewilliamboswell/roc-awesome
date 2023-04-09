@@ -31,7 +31,6 @@ main =
 
 ## A recursive function that generates the sum of even-valued terms in the 
 ## Fibonacci sequence up to the specified `limit`.
-fibs : U64, U64, U64, U64 -> U64
 fibs = \{limit, previous, current, sum} ->
     if current >= limit then
         sum

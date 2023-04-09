@@ -10,19 +10,19 @@ app "euler-example"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.1/97mY3sUwo433-pcnEQUlMhn-sWiIf_J9bPhcAFZoqY4.tar.br" }
     imports [
         pf.Stdout,
+        pf.Stderr,
     ]
     provides [main] to pf
 
 main =
-    range = List.range {start: At 100, end: At 999}
-
-    result = 
-        largestPalindrome range
+    result =
+        List.range {start: At 100, end: At 999} 
+        |> largestPalindrome
         |> Result.map Num.toStr
 
     when result is 
         Ok answer -> Stdout.line "The largest palindrome is \(answer)" 
-        Err _ -> crash "oops, something went wrong"
+        Err _ -> Stderr.line "Not a palindrome"
 
 ## Determine if a given integer is a palindrome.
 isPalindrome : U64 -> Bool

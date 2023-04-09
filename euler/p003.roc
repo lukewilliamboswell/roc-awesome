@@ -13,8 +13,9 @@ app "euler-example"
     provides [main] to pf
 
 main = 
-    n = 600851475143
-    answer = largestPrimeFact n 2 |> Num.toStr
+    answer = 
+        largestPrimeFact 600851475143 2 
+        |> Num.toStr
 
     Stdout.line "The largest prime factor of 600851475143 is \(answer)" 
 

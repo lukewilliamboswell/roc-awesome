@@ -11,11 +11,10 @@ app "euler-example"
     provides [main] to pf
 
 main =
-    # Sum all of integers which are multiples of 3 or 5
-    result =
+    answer =
         List.range { start: At 1, end: At 1000 }
         |> List.keepIf \x -> x % 3 == 0 || x % 5 == 0
         |> List.sum
         |> Num.toStr
 
-    Stdout.line "The sum of all the multiples of 3 or 5 below 1000 is \(result)."
+    Stdout.line "The sum of all the multiples of 3 or 5 below 1000 is \(answer)."
