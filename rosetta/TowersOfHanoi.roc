@@ -1,5 +1,5 @@
 ##
-## Rosetta Code solution for the [Tower of Hanoi](https://rosettacode.org/wiki/Tower_of_Hanoi) task.
+## Rosetta Code solution for the [Tower of Hanoi](https://en.wikipedia.org/wiki/Tower_of_Hanoi) task.
 ##
 ## Solve the Towers of Hanoi problem using recursion.
 ##
