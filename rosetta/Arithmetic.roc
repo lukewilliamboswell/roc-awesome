@@ -1,5 +1,6 @@
 ##
 ## Rosetta Code solution for the [Arithmetic](https://rosettacode.org/wiki/Arithmetic/Integer) task.
+##
 ## Get two integers from the command line, and then (for those two integers), display their:
 ## - sum
 ## - difference
@@ -16,7 +17,7 @@
 ## remainder: 0
 ## exponentiation: 160000
 ##
-app "rosetta-example"
+app "rosetta"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.1/97mY3sUwo433-pcnEQUlMhn-sWiIf_J9bPhcAFZoqY4.tar.br" }
     imports [
         pf.Stdout,

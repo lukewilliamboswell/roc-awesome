@@ -1,4 +1,4 @@
-app "app-aoc-2021-day-3"
+app "aoc"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.0/_V6HO2Dwez0xsSstgK8qC6wBLXSfNlVFyUTMg0cYiQQ.tar.br" }
     imports [
         pf.Stdout,
@@ -96,7 +96,7 @@ compareBitCounts = \dict, policy ->
     )
     |> \x -> Str.concat "0b" x
 
-testDict = Dict.empty 
+testDict = (Dict.empty {})
     |> updateCounts (Zero 0)
     |> updateCounts (Zero 0)
     |> updateCounts (One 0)
@@ -124,4 +124,6 @@ updateCounts = \dict, bit ->
                 Ok {zeroCount, oneCount} -> Dict.insert dict i {zeroCount : zeroCount + 1, oneCount}
                 Err _ -> Dict.insert dict i {zeroCount : 1, oneCount : 0}
 
-expect (Dict.empty |> updateCounts (One 6)) == (Dict.empty |> Dict.insert 6 { zeroCount: 0, oneCount: 1 })
+expect (emptyDict |> updateCounts (One 6)) == (Dict.empty {} |> Dict.insert 6 { zeroCount: 0, oneCount: 1 })
+
+emptyDict = Dict.empty {}

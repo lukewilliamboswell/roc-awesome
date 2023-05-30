@@ -1,4 +1,4 @@
-app "aoc-2022"
+app "aoc"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
@@ -14,7 +14,7 @@ main : Task {} []
 main =
     print = \description, answer -> Stdout.line "\(description)\(answer)"
     task =
-        fileInput <- File.readUtf8 (Path.fromStr "input-day-9.txt") |> Task.await
+        fileInput <- File.readUtf8 (Path.fromStr "Input/input-day-9.txt") |> Task.await
         fileMoves = parse fileInput
 
         # Part 1
@@ -155,6 +155,6 @@ stateToStr = \state ->
         visits : Set.toList state.visits
     }
 
-    when Str.fromUtf8 (Encode.toBytes encodableState Json.toUtf8) is 
+    when Str.fromUtf8 (Encode.toBytes encodableState Json.json) is 
         Ok str -> str
         Err _ -> crash "unable to encode state to Json"

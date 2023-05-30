@@ -1,11 +1,14 @@
 ##
 ## Rosetta Code solution for [Find Square Difference](https://rosettacode.org/wiki/Find_square_difference)
 ##
+## Find the least positive integer number `n`, where the difference of `n*n` and 
+## `(n-1)*(n-1)` is greater than 1000.
+##
 ## Run this app with `roc run LeastSquares.roc` gives `The least positive integer n, where the difference of n*n and (n-1)*(n-1) is greater than 1000, is 501`
 ##
 ## Run unit tests with `roc test LeastSquares.roc`
 ##
-app "rosetta-example"
+app "rosetta"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.1/97mY3sUwo433-pcnEQUlMhn-sWiIf_J9bPhcAFZoqY4.tar.br" }
     imports [
         pf.Stdout,

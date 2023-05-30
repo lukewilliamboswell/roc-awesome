@@ -1,4 +1,4 @@
-app "aoc-2022"
+app "aoc"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
@@ -13,7 +13,7 @@ main : Task {} []
 main =
 
     task =
-        fileInput <- File.readUtf8 (Path.fromStr "input-day-8.txt") |> Task.map Str.toUtf8 |> Task.await
+        fileInput <- File.readUtf8 (Path.fromStr "Input/input-day-8.txt") |> Task.map Str.toUtf8 |> Task.await
         fileState = processInput fileInput
 
         # Part 1

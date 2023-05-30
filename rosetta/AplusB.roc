@@ -6,7 +6,7 @@
 ## Running this examples with `roc run AplusB.roc -- 1 2` prints
 ## `The sum of 1.0 and 2.0 is 3.0` to stdio.
 ##
-app "rosetta-example"
+app "rosetta"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.1/97mY3sUwo433-pcnEQUlMhn-sWiIf_J9bPhcAFZoqY4.tar.br" }
     imports [
         pf.Stdout,

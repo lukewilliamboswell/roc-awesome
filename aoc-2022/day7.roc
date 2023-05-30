@@ -1,4 +1,4 @@
-app "aoc-2022"
+app "aoc"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
@@ -21,7 +21,7 @@ main =
 
     task =
         fsSample = process sampleInput 
-        fileInput <- File.readUtf8 (Path.fromStr "input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
+        fileInput <- File.readUtf8 (Path.fromStr "Input/input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
         fsFile = process fileInput
         {} <- run (withColor "Sample:" Green) fsSample part1 |> Task.await
         {} <- run (withColor "Part 1:" Green) fsFile part1 |> Task.await

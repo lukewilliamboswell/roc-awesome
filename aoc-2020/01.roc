@@ -1,6 +1,6 @@
 # Run this with `roc dev aoc-2020/01.roc -- aoc-2020/input/01.txt`
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.1/97mY3sUwo433-pcnEQUlMhn-sWiIf_J9bPhcAFZoqY4.tar.br" }
+    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br" }
     imports [
         pf.Stdout,
         pf.Stderr,
@@ -88,7 +88,7 @@ parseNumbers = \{ numbers, rest } ->
         { numbers, rest }
     else
         decodeResult : Decode.DecodeResult U64
-        decodeResult = Decode.fromBytesPartial rest Json.fromUtf8
+        decodeResult = Decode.fromBytesPartial rest Json.json
 
         when decodeResult.result is
             Ok n -> parseNumbers { numbers: List.append numbers n, rest: decodeResult.rest }

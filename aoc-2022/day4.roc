@@ -1,4 +1,4 @@
-app "aoc-2022"
+app "aoc"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
@@ -13,7 +13,7 @@ app "aoc-2022"
 main : Task {} []
 main =
     task =
-        fileContents <- File.readUtf8 (Path.fromStr "input-day-4.txt") |> Task.await
+        fileContents <- File.readUtf8 (Path.fromStr "Input/input-day-4.txt") |> Task.await
         input = Str.toUtf8 fileContents
         # input = Str.toUtf8 "2-4,6-8\n2-3,4-5\n5-7,7-9\n2-8,3-7\n6-6,4-6\n2-6,4-8"
         parser = many assignmentPairParser

@@ -6,7 +6,7 @@
 ## Run this app with `roc run Hanoi.roc -- 3` to print the sequence of moves for
 ## solving the Tower of Hanoi puzzle with 3 disks.
 ##
-app "rosetta-example"
+app "rosetta"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.1/97mY3sUwo433-pcnEQUlMhn-sWiIf_J9bPhcAFZoqY4.tar.br" }
     imports [
         pf.Stdout,

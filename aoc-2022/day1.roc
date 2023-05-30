@@ -1,4 +1,4 @@
-app "aoc-2022"
+app "aoc"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
@@ -13,7 +13,7 @@ app "aoc-2022"
 main : Task {} []
 main =
     task = 
-        fileContents <- File.readUtf8 (Path.fromStr "input-day-1.txt") |> Task.await
+        fileContents <- File.readUtf8 (Path.fromStr "Input/input-day-1.txt") |> Task.await
         # note elf parser wants a trailing empty line to get the last elf
         input = Str.split fileContents "\n" |> List.append "" 
         parser = oneOrMore elfParser

@@ -1,4 +1,4 @@
-app "aoc-2022"
+app "aoc"
     packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
     imports [
         pf.Stdout,
@@ -13,7 +13,7 @@ app "aoc-2022"
 main : Task {} []
 main =
     task =
-        fileContents <- File.readUtf8 (Path.fromStr "input-day-3.txt") |> Task.await
+        fileContents <- File.readUtf8 (Path.fromStr "Input/input-day-3.txt") |> Task.await
         input = Str.toUtf8 fileContents |> List.append '\n'
         # input = Str.toUtf8 "vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw\n"
         parser = many rucksackParser
