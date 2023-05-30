@@ -11,8 +11,10 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [roc-lang.org/builtins](https://www.roc-lang.org/builtins) docs for Roc's standard library
 
 ## Packages
+- [agu-z/roc-pg](https://github.com/agu-z/roc-pg): A PostgreSQL package for Roc
 - [Json](https://github.com/lukewilliamboswell/roc-package-explorations/tree/main/packages/json): A JSON package for Roc 
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): A Unicode package to Roc
+- [hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): A package for working with Dates and Times in Roc, based on the Rust Chrono library
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): A toy regex implementation in Roc
 - [JanCVanB/roc-random](https://github.com/JanCVanB/roc-random): A Roc package for random number generation
 - [Parser](https://github.com/roc-lang/roc/tree/main/examples/parser/package): A Parser package, includes some combinators and basic support for CSV, Http, and Strings
@@ -38,5 +40,6 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [Hasnep/bundle-roc-library](https://github.com/Hasnep/bundle-roc-library): A GitHub Action to bundle and release a Roc library
 - [benjamin-thomas/vscode-roc-lang-extension](https://github.com/benjamin-thomas/vscode-roc-lang-extension): This extension provides basic syntax highlighting for Roc
 - [vendrinc/roc-npm](https://github.com/vendrinc/roc-npm/): NPM package to install the roc CLI and makes it available via npx roc-lang
+- [lukewilliamboswell/roc-cgi-server](https://github.com/lukewilliamboswell/roc-cgi-server): An experiment to use Roc Basic-CLI apps to make a CGI Web Server 
 
 
