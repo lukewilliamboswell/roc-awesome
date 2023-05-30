@@ -3,7 +3,7 @@
 
 Just a collection of random links to Roc things. 
 
-Note some of these may not work with the current version of Roc given the rapid pace of Roc's development. If you find something that doesn't work, please suggest you reach out to the originator and offer your assistance, they may accept a PR.
+Note some of these may not work with the current version of Roc given the rapid pace of Roc's development. If you find something that doesn't work, suggest you reach out to the originator and offer your assistance, they may accept a PR.
 
 - [roc-lang/roc](https://github.com/roc-lang/roc) repository for Roc
 - [roc-lang/examples](https://github.com/roc-lang/examples) examples for Roc
