@@ -11,6 +11,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [roc-lang.org/builtins](https://www.roc-lang.org/builtins) docs for Roc's standard library
 
 ## Packages
+- [Hasnep/roc-html](https://github.com/Hasnep/roc-html): A library to create HTML in Roc
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): A PostgreSQL package for Roc
 - [Json](https://github.com/lukewilliamboswell/roc-package-explorations/tree/main/packages/json): A JSON package for Roc 
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): A Unicode package to Roc
@@ -30,6 +31,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [NodeJs Interop](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop) Demo for calling Roc code from Javascript using native C api, and wasm interface
 
 ## Cool App Examples
+- [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): 🐵🤘🏼 is an implementation of the Monkey interpreter from Writing An Interpreter In Go written in Roc.
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Ray Tracing in One Weekend in Roc
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): A simple Roc counter app on a Swift platform, rendered with SwiftUI
 - [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Implementing the Lox programming language from Crafting Interpreters using Roc
