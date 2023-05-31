@@ -19,6 +19,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): A toy regex implementation in Roc
 - [JanCVanB/roc-random](https://github.com/lukewilliamboswell/roc-random): A Roc package for random number generation
 - [Parser](https://github.com/roc-lang/roc/tree/main/examples/parser/package): A Parser package, includes some combinators and basic support for CSV, Http, and Strings
+- [Subtlesplendor/roc-parser](https://github.com/Subtlesplendor/roc-parser): WIP port of Elm's Parser library to Roc, empowered by Roc's type system.
 
 ## Platforms
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): A platform for making CLI apps. This is the most mature platform and is actively maintained by the core team.
