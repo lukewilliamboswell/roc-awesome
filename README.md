@@ -17,7 +17,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): A Unicode package to Roc
 - [hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): A package for working with Dates and Times in Roc, based on the Rust Chrono library
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): A toy regex implementation in Roc
-- [JanCVanB/roc-random](https://github.com/JanCVanB/roc-random): A Roc package for random number generation
+- [JanCVanB/roc-random](https://github.com/lukewilliamboswell/roc-random): A Roc package for random number generation
 - [Parser](https://github.com/roc-lang/roc/tree/main/examples/parser/package): A Parser package, includes some combinators and basic support for CSV, Http, and Strings
 
 ## Platforms
