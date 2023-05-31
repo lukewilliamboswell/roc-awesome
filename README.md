@@ -13,7 +13,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 ## Packages
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): A library to create HTML in Roc
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): A PostgreSQL package for Roc
-- [Json](https://github.com/lukewilliamboswell/roc-package-explorations/tree/main/packages/json): A JSON package for Roc 
+- [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): A JSON package for Roc 
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): A Unicode package to Roc
 - [hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): A package for working with Dates and Times in Roc, based on the Rust Chrono library
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): A toy regex implementation in Roc
