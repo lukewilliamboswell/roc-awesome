@@ -1,50 +1,44 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        parser: "../Parser/main.roc",
+    }
     imports [
         pf.Stdout,
         pf.Stderr,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
-        Parser.Core.{ Parser, parse, const, many, map, keep, skip, oneOrMore, buildPrimitiveParser },
+        parser.Core.{ Parser, parse, const, many, map, keep, skip, oneOrMore, buildPrimitiveParser },
+        "./input-day-4.txt" as fileContents : List U8,
     ]
     provides [main, assignmentPairToStr] to pf
 
-main : Task {} []
 main =
-    task =
-        fileContents <- File.readUtf8 (Path.fromStr "Input/input-day-4.txt") |> Task.await
-        input = Str.toUtf8 fileContents
-        # input = Str.toUtf8 "2-4,6-8\n2-3,4-5\n5-7,7-9\n2-8,3-7\n6-6,4-6\n2-6,4-8"
-        parser = many assignmentPairParser
-        answer =
-            parse parser input List.isEmpty
-            |> Result.map \pairs ->
-                countContained =
-                    pairs
-                    |> List.keepIf isFullyContained
-                    |> List.map (\_ -> 1u64)
-                    |> List.sum
-                    |> Num.toStr
+    parser = many assignmentPairParser
+    answer =
+        parse parser fileContents List.isEmpty
+        |> Result.map \pairs ->
+            countContained =
+                pairs
+                |> List.keepIf isFullyContained
+                |> List.map (\_ -> 1u64)
+                |> List.sum
+                |> Num.toStr
 
-                countAnyOverlap =
-                    pairs
-                    |> List.keepIf isAnyOverlap
-                    |> List.map (\_ -> 1u64)
-                    |> List.sum
-                    |> Num.toStr
+            countAnyOverlap =
+                pairs
+                |> List.keepIf isAnyOverlap
+                |> List.map (\_ -> 1u64)
+                |> List.sum
+                |> Num.toStr
 
-                "Part 1: \(countContained), Part 2: \(countAnyOverlap)"
+            "Part 1: \(countContained), Part 2: \(countAnyOverlap)"
 
-        when answer is
-            Ok msg -> Stdout.line msg
-            Err (ParsingFailure _) -> Stderr.line "Parsing failure"
-            Err (ParsingIncomplete leftover) ->
-                ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
+    when answer is
+        Ok msg -> Stdout.line msg
+        Err (ParsingFailure _) -> Stderr.line "Parsing failure"
+        Err (ParsingIncomplete leftover) ->
+            ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
 
-                Stderr.line "Parsing incomplete \(ls)"
-
-    Task.onFail task \_ -> crash "Oops, something went wrong."
+            Stderr.line "Parsing incomplete \(ls)"
 
 AssignmentPair : {
     startElfA : U64,

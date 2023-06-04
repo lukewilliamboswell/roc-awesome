@@ -1,28 +1,22 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.0/_V6HO2Dwez0xsSstgK8qC6wBLXSfNlVFyUTMg0cYiQQ.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+    }
     imports [
         pf.Stdout,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
-        pf.Process,
+        "./input-day-3.txt" as fileContents : Str,
     ]
     provides [main] to pf
 
-main : Task {} []
 main =
-    task = 
-        inputDay3 <- File.readUtf8 (Path.fromStr "input-day-3.txt") |> Task.await
-        numbers = parseInput inputDay3
-        g = numbers |> countBits |> compareBitCounts Gamma
-        e = numbers |> countBits |> compareBitCounts Epilson
-        p = Num.toStr ((binaryToDecimal g) * (binaryToDecimal e))
-        Stdout.line "Part 1 -- The gamma:\(g), epsilon:\(e), power:\(p)"
     
-    Task.attempt task \result ->
-        when result is
-            Ok {} -> Process.exit 0
-            Err _ -> Process.exit 1
+    numbers = parseInput fileContents
+    
+    g = numbers |> countBits |> compareBitCounts Gamma
+    e = numbers |> countBits |> compareBitCounts Epilson
+    p = Num.toStr ((binaryToDecimal g) * (binaryToDecimal e))
+    
+    Stdout.line "Part 1 -- The gamma:\(g), epsilon:\(e), power:\(p)"
 
 binaryToDecimal : Str -> U128
 binaryToDecimal = \x ->
@@ -34,8 +28,8 @@ expect binaryToDecimal "0b010111011111" == 1503
 expect binaryToDecimal "0b101000100000" == 2592
 
 parseInput : Str -> List [One Nat, Zero Nat]
-parseInput = \fileContents ->
-    fileContents
+parseInput = \contents ->
+    contents
     |> Str.split "\n"
     |> List.map lineBitWithIndex
     |> List.join
@@ -63,11 +57,9 @@ expect ("001\n010" |> Str.split "\n" |> List.map lineBitWithIndex |> List.join) 
 # Counts the Bits for each index position
 countBits : List [One Nat, Zero Nat] -> Dict Nat { zeroCount : Nat, oneCount : Nat }
 countBits = \bits ->
-    List.walk
-        bits
-        Dict.empty
-        \state, elem ->
-            updateCounts state elem
+    state, elem <- List.walk bits (Dict.empty {})
+    
+    updateCounts state elem
 
 # Compare Bit counts and return binary string representation 
 compareBitCounts : Dict Nat { zeroCount : Nat, oneCount : Nat }, [Gamma, Epilson] -> Str
@@ -106,6 +98,7 @@ testDict = (Dict.empty {})
     |> updateCounts (One 2)
     |> updateCounts (Zero 2)
     |> updateCounts (Zero 2)
+
 expect compareBitCounts testDict Gamma == "0b010"
 expect compareBitCounts testDict Epilson == "0b101"
 

@@ -1,53 +1,50 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        parser: "../Parser/main.roc",
+    }
     imports [
         pf.Stdout,
         pf.Stderr,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
-        Parser.Core.{ Parser, parse, const, keep, many, buildPrimitiveParser },
+        parser.Core.{ Parser, parse, const, keep, many, buildPrimitiveParser },
+        "./input-day-3.txt" as fileContents : List U8,
     ]
     provides [main] to pf
 
-main : Task {} []
-main =
-    task =
-        fileContents <- File.readUtf8 (Path.fromStr "Input/input-day-3.txt") |> Task.await
-        input = Str.toUtf8 fileContents |> List.append '\n'
-        # input = Str.toUtf8 "vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw\n"
-        parser = many rucksackParser
-        answer =
-            parse parser input List.isEmpty
-            |> Result.map \rucksacks ->
-                part1 =
-                    rucksacks
-                    |> List.map typesInBothCompartments
-                    |> List.map getCommonItem
-                    |> List.map itemPriority
-                    |> List.sum
-                    |> Num.toStr
+main = 
+    input = fileContents |> List.append '\n'
+    parser = many rucksackParser
+    answer = 
+        rucksacks <- parse parser input List.isEmpty |> Result.map 
 
-                part2 =
-                    rucksacks
-                    |> groupRucksackIntoThrees []
-                    |> List.map detectGroupType
-                    |> List.map getCommonItem
-                    |> List.map itemPriority
-                    |> List.sum
-                    |> Num.toStr
+        part1 =
+            rucksacks
+            |> List.map typesInBothCompartments
+            |> List.map getCommonItem
+            |> List.map itemPriority
+            |> List.sum
+            |> Num.toStr
 
-                "The sum of rucksack items part 1: \(part1), part 2: \(part2)"
+        part2 =
+            rucksacks
+            |> groupRucksackIntoThrees []
+            |> List.map detectGroupType
+            |> List.map getCommonItem
+            |> List.map itemPriority
+            |> List.sum
+            |> Num.toStr
 
-        when answer is
-            Ok msg -> Stdout.line msg
-            Err (ParsingFailure _) -> Stderr.line "Parsing failure"
-            Err (ParsingIncomplete leftover) ->
-                ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
+        "The sum of rucksack items part 1: \(part1), part 2: \(part2)"
 
-                Stderr.line "Parsing incomplete \(ls)"
+    when answer is
+        Ok msg -> Stdout.line msg
+        Err (ParsingFailure _) -> Stderr.line "Parsing failure"
+        Err (ParsingIncomplete leftover) ->
+            ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
 
-    Task.onFail task \_ -> crash "Oops, something went wrong."
+            Stderr.line "Parsing incomplete \(ls)"
+
+    
 
 RuckSack : { leftCompartnent : List RuckSackItem, rightCompartnent : List RuckSackItem }
 RuckSackGroup : { first : List RuckSackItem, second : List RuckSackItem, third : List RuckSackItem }

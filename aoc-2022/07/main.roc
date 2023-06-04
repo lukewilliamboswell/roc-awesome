@@ -1,35 +1,31 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        json: "https://github.com/lukewilliamboswell/roc-json/releases/download/0.1.0/xbO9bXdHi7E9ja6upN5EJXpDoYm7lwmJ8VzL7a5zhYE.tar.br",
+        parser: "../Parser/main.roc",
+    }
     imports [
         pf.Stdout,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
-        Parser.Core.{ Parser, parsePartial, parse, const, sepBy, oneOf, keep, skip, chompUntil, chompWhile },
-        Parser.Str.{ string, codeunit },
-        Decode,
-        Json,
+        pf.Task,
+        parser.Core.{ Parser, parsePartial, parse, const, sepBy, oneOf, keep, skip, chompUntil, chompWhile },
+        parser.String.{ string, codeunit },
+        json.Core.{ json },
+        "./input-day-7.txt" as fileContents : List U8,
         TerminalColor.{ Color, withColor },
     ]
-    provides [
-        main,
-        lineToStr,
-    ] to pf
+    provides [main,lineToStr] to pf
 
-main : Task {} []
 main =
+    fsSample = process sampleInput
+    fsFile = process fileContents
 
-    task =
-        fsSample = process sampleInput 
-        fileInput <- File.readUtf8 (Path.fromStr "Input/input-day-7.txt") |> Task.map Str.toUtf8 |> Task.await
-        fsFile = process fileInput
-        {} <- run (withColor "Sample:" Green) fsSample part1 |> Task.await
-        {} <- run (withColor "Part 1:" Green) fsFile part1 |> Task.await
-        # Broken "integer subtraction overflowed!"
-        # {} <- run (withColor "Part 2:" Green) fsFile part2 |> Task.await
-        Stdout.line "Done"
+    {} <- run (withColor "Sample:" Green) fsSample part1 |> Task.await
+    {} <- run (withColor "Part 1:" Green) fsFile part1 |> Task.await
 
-    Task.onFail task \_ -> crash "Oops, something went wrong."
+    # Needs work "integer subtraction overflowed!"
+    # {} <- run (withColor "Part 2:" Green) fsFile part2 |> Task.await
+    
+    Stdout.line "Done"
 
 process = \input ->
     lineOutput = when parse lineOutputParser input List.isEmpty is
@@ -202,7 +198,7 @@ expect
 fileListingParser : Parser (List U8) LineOutput
 fileListingParser =
     const (\sizeUtf8 -> \name ->
-        size = when Decode.fromBytes sizeUtf8 Json.fromUtf8 is
+        size = when Decode.fromBytes sizeUtf8 json is
             Ok n -> n
             Err _ -> crash "failed to parse size"
 

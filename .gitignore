@@ -1,3 +1,9 @@
+aoc
+euler
 cli-platform
-app-*
-aoc-2022
+.DS_Store
+updates/
+HandyNotes.md
+Roc Prompt.md
+DES/
+Test.roc

@@ -1,33 +1,28 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+    }
     imports [
         pf.Stdout,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
+        "./input-day-8.txt" as fileInput : List U8,
         TerminalColor.{ Color, withColor },
     ]
     provides [ main, arrayToStr ] to pf
 
-main : Task {} []
 main =
 
-    task =
-        fileInput <- File.readUtf8 (Path.fromStr "Input/input-day-8.txt") |> Task.map Str.toUtf8 |> Task.await
-        fileState = processInput fileInput
+    fileState = processInput fileInput
 
-        # Part 1
-        {} <- part1 (withColor "P1 Sample:" Green) sampleState |> Task.await
-        {} <- part1 (withColor "Part 1:" Green) fileState |> Task.await
+    # Part 1
+    {} <- part1 (withColor "P1 Sample:" Green) sampleState |> Task.await
+    {} <- part1 (withColor "Part 1:" Green) fileState |> Task.await
 
-        # Part 2
-        {} <- part2 (withColor "P2 Sample:" Green) sampleState |> Task.await
-        {} <- part2 (withColor "Part 2:" Green) fileState |> Task.await
+    # Part 2
+    {} <- part2 (withColor "P2 Sample:" Green) sampleState |> Task.await
+    {} <- part2 (withColor "Part 2:" Green) fileState |> Task.await
 
-        # Completed
-        Stdout.line "Done"
-
-    Task.onFail task \_ -> crash "Oops, something went wrong."
+    # Completed
+    Stdout.line "Done"
 
 # 2D array of trees
 Trees : {

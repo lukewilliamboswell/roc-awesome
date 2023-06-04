@@ -1,4 +1,4 @@
-interface Parser.Core
+interface Core
     exposes [
         Parser,
         ParseResult,

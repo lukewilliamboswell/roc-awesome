@@ -1,68 +1,30 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        parser: "../Parser/main.roc",
+    }
     imports [
         pf.Stdout,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
-        Parser.Core.{ Parser, parse, const, apply, many },
-        Parser.Str.{ string, digits, codeunit },
+        pf.Task,
+        parser.Core.{ Parser, parse, const, apply, many },
+        parser.String.{ string, digits, codeunit },
+        "./input-day-5.txt" as fileContents : List U8,
     ]
-    provides [
-        main,
-        instructionsToStr, # only needed for debugging, putting here to silence warning
-    ] to pf
+    provides [ main, instructionsToStr ] to pf
 
 MoveInstruction : { count : Nat, fromIndex : Nat, toIndex : Nat }
 Stack : List Str
 
-# Hardcode stack starting state becuase this looks like a challenge to parse 
-#     [D]
-# [N] [C]
-# [Z] [M] [P]
-#  1   2   3
-sampleStacks =
-    Dict.empty {}
-    |> Dict.insert 1 (["Z", "N"] |> List.reverse)
-    |> Dict.insert 2 (["M", "C", "D"] |> List.reverse)
-    |> Dict.insert 3 (["P"])
-
-#         [G]         [D]     [Q]
-# [P]     [T]         [L] [M] [Z]
-# [Z] [Z] [C]         [Z] [G] [W]
-# [M] [B] [F]         [P] [C] [H] [N]
-# [T] [S] [R]     [H] [W] [R] [L] [W]
-# [R] [T] [Q] [Z] [R] [S] [Z] [F] [P]
-# [C] [N] [H] [R] [N] [H] [D] [J] [Q]
-# [N] [D] [M] [G] [Z] [F] [W] [S] [S]
-#  1   2   3   4   5   6   7   8   9
-fileInputStacks =
-    Dict.empty {}
-    |> Dict.insert 1 (["N", "C", "R", "T", "M", "Z", "P"] |> List.reverse)
-    |> Dict.insert 2 (["D", "N", "T", "S", "B", "Z"] |> List.reverse)
-    |> Dict.insert 3 (["M", "H", "Q", "R", "F", "C", "T", "G"] |> List.reverse)
-    |> Dict.insert 4 (["G", "R", "Z"] |> List.reverse)
-    |> Dict.insert 5 (["Z", "N", "R", "H"] |> List.reverse)
-    |> Dict.insert 6 (["F", "H", "S", "W", "P", "Z", "L", "D"] |> List.reverse)
-    |> Dict.insert 7 (["W", "D", "Z", "R", "C", "G", "M"] |> List.reverse)
-    |> Dict.insert 8 (["S", "J", "F", "L", "H", "W", "Z", "Q"] |> List.reverse)
-    |> Dict.insert 9 (["S", "Q", "P", "W", "N"] |> List.reverse)
-
-main : Task {} []
 main =
 
-    task =
-        sampleInput = Str.toUtf8 "move 1 from 2 to 1\nmove 3 from 1 to 3\nmove 2 from 2 to 1\nmove 1 from 1 to 2"
-        fileInput <- File.readUtf8 (Path.fromStr "Input/input-day-5.txt") |> Task.map Str.toUtf8 |> Task.await
+    sampleInput = Str.toUtf8 "move 1 from 2 to 1\nmove 3 from 1 to 3\nmove 2 from 2 to 1\nmove 1 from 1 to 2"
 
-        {} <- process "Part 1 CrateMover9000 Sample" sampleStacks (many moveParser) sampleInput moveOneAtATime |> Task.await
-        {} <- process "Part 1 CrateMover9000 Input" fileInputStacks (many moveParser) fileInput moveOneAtATime |> Task.await
-        {} <- process "Part 2 CrateMover9001 Sample" sampleStacks (many moveParser) sampleInput moveMultipleAtOnce |> Task.await
-        {} <- process "Part 2 CrateMover9001 Input" fileInputStacks (many moveParser) fileInput moveMultipleAtOnce |> Task.await
+    {} <- process "Part 1 CrateMover9000 Sample" sampleStacks (many moveParser) sampleInput moveOneAtATime |> Task.await
+    {} <- process "Part 1 CrateMover9000 Input" fileInputStacks (many moveParser) fileContents moveOneAtATime |> Task.await
+    {} <- process "Part 2 CrateMover9001 Sample" sampleStacks (many moveParser) sampleInput moveMultipleAtOnce |> Task.await
+    {} <- process "Part 2 CrateMover9001 Input" fileInputStacks (many moveParser) fileContents moveMultipleAtOnce |> Task.await
 
-        Stdout.line "Completed processing"
-
-    Task.onFail task \_ -> crash "Oops, something went wrong."
+    Stdout.line "Completed processing"
 
 process = \name, stackStart, parser, input, moveFn ->
     instructions = when parse parser input List.isEmpty is
@@ -189,3 +151,36 @@ instructionsToStr = \instructions ->
 
         "move \(c) from \(fi) to \(ti)"
     |> Str.joinWith "\n"
+
+
+# Hardcode stack starting state becuase this looks like a challenge to parse 
+#     [D]
+# [N] [C]
+# [Z] [M] [P]
+#  1   2   3
+sampleStacks =
+    Dict.empty {}
+    |> Dict.insert 1 (["Z", "N"] |> List.reverse)
+    |> Dict.insert 2 (["M", "C", "D"] |> List.reverse)
+    |> Dict.insert 3 (["P"])
+
+#         [G]         [D]     [Q]
+# [P]     [T]         [L] [M] [Z]
+# [Z] [Z] [C]         [Z] [G] [W]
+# [M] [B] [F]         [P] [C] [H] [N]
+# [T] [S] [R]     [H] [W] [R] [L] [W]
+# [R] [T] [Q] [Z] [R] [S] [Z] [F] [P]
+# [C] [N] [H] [R] [N] [H] [D] [J] [Q]
+# [N] [D] [M] [G] [Z] [F] [W] [S] [S]
+#  1   2   3   4   5   6   7   8   9
+fileInputStacks =
+    Dict.empty {}
+    |> Dict.insert 1 (["N", "C", "R", "T", "M", "Z", "P"] |> List.reverse)
+    |> Dict.insert 2 (["D", "N", "T", "S", "B", "Z"] |> List.reverse)
+    |> Dict.insert 3 (["M", "H", "Q", "R", "F", "C", "T", "G"] |> List.reverse)
+    |> Dict.insert 4 (["G", "R", "Z"] |> List.reverse)
+    |> Dict.insert 5 (["Z", "N", "R", "H"] |> List.reverse)
+    |> Dict.insert 6 (["F", "H", "S", "W", "P", "Z", "L", "D"] |> List.reverse)
+    |> Dict.insert 7 (["W", "D", "Z", "R", "C", "G", "M"] |> List.reverse)
+    |> Dict.insert 8 (["S", "J", "F", "L", "H", "W", "Z", "Q"] |> List.reverse)
+    |> Dict.insert 9 (["S", "Q", "P", "W", "N"] |> List.reverse)

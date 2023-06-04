@@ -1,4 +1,4 @@
-interface Parser.Str
+interface String
     exposes [
         RawStr,
         parseStr,
@@ -18,7 +18,9 @@ interface Parser.Str
         digits,
         strFromRaw,
     ]
-    imports [Parser.Core.{ Parser, ParseResult, map, oneOrMore, parse, parsePartial, buildPrimitiveParser }]
+    imports [
+        Core.{ Parser, ParseResult, map, oneOrMore, parse, parsePartial, buildPrimitiveParser },
+    ]
 
 # Specific string-based parsers:
 RawStr : List U8

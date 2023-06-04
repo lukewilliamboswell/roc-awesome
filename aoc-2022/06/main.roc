@@ -1,27 +1,20 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        parser: "../Parser/main.roc",
+    }
     imports [
         pf.Stdout,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
+        pf.Task,
+        "./input-day-6.txt" as fileInput : List U8,
     ]
-    provides [
-        main,
-    ] to pf
+    provides [main] to pf
 
-main : Task {} []
 main =
+    {} <- process "Part 1 - Four unique packets" fileInput 4 |> Task.await
+    {} <- process "Part 2 - Fourteen unique packets" fileInput 14 |> Task.await
 
-    task =
-        fileInput <- File.readUtf8 (Path.fromStr "Input/input-day-6.txt") |> Task.map Str.toUtf8 |> Task.await
-
-        {} <- process "Part 1 - Four unique packets" fileInput 4 |> Task.await
-        {} <- process "Part 2 - Fourteen unique packets" fileInput 14 |> Task.await
-
-        Stdout.line "Completed processing"
-
-    Task.onFail task \_ -> crash "Oops, something went wrong."
+    Stdout.line "Completed processing"
 
 process = \name, sample, countUniqueRequired ->
 

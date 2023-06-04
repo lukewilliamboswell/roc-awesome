@@ -1,21 +1,21 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        json: "https://github.com/lukewilliamboswell/roc-json/releases/download/0.1.0/xbO9bXdHi7E9ja6upN5EJXpDoYm7lwmJ8VzL7a5zhYE.tar.br",
+        parser: "../Parser/main.roc",
+    }
     imports [
         pf.Stdout,
         pf.Task.{ Task },
     ]
     provides [ main, stateToStr ] to pf
 
-main : Task {} []
 main =
-    task = 
-        # CRASHES [#4795](https://github.com/roc-lang/roc/issues/4759)
-        {} <- part1 "Part 1 Sample:" { current : 0, monkeys : sampleMonkeys, roundsRemaining : 20 } |> Task.await
-        {} <- part1 "Part 1 File Input:" { current : 0, monkeys : inputMonkeys, roundsRemaining : 20 } |> Task.await
 
-        Stdout.line "Complete"
-    
-    Task.onFail task \_ -> crash "oops, something went wrong"
+    {} <- part1 "Part 1 Sample:" { current : 0, monkeys : sampleMonkeys, roundsRemaining : 20 } |> Task.await
+    {} <- part1 "Part 1 File Input:" { current : 0, monkeys : inputMonkeys, roundsRemaining : 20 } |> Task.await
+
+    Stdout.line "Complete"
 
 part1 : Str, _ -> Task {} []
 part1 = \name, state ->
@@ -23,7 +23,7 @@ part1 = \name, state ->
     |> runRound 
     |> .monkeys
     |> Dict.toList
-    |> List.map \T _ monkey -> monkey.inspectionCount
+    |> List.map \(_, monkey) -> monkey.inspectionCount
     |> List.sortDesc
     |> \counts ->
         when counts is 
@@ -153,7 +153,7 @@ stateToStr = \state ->
     monkeys = 
         state.monkeys
         |> Dict.toList 
-        |> List.map \T id monkey -> 
+        |> List.map \(id, monkey) -> 
             idStr = Num.toStr id
             items = List.map monkey.items Num.toStr |> Str.joinWith ","
             inspectionCount = Num.toStr monkey.inspectionCount

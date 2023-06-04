@@ -1,27 +1,29 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.1.0/_V6HO2Dwez0xsSstgK8qC6wBLXSfNlVFyUTMg0cYiQQ.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+    }
     imports [
         pf.Stdout,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
-        pf.Process,
+        "./input-day-1.txt" as fileContents : Str,
     ]
     provides [main] to pf
 
-main : Task {} []
 main =
-    task = 
-        inputDay1 <- File.readUtf8 (Path.fromStr "input-day-1.txt") |> Task.await
-        parsedInput = parseInput inputDay1
-        part1 = parsedInput |> countDepthIncreases |> Num.toStr
-        part2 = parsedInput |> slidingWindow |> countDepthIncreases |> Num.toStr
-        Stdout.line "The number of depth increases is Part 1:\(part1) Part 2:\(part2)"
-    
-    Task.attempt task \result ->
-        when result is
-            Ok {} -> Process.exit 0
-            Err _ -> Process.exit 1
+
+    parsedInput = parseInput fileContents
+
+    part1 = 
+        parsedInput 
+        |> countDepthIncreases 
+        |> Num.toStr
+
+    part2 = 
+        parsedInput 
+        |> slidingWindow 
+        |> countDepthIncreases 
+        |> Num.toStr
+
+    Stdout.line "The number of depth increases is Part 1:\(part1) Part 2:\(part2)"
 
 parseInput : Str -> List U64
 parseInput = \content ->

@@ -1,36 +1,33 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        json: "https://github.com/lukewilliamboswell/roc-json/releases/download/0.1.0/xbO9bXdHi7E9ja6upN5EJXpDoYm7lwmJ8VzL7a5zhYE.tar.br",
+        parser: "../Parser/main.roc",
+    }
     imports [
         pf.Stdout,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
-        Encode, Json,
+        pf.Task,
+        json.Core.{ json },
+        "./input-day-10.txt" as fileContents : Str,
         TerminalColor.{ Color, withColor },
     ]
     provides [ main, stateToStr ] to pf
 
-main : Task {} []
 main =
     print = \description, answer -> Stdout.line "\(description)\(answer)"
-    task =
-        fileInput <- File.readUtf8 (Path.fromStr "Input/input-day-10.txt") |> Task.await
-        fileInstructions = parse fileInput
 
-        # Part 1
-        {} <- print (withColor "Part 1 Small sample:" Green) (part1 smaleInstructions) |> Task.await
-        {} <- print (withColor "Part 1 Bigger example:" Green) (part1 biggerInstructions) |> Task.await
-        {} <- print (withColor "Part 1 Input file:" Green) (part1 fileInstructions) |> Task.await
+    fileInstructions = parse fileContents
 
-        # Part 2
-        {} <- print (withColor "Part 2 Bigger example:" Green) (part2 biggerInstructions) |> Task.await
-        {} <- print (withColor "Part 2 Input file:" Green) (part2 fileInstructions) |> Task.await
+    # Part 1
+    {} <- print (withColor "Part 1 Small sample:" Green) (part1 smaleInstructions) |> Task.await
+    {} <- print (withColor "Part 1 Bigger example:" Green) (part1 biggerInstructions) |> Task.await
+    {} <- print (withColor "Part 1 Input file:" Green) (part1 fileInstructions) |> Task.await
 
-        Stdout.line "Done"
+    # Part 2
+    {} <- print (withColor "Part 2 Bigger example:" Green) (part2 biggerInstructions) |> Task.await
+    {} <- print (withColor "Part 2 Input file:" Green) (part2 fileInstructions) |> Task.await
 
-    Task.onFail task \_ -> crash "Oops, something went wrong."
-
-
+    Stdout.line "Done"
 
 Instruction : [NOOP, ADDX I32]
 Sample : {cycle : I32, start : I32, end : I32}
@@ -163,6 +160,6 @@ biggerInstructions = parse biggerSample
 
 # For debugging
 stateToStr = \state ->
-    when Str.fromUtf8 (Encode.toBytes state Json.json) is 
+    when Str.fromUtf8 (Encode.toBytes state json) is 
         Ok str -> str
         Err _ -> crash "unable to encode state to Json"

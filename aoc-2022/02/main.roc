@@ -1,38 +1,36 @@
 app "aoc"
-    packages { pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3/5CcipdhTTAtISf4FwlBNHmyu1unYAV8b0MKRwYiEHys.tar.br" }
+    packages { 
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        parser: "../Parser/main.roc",
+    }
     imports [
         pf.Stdout,
         pf.Stderr,
-        pf.Task.{ Task },
-        pf.File,
-        pf.Path.{ Path },
-        Parser.Core.{ Parser, parse, const, keep, oneOf,map, oneOrMore, buildPrimitiveParser },
+        parser.Core.{ Parser, parse, const, keep, oneOf,map, oneOrMore, buildPrimitiveParser },
+        "./input-day-2.txt" as fileContents : List U8,
     ]
     provides [main] to pf
 
-main : Task {} []
 main =
-    task =
-        fileContents <- File.readUtf8 (Path.fromStr "Input/input-day-2.txt") |> Task.await
-        input = Str.toUtf8 fileContents |> List.append '\n'
-        # input = Str.toUtf8 "A Y\nB X\nC Z\n"
-        parser = oneOrMore rockPaperScissorParser
-        answer =
-            parse parser input List.isEmpty
-            |> Result.map \rounds ->
-                ts = totalScore rounds |> Num.toStr
 
-                "The total score following guide \(ts) "
+    input = fileContents |> List.append '\n'
 
-        when answer is
-            Ok msg -> Stdout.line msg
-            Err (ParsingFailure _) -> Stderr.line "Parsing failure"
-            Err (ParsingIncomplete leftover) ->
-                ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
+    parser = oneOrMore rockPaperScissorParser
+    answer =
+        rounds <- parse parser input List.isEmpty |> Result.map 
 
-                Stderr.line "Parsing incomplete \(ls)"
+        ts = totalScore rounds |> Num.toStr
 
-    Task.onFail task \_ -> crash "Oops, something went wrong."
+        "The total score following guide \(ts) "
+
+    when answer is
+        Ok msg -> Stdout.line msg
+        Err (ParsingFailure _) -> Stderr.line "Parsing failure"
+        Err (ParsingIncomplete leftover) ->
+            
+            ls = leftover |> Str.fromUtf8 |> Result.withDefault ""
+
+            Stderr.line "Parsing incomplete \(ls)"
 
 RSP : [Rock, Scissor, Paper]
 Outcome : [Loss, Draw, Win]
