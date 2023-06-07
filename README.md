@@ -12,6 +12,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 
 ## Packages
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): A library to create HTML in Roc
+- [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): A library to create SVGs in Roc
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): A PostgreSQL package for Roc
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): A JSON package for Roc 
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): A Unicode package to Roc
@@ -27,6 +28,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [Static Site Gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): A platform for generating static websites, used to generate Roc Tutorial, and Examples sites, includes syntax highlighting for Roc code
 - [bhansconnect/roc-microbit](https://github.com/bhansconnect/roc-microbit): A roc platform for running on the microbit embedded processor
 - [JanCVanB/roc-plotters](https://github.com/JanCVanB/roc-plotters): Roc platform for drawing with Plotters
+- [lukewilliamboswell/roc-tui](https://github.com/lukewilliamboswell/roc-tui): WIP terminal UI platform for Roc built on tui-rs.
 - [WIP Virtual DOM](https://github.com/roc-lang/roc/tree/main/examples/virtual-dom-wip): Aim is to develop an example of a virtual DOM platform in Roc, with server-side rendering. Not working yet though.
 - [JVM Interop](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop): Demo for calling Roc code from Java, and some other JVM languages
 - [NodeJs Interop](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop) Demo for calling Roc code from Javascript using native C api, and wasm interface
