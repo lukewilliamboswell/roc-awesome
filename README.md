@@ -11,6 +11,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [roc-lang.org/builtins](https://www.roc-lang.org/builtins) docs for Roc's standard library
 
 ## Packages
+- [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Mathematical functions and constants in Roc
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): A library to create HTML in Roc
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): A library to create SVGs in Roc
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): A PostgreSQL package for Roc
@@ -24,6 +25,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 
 ## Platforms
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): A platform for making CLI apps. This is the most mature platform and is actively maintained by the core team.
+- [ostcar/roc-wasm-platform](https://github.com/ostcar/roc-wasm-platform): WIP platform to build wasm modules
 - [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing platform for Roc
 - [Static Site Gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): A platform for generating static websites, used to generate Roc Tutorial, and Examples sites, includes syntax highlighting for Roc code
 - [bhansconnect/roc-microbit](https://github.com/bhansconnect/roc-microbit): A roc platform for running on the microbit embedded processor
