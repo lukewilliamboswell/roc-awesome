@@ -35,7 +35,8 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [JVM Interop](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop): Demo for calling Roc code from Java, and some other JVM languages
 - [NodeJs Interop](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop) Demo for calling Roc code from Javascript using native C api, and wasm interface
 
-## Cool App Examples
+## Apps Examples
+- [Hasnep/brainroc](https://github.com/Hasnep/brainroc): A BF interpreter written in Roc.
 - [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): 🐵🤘🏼 is an implementation of the Monkey interpreter from Writing An Interpreter In Go written in Roc.
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Ray Tracing in One Weekend in Roc
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): A simple Roc counter app on a Swift platform, rendered with SwiftUI
