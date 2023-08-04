@@ -35,15 +35,15 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [JVM Interop](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop): Demo for calling Roc code from Java, and some other JVM languages
 - [NodeJs Interop](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop) Demo for calling Roc code from Javascript using native C api, and wasm interface
 
-## Apps Examples
+## Apps
 - [Hasnep/brainroc](https://github.com/Hasnep/brainroc): A BF interpreter written in Roc.
 - [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): 🐵🤘🏼 is an implementation of the Monkey interpreter from Writing An Interpreter In Go written in Roc.
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Ray Tracing in One Weekend in Roc
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): A simple Roc counter app on a Swift platform, rendered with SwiftUI
 - [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Implementing the Lox programming language from Crafting Interpreters using Roc
 
-## Tools and Others
-- [RustGlue Spec](https://github.com/roc-lang/roc/blob/main/crates/glue/src/RustGlue.roc): used with `roc glue path/to/spec path/to/generated/glue/destination path/to/platform/main.roc`
+## Tools & Others
+- [RustGlue Spec](https://github.com/roc-lang/roc/blob/main/crates/glue/src/RustGlue.roc): Generate bindings to Rust for Roc types. Use with `roc glue path/to/spec path/to/generated/glue/destination path/to/platform/main.roc`
 - [Hasnep/setup-roc](https://github.com/Hasnep/setup-roc): A GitHub Action to install Roc
 - [Hasnep/bundle-roc-library](https://github.com/Hasnep/bundle-roc-library): A GitHub Action to bundle and release a Roc library
 - [benjamin-thomas/vscode-roc-lang-extension](https://github.com/benjamin-thomas/vscode-roc-lang-extension): This extension provides basic syntax highlighting for Roc
