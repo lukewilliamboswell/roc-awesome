@@ -1,44 +1,26 @@
 # Run this with `roc dev aoc-2020/01.roc -- aoc-2020/input/01.txt`
 app "aoc"
     packages { 
-        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
-        json: "https://github.com/lukewilliamboswell/roc-json/releases/download/0.1.0/xbO9bXdHi7E9ja6upN5EJXpDoYm7lwmJ8VzL7a5zhYE.tar.br",
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.5.0/Cufzl36_SnJ4QbOoEmiJ5dIpUxBvdB3NEySvuH82Wio.tar.br",
+        json: "https://github.com/lukewilliamboswell/roc-json/releases/download/v0.3.0/y2bZ-J_3aq28q0NpZPjw0NC6wghUYFooJpH03XzJ3Ls.tar.br",
     }
     imports [
         pf.Stdout,
-        pf.Stderr,
-        pf.File,
-        pf.Path,
-        pf.Task,
-        pf.Arg,
         json.Core.{json},
         "./input.txt" as fileBytes : List U8,
     ]
     provides [main] to pf
 
-TaskErrors : [InvalidArg, InvalidFile Str]
-
 main =
-    task =
-        # path <- readPath |> Task.await
-        # fileBytes <- readFile path |> Task.await
-
-        [
-            part1 "Part 1 Sample" sampleBytes,
-            part1 "Part 1 File" fileBytes,
-            part2 "Part 2 Sample" sampleBytes,
-            part2 "Part 2 File" fileBytes,
-        ]
-        |> List.keepOks \x -> x
-        |> Str.joinWith "\n"
-        |> Task.succeed
-
-    taskResult <- Task.attempt task
-
-    when taskResult is
-        Ok answers -> Stdout.line answers
-        Err InvalidArg -> Stderr.line "Error: expected arg file.roc -- path/to/input.txt"
-        Err (InvalidFile path) -> Stderr.line "Error: couldn't read input file at \"\(path)\""
+    [
+        part1 "Part 1 Sample" sampleBytes,
+        part1 "Part 1 File" fileBytes,
+        part2 "Part 2 Sample" sampleBytes,
+        part2 "Part 2 File" fileBytes,
+    ]
+    |> List.keepOks \x -> x
+    |> Str.joinWith "\n"
+    |> Stdout.line
 
 part1 = \source, input ->
     { numbers, rest } = parseNumbers { numbers: [], rest: input }
@@ -107,21 +89,3 @@ sampleBytes =
     1456
     """
     |> Str.toUtf8
-
-readPath : Task.Task Str TaskErrors
-readPath =
-    # Read command line arguments
-    Arg.list
-    |> Task.mapFail \_ -> InvalidArg
-    |> Task.await \args ->
-        # Get the second argument, note first is the executable
-        List.get args 1
-        |> Result.mapErr \_ -> InvalidArg
-        |> Task.fromResult
-
-readFile : Str -> Task.Task (List U8) TaskErrors
-readFile = \path ->
-    # Read input file at the given path
-    Path.fromStr path
-    |> File.readBytes
-    |> Task.mapFail \_ -> InvalidFile path
