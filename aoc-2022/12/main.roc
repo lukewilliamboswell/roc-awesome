@@ -1,6 +1,6 @@
 app "aoc"
     packages {
-        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.5.0/Cufzl36_SnJ4QbOoEmiJ5dIpUxBvdB3NEySvuH82Wio.tar.br",
     }
     imports [
         pf.Stdout,
@@ -46,15 +46,15 @@ main =
         cols: 0, 
     }
 
-    # part1SampleAnswer = part1 (Str.toUtf8 sampleInput) initialState
-    # part1FileAnswer = part1 fileInput initialState
+    part1SampleAnswer = part1 (Str.toUtf8 sampleInput) initialState
+    part1FileAnswer = part1 fileInput initialState
     part2SampleAnswer = part2 (Str.toUtf8 sampleInput) initialState
 
-    # {} <- Stdout.line part1SampleAnswer |> Task.await
-    # {} <- Stdout.line part1FileAnswer |> Task.await
+    {} <- Stdout.line part1SampleAnswer |> Task.await
+    {} <- Stdout.line part1FileAnswer |> Task.await
     {} <- Stdout.line part2SampleAnswer |> Task.await
 
-    Task.succeed {}
+    Task.ok {}
 
     
 part1 = \inputBytes, initialState ->

@@ -321,7 +321,7 @@ skip = \funParser, skipParser ->
                     Err msg2 -> Err msg2
                     Ok { val: _, input: rest2 } -> Ok { val: funVal, input: rest2 }
     
-chompUntil : a -> Parser (List a) (List a) | a has Eq
+chompUntil : a -> Parser (List a) (List a) where a implements Eq
 chompUntil = \char ->
     buildPrimitiveParser \input ->
         when List.findFirstIndex input (\x -> Bool.isEq x char) is
@@ -342,7 +342,7 @@ expect when parsePartial (chompUntil '\n') [] is
 
 # Chomp zero or more characters if they pass the test. This is useful for chomping
 # whitespace or variable names. Note: a chompWhile parser always succeeds!
-chompWhile : (a -> Bool) -> Parser (List a) (List a) | a has Eq
+chompWhile : (a -> Bool) -> Parser (List a) (List a) where a implements Eq
 chompWhile = \check ->
     buildPrimitiveParser \input ->      
         index : Nat 
