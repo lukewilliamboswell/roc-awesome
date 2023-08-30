@@ -1,6 +1,6 @@
 app "aoc"
     packages { 
-        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.3.2/tE4xS_zLdmmxmHwHih9kHWQ7fsXtJr7W7h3425-eZFk.tar.br",
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.5.0/Cufzl36_SnJ4QbOoEmiJ5dIpUxBvdB3NEySvuH82Wio.tar.br",
     }
     imports [
         pf.Stdout,
@@ -25,10 +25,10 @@ maybeMove : Str, Str -> Result U64 [InvalidNumStr, NotFound]
 maybeMove = \line, direction ->
     line
     |> Str.replaceFirst direction ""
-    |> Result.map Str.trim
-    |> Result.try Str.toU64
+    |> Str.trim
+    |> Str.toU64
 
-expect Str.replaceFirst "forward 12" "forward" "" == Ok " 12"
+expect Str.replaceFirst "forward 12" "forward" "" == " 12"
 expect maybeMove "forward 12" "forward" == Ok 12
 
 parseInput : Str -> List [Fd U64, Up U64, Dn U64]

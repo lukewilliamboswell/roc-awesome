@@ -46,16 +46,36 @@ main =
         cols: 0, 
     }
 
-    part1SampleAnswer = part1 (Str.toUtf8 sampleInput) initialState
-    part1FileAnswer = part1 fileInput initialState
+    # part1SampleAnswer = part1 (Str.toUtf8 sampleInput) initialState
+    # part1FileAnswer = part1 fileInput initialState
+    part2SampleAnswer = part2 (Str.toUtf8 sampleInput) initialState
 
-    {} <- Stdout.line part1SampleAnswer |> Task.await
-    {} <- Stdout.line part1FileAnswer |> Task.await
+    # {} <- Stdout.line part1SampleAnswer |> Task.await
+    # {} <- Stdout.line part1FileAnswer |> Task.await
+    {} <- Stdout.line part2SampleAnswer |> Task.await
 
     Task.succeed {}
 
     
 part1 = \inputBytes, initialState ->
+
+    # Parse the map state
+    state = parseMap inputBytes initialState 0 0
+
+    # Dijkstra's starting at Start
+    final = mainHelp state state.start
+
+    # Get the shortest path
+    shortest = shortestHelp final.previous final.heights final.end []
+
+    shortestSteps = 
+        shortest
+        |> List.len 
+        |> Num.toStr
+    
+    "Part 1 - Shortest steps is: \(shortestSteps)"
+
+part2 = \inputBytes, initialState ->
 
     # Parse the map state
     state = parseMap inputBytes initialState 0 0
@@ -70,22 +90,27 @@ part1 = \inputBytes, initialState ->
     # dbg xxx
 
     # Get the shortest path
-    shortest = shortestHelp final.previous final.end []
+    shortest = shortestHelp final.previous final.heights final.end []
+
+    dbg shortest
 
     shortestSteps = 
         shortest
-        |> List.len 
+        |> List.walkUntil 0 \count, height ->
+            if height == 0 then 
+                Break (count + 1)
+            else 
+                Continue (count + 1)
         |> Num.toStr
     
-    "Part 1 - Shortest steps is: \(shortestSteps)"
+    "Part 2 - Shortest steps is: \(shortestSteps)"
 
-
-shortestHelp : Dict Node Node, Node, List U8 -> List U8
-shortestHelp = \previousNodes, current, steps ->
-    when Dict.get previousNodes current is 
-        Err _ -> steps
-        Ok previous -> 
-            shortestHelp previousNodes previous (List.append steps 'x')
+shortestHelp : Dict Node Node, Dict Node U8,  Node, List U8 -> List U8
+shortestHelp = \previousNodes, heights, current, steps ->
+    when (Dict.get previousNodes current, Dict.get heights current) is 
+        (Ok previous, Ok height) -> 
+            shortestHelp previousNodes heights previous (List.append steps height)
+        (_,_) -> steps
 
 mainHelp : State, Node -> State
 mainHelp = \state, currentNode -> 
