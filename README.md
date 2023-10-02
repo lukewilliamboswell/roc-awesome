@@ -11,6 +11,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [roc-lang.org/builtins](https://www.roc-lang.org/builtins) docs for Roc's standard library
 
 ## Packages
+- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): A package for parsing   
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Mathematical functions and constants in Roc
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): A library to create HTML in Roc
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): A library to create SVGs in Roc
