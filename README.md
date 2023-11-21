@@ -57,6 +57,7 @@ Note some of these may not work with the current version of Roc given the rapid 
 - [lukewilliamboswell/roc-cgi-server](https://github.com/lukewilliamboswell/roc-cgi-server) An experiment to use Roc cli apps as a CGI HTTP server
 
 ## Apps
+- [isaacvando/gob](https://github.com/isaacvando/gob): A really cool compiler for a Stack based language written in Roc
 - [Hasnep/brainroc](https://github.com/Hasnep/brainroc): A BF interpreter written in Roc.
 - [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): 🐵🤘🏼 is an implementation of the Monkey interpreter from Writing An Interpreter In Go written in Roc.
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Ray Tracing in One Weekend in Roc
