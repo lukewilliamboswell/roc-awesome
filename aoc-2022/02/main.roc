@@ -1,7 +1,7 @@
 app "aoc"
     packages { 
-        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.5.0/Cufzl36_SnJ4QbOoEmiJ5dIpUxBvdB3NEySvuH82Wio.tar.br",
-        parser: "https://github.com/lukewilliamboswell/roc-parser/releases/download/0.1.0/vPU-UZbWGIXsAfcJvAnmU3t3SWlHoG_GauZpqzJiBKA.tar.br",
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.6.0/QOQW08n38nHHrVVkJNiPIjzjvbR3iMjXeFY5w1aT46w.tar.br",
+        parser: "https://github.com/lukewilliamboswell/roc-parser/releases/download/0.2.0/dJQSsSmorujhiPNIvJKlQoI92RFIG_JQwUfIxZsCSwE.tar.br",
     }
     imports [
         pf.Stdout,
@@ -120,7 +120,7 @@ parseUtf8 = \x ->
     when List.first input is
         Ok value ->
             if x == value then
-                Ok { val: x, input: List.dropFirst input }
+                Ok { val: x, input: List.dropFirst input 1 }
             else
                 Err (ParsingFailure "")
 

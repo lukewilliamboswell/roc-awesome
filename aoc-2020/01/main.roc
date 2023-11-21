@@ -1,8 +1,8 @@
 # Run this with `roc dev aoc-2020/01.roc -- aoc-2020/input/01.txt`
 app "aoc"
     packages { 
-        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.5.0/Cufzl36_SnJ4QbOoEmiJ5dIpUxBvdB3NEySvuH82Wio.tar.br",
-        json: "https://github.com/lukewilliamboswell/roc-json/releases/download/v0.3.0/y2bZ-J_3aq28q0NpZPjw0NC6wghUYFooJpH03XzJ3Ls.tar.br",
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.6.0/QOQW08n38nHHrVVkJNiPIjzjvbR3iMjXeFY5w1aT46w.tar.br",
+        json: "https://github.com/lukewilliamboswell/roc-json/releases/download/0.5.0/jEPD_1ZLFiFrBeYKiKvHSisU-E3LZJeenfa9nvqJGeE.tar.br",
     }
     imports [
         pf.Stdout,
@@ -77,7 +77,7 @@ parseNumbers = \{ numbers, rest } ->
 
         when decodeResult.result is
             Ok n -> parseNumbers { numbers: List.append numbers n, rest: decodeResult.rest }
-            Err _ -> parseNumbers { numbers, rest: List.dropFirst rest }
+            Err _ -> parseNumbers { numbers, rest: List.dropFirst rest 1 }
 
 sampleBytes =
     """

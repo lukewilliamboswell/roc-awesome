@@ -114,25 +114,25 @@ digitParser =
     buildPrimitiveParser \input ->
         first = List.first input
         if first == Ok '0' then 
-            Ok { val : 0u64, input : List.dropFirst input }
+            Ok { val : 0u64, input : List.dropFirst input 1 }
         else if first == Ok '1' then 
-            Ok { val : 1u64, input : List.dropFirst input }
+            Ok { val : 1u64, input : List.dropFirst input 1 }
         else if first == Ok '2' then 
-            Ok { val : 2u64, input : List.dropFirst input }
+            Ok { val : 2u64, input : List.dropFirst input 1 }
         else if first == Ok '3' then 
-            Ok { val : 3u64, input : List.dropFirst input }
+            Ok { val : 3u64, input : List.dropFirst input 1 }
         else if first == Ok '4' then 
-            Ok { val : 4u64, input : List.dropFirst input }
+            Ok { val : 4u64, input : List.dropFirst input 1 }
         else if first == Ok '5' then 
-            Ok { val : 5u64, input : List.dropFirst input }
+            Ok { val : 5u64, input : List.dropFirst input 1 }
         else if first == Ok '6' then 
-            Ok { val : 6u64, input : List.dropFirst input }
+            Ok { val : 6u64, input : List.dropFirst input 1 }
         else if first == Ok '7' then 
-            Ok { val : 7u64, input : List.dropFirst input }
+            Ok { val : 7u64, input : List.dropFirst input 1 }
         else if first == Ok '8' then 
-            Ok { val : 8u64, input : List.dropFirst input }
+            Ok { val : 8u64, input : List.dropFirst input 1 }
         else if first == Ok '9' then 
-            Ok { val : 9u64, input : List.dropFirst input }
+            Ok { val : 9u64, input : List.dropFirst input 1 }
         else
             Err (ParsingFailure "Not a digit")
 
@@ -150,7 +150,7 @@ commaParser =
     buildPrimitiveParser \input ->
         first = List.first input
         if first == Ok ',' then
-            Ok { val : {}, input : List.dropFirst input }
+            Ok { val : {}, input : List.dropFirst input 1 }
         else
             Err (ParsingFailure "Not a comma")
 
@@ -159,7 +159,7 @@ eolParser =
     buildPrimitiveParser (\input ->
         first = List.first input
         if first == Ok '\n' then
-            Ok { val : {}, input : List.dropFirst input }
+            Ok { val : {}, input : List.dropFirst input 1 }
         else
             Err (ParsingFailure "Not a comma")
     )

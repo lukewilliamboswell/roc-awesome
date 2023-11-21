@@ -1,7 +1,7 @@
 app "aoc"
     packages { 
-        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.5.0/Cufzl36_SnJ4QbOoEmiJ5dIpUxBvdB3NEySvuH82Wio.tar.br",
-        parser: "https://github.com/lukewilliamboswell/roc-parser/releases/download/0.1.0/vPU-UZbWGIXsAfcJvAnmU3t3SWlHoG_GauZpqzJiBKA.tar.br",
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.6.0/QOQW08n38nHHrVVkJNiPIjzjvbR3iMjXeFY5w1aT46w.tar.br",
+        parser: "https://github.com/lukewilliamboswell/roc-parser/releases/download/0.2.0/dJQSsSmorujhiPNIvJKlQoI92RFIG_JQwUfIxZsCSwE.tar.br",
     }
     imports [
         pf.Stdout,
@@ -102,7 +102,7 @@ codepoint = \x ->
     when List.first input is
         Ok value ->
             if x == value then
-                Ok { val: x, input: List.dropFirst input }
+                Ok { val: x, input: List.dropFirst input 1 }
             else
                 Err (ParsingFailure "")
 
@@ -116,25 +116,25 @@ digitParser =
     first = List.first input
 
     if first == Ok '0' then
-        Ok { val: 0u64, input: List.dropFirst input }
+        Ok { val: 0u64, input: List.dropFirst input 1 }
     else if first == Ok '1' then
-        Ok { val: 1u64, input: List.dropFirst input }
+        Ok { val: 1u64, input: List.dropFirst input 1 }
     else if first == Ok '2' then
-        Ok { val: 2u64, input: List.dropFirst input }
+        Ok { val: 2u64, input: List.dropFirst input 1 }
     else if first == Ok '3' then
-        Ok { val: 3u64, input: List.dropFirst input }
+        Ok { val: 3u64, input: List.dropFirst input 1 }
     else if first == Ok '4' then
-        Ok { val: 4u64, input: List.dropFirst input }
+        Ok { val: 4u64, input: List.dropFirst input 1 }
     else if first == Ok '5' then
-        Ok { val: 5u64, input: List.dropFirst input }
+        Ok { val: 5u64, input: List.dropFirst input 1 }
     else if first == Ok '6' then
-        Ok { val: 6u64, input: List.dropFirst input }
+        Ok { val: 6u64, input: List.dropFirst input 1 }
     else if first == Ok '7' then
-        Ok { val: 7u64, input: List.dropFirst input }
+        Ok { val: 7u64, input: List.dropFirst input 1 }
     else if first == Ok '8' then
-        Ok { val: 8u64, input: List.dropFirst input }
+        Ok { val: 8u64, input: List.dropFirst input 1 }
     else if first == Ok '9' then
-        Ok { val: 9u64, input: List.dropFirst input }
+        Ok { val: 9u64, input: List.dropFirst input 1 }
     else
         Err (ParsingFailure "Not a digit")
 

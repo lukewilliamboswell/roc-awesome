@@ -1,6 +1,6 @@
 app "aoc"
     packages {
-        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.5.0/Cufzl36_SnJ4QbOoEmiJ5dIpUxBvdB3NEySvuH82Wio.tar.br",
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.6.0/QOQW08n38nHHrVVkJNiPIjzjvbR3iMjXeFY5w1aT46w.tar.br",
     }
     imports [
         pf.Stdout,
@@ -232,7 +232,7 @@ parseMap = \input, state, row, col ->
                 rows: state.rows + 1,
                 cols: Num.toU8 col,
             }
-            parseMap (List.dropFirst input) updatedState (row + 1) 0
+            parseMap (List.dropFirst input 1) updatedState (row + 1) 0
 
         [a, ..] if a == 'S' ->
             # Add Start node            
@@ -241,7 +241,7 @@ parseMap = \input, state, row, col ->
                 unvisited: Dict.insert state.unvisited (row, col) 0,
                 start: (row, col),
             }
-            parseMap (List.dropFirst input) updatedState row (col + 1)
+            parseMap (List.dropFirst input 1) updatedState row (col + 1)
 
         [a, ..] if a == 'E' ->
             # Add End node            
@@ -250,7 +250,7 @@ parseMap = \input, state, row, col ->
                 unvisited: Dict.insert state.unvisited (row, col) Num.maxU16,
                 end: (row, col),
             }
-            parseMap (List.dropFirst input) updatedState row (col + 1)
+            parseMap (List.dropFirst input 1) updatedState row (col + 1)
 
         [a, ..] ->
             # Add node            
@@ -258,6 +258,6 @@ parseMap = \input, state, row, col ->
                 heights: Dict.insert state.heights (row, col) (a - 'a'),
                 unvisited: Dict.insert state.unvisited (row, col) Num.maxU16,
             }
-            parseMap (List.dropFirst input) updatedState row (col + 1)
+            parseMap (List.dropFirst input 1) updatedState row (col + 1)
 
 sampleHeights = Dict.fromList [((0, 0), 0), ((0, 1), 0), ((0, 2), 1), ((0, 3), 16), ((0, 4), 15), ((0, 5), 14), ((0, 6), 13), ((0, 7), 12), ((1, 0), 0), ((1, 1), 1), ((1, 2), 2), ((1, 3), 17), ((1, 4), 24), ((1, 5), 23), ((1, 6), 23), ((1, 7), 11), ((2, 0), 0), ((2, 1), 2), ((2, 2), 2), ((2, 3), 18), ((2, 4), 25), ((2, 5), 25), ((2, 6), 23), ((2, 7), 10), ((3, 0), 0), ((3, 1), 2), ((3, 2), 2), ((3, 3), 19), ((3, 4), 20), ((3, 5), 21), ((3, 6), 22), ((3, 7), 9), ((4, 0), 0), ((4, 1), 1), ((4, 2), 3), ((4, 3), 4), ((4, 4), 5), ((4, 5), 6), ((4, 6), 7), ((4, 7), 8)]

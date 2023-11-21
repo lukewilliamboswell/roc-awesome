@@ -1,29 +1,12 @@
 app "aoc"
     packages { 
-        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.5.0/Cufzl36_SnJ4QbOoEmiJ5dIpUxBvdB3NEySvuH82Wio.tar.br",
+        pf: "https://github.com/roc-lang/basic-cli/releases/download/0.6.0/QOQW08n38nHHrVVkJNiPIjzjvbR3iMjXeFY5w1aT46w.tar.br",
     }
-    imports [
-        pf.Stdout,
-        pf.Task,
-        "./input-day-8.txt" as fileInput : List U8,
-        TerminalColor.{ Color, withColor },
-    ]
-    provides [ main, arrayToStr ] to pf
+    imports [pf.Stdout]
+    provides [ main ] to pf
 
-main =
-
-    fileState = processInput fileInput
-
-    # Part 1
-    {} <- part1 (withColor "P1 Sample:" Green) sampleState |> Task.await
-    {} <- part1 (withColor "Part 1:" Green) fileState |> Task.await
-
-    # Part 2
-    {} <- part2 (withColor "P2 Sample:" Green) sampleState |> Task.await
-    {} <- part2 (withColor "Part 2:" Green) fileState |> Task.await
-
-    # Completed
-    Stdout.line "Done"
+main = 
+    part1 "" sampleState
 
 # 2D array of trees
 Trees : {
@@ -51,33 +34,6 @@ part1 = \name, state ->
         |> Num.toStr
 
     Stdout.line "\(name)\(answer)"
-
-# Part 2
-part2 = \name, state ->
-    List.range {start : At 0, end : Before state.cols} |> List.map \col ->
-        List.range {start : At 0, end : Before state.rows} |> List.map \row ->
-            cl = treesIn state Left {row, col}
-            cr = treesIn state Right {row, col}
-            cu = treesIn state Up {row, col}
-            cd = treesIn state Down {row, col}
-        
-            # calculate scenic score 
-            cl * cr * cu * cd
-    |> List.join
-    |> List.max
-    |> Result.withDefault 0
-    |> Num.toStr
-    |> \answer -> Stdout.line "\(name)\(answer)"
-
-# For debugging
-arrayToStr : Trees -> Str
-arrayToStr = \state ->
-    hs = state.hs |> List.map Num.toStr |> Str.joinWith ","
-    vs = state.vs |> List.map (\v -> if v then "Y" else "N") |> Str.joinWith ","
-    rows = state.rows |> Num.toStr
-    cols = state.cols |> Num.toStr
-    count = state.count |> Num.toStr
-    "count:\(count),rows:\(rows),cols:\(cols),\nHEIGHTS:\n\(hs)\nVISIBILITIES:\n\(vs)"
 
 initialArray : Trees
 initialArray = {
@@ -231,28 +187,28 @@ treesIn = \state, direction, {row,col} ->
         Up -> 
             range {start : 0, end : row}
             |> List.reverse
-            |> List.dropFirst
+            |> List.dropFirst 1
             |> List.map \n -> {col, row : n}
             |> List.walk {blocked : Bool.false, tallest : 0, count : 0, state, treeHouseHeight} countTreesHelp
             |> .count
         Down ->
             range {start : row, end : state.rows}
-            |> List.dropLast
-            |> List.dropFirst
+            |> List.dropLast 1
+            |> List.dropFirst 1
             |> List.map \n -> {col, row : n}
             |> List.walk {blocked : Bool.false, tallest : 0, count : 0, state, treeHouseHeight} countTreesHelp
             |> .count
         Left -> 
             range {start : 0, end : col}
             |> List.reverse
-            |> List.dropFirst
+            |> List.dropFirst 1
             |> List.map \n -> {row, col : n}
             |> List.walk {blocked : Bool.false, tallest : 0, count : 0, state, treeHouseHeight} countTreesHelp
             |> .count
         Right ->
             range {start : col, end : state.cols}
-            |> List.dropLast
-            |> List.dropFirst
+            |> List.dropLast 1
+            |> List.dropFirst 1
             |> List.map \n -> {row, col : n}
             |> List.walk {blocked : Bool.false, tallest : 0, count : 0, state, treeHouseHeight} countTreesHelp
             |> .count
