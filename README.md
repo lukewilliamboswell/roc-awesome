@@ -6,8 +6,11 @@ Just a collection of random links to Roc things. Help me keep this updated, PR's
 If you find something that doesn't work as well as it could, please reach out and offer your assistance if you can.
 
 **Repository** [roc-lang/roc](https://github.com/roc-lang/roc) repository for Roc
+
 **Examples** [roc-lang/examples](https://github.com/roc-lang/examples) examples for Roc
+
 **Tutorial** [roc-lang.org/tutorial](https://www.roc-lang.org/tutorial) tutorial for Roc
+
 **Documentation** [roc-lang.org/docs](https://www.roc-lang.org/docs) links to docs for Roc
 
 **Unnoficial VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial) VSCode extension for Roc language
