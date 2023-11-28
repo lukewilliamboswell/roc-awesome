@@ -28,10 +28,11 @@ If you find something that doesn't work as well as it could, please reach out an
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON  
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser  
 - [lukewilliamboswell/roc-ansi-escapes](https://github.com/lukewilliamboswell/roc-ansi-escapes) Terminal pretty printing
+- [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
-- [hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times 
+- [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times 
 - [JanCVanB/roc-random forked](https://github.com/lukewilliamboswell/roc-random): Random number generation
 
 ### Work In Progress
@@ -58,11 +59,11 @@ If you find something that doesn't work as well as it could, please reach out an
 - [Java](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
 
 ### Experiments
-- [lukewilliamboswell/roc-graphics-mach](https://github.com/lukewilliamboswell/roc-graphics-mach): Graphics platform using hexops/mach-core
 - [ostcar/roc-wasm-platform](https://github.com/ostcar/roc-wasm-platform): WASM modules
 - [bhansconnect/roc-microbit](https://github.com/bhansconnect/roc-microbit): Microbit embedded processor
 - [JanCVanB/roc-plotters](https://github.com/JanCVanB/roc-plotters): Drawing with Plotters
 - [lukewilliamboswell/roc-tui](https://github.com/lukewilliamboswell/roc-tui): Terminal UI platform
+- [lukewilliamboswell/roc-graphics-mach](https://github.com/lukewilliamboswell/roc-graphics-mach): Graphics platform using hexops/mach-core
 - [lukewilliamboswell/roc-cgi-server](https://github.com/lukewilliamboswell/roc-cgi-server): CGI HTTP server using basic-cli apps 
 - [lukewilliamboswell/roc-serverless](https://github.com/lukewilliamboswell/roc-serverless): HTTP handlers for WASM workers
 
@@ -72,7 +73,7 @@ If you find something that doesn't work as well as it could, please reach out an
 - [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): Interpreter for  🐵🤘🏼 [Monkey lang](https://monkeylang.org)
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
-- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpretor for [Lox programming language](https://craftinginterpreters.com/contents.html)
+- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
 - [2023 Advent of Code](https://github.com/lukewilliamboswell/roc-awesome/tree/main/aoc-2022): AoC 2023 solutions
 
 ## Tooling
