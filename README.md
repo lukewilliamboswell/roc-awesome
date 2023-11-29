@@ -15,6 +15,25 @@ If you find something that doesn't work as well as it could, please reach out an
 
 **Unnoficial VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial)
 
+## Future Language Changes 
+
+### Task as Builtin
+
+[Task as Builtin Design Proposal](https://docs.google.com/document/d/1-h9bNNCLuYV2wSvjQA58SsGHOJivH9NHGr4wU_VF5I0/edit?usp=sharing)
+
+- Upgrages `Task` to a builtin unlocking `Task.map2`, enables concurrent task execution, improves error messages
+- Introduces `Stored` ability which unlocks; performance, ergonomics, and the ability to test simulated Tasks without actually running their effects
+
+### Module Params
+
+[Module Params Design Proposal](https://docs.google.com/document/d/110MwQi7Dpo1Y69ECFXyyvDWzF4OYv1BLojIm08qDTvg/edit?usp=sharing)
+
+- Enables platform-agnostic packages which can chain Tasks; all modules become platform-agnostic
+- Guarantees that for a Roc module to perform effects it must declare a module parameter
+- Unlocks simulating effects in tests using `expect-sim`
+- Unlocks recording effects `roc run --record-fx` which can be used in tests or replay
+- Enables sandboxing and polyfilling effects for improved interoperability and security
+
 ## Building From Source
 
 [Official Guide - Building From Source](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
@@ -27,7 +46,7 @@ If you find something that doesn't work as well as it could, please reach out an
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL 
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON  
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser  
-- [lukewilliamboswell/roc-ansi-escapes](https://github.com/lukewilliamboswell/roc-ansi-escapes) Terminal pretty printing
+- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) TUI, Colors and Helpers
 - [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
