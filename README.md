@@ -14,6 +14,7 @@ If you find something that doesn't work as well as it could, please reach out an
 **Documentation** [roc-lang.org/docs](https://www.roc-lang.org/docs)
 
 **Unnoficial VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial)
+**Unnocifial Tree-Sitter Grammar** [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc)
 
 ## Future Language Changes 
 
@@ -21,7 +22,7 @@ If you find something that doesn't work as well as it could, please reach out an
 
 [Task as Builtin Design Proposal](https://docs.google.com/document/d/1-h9bNNCLuYV2wSvjQA58SsGHOJivH9NHGr4wU_VF5I0/edit?usp=sharing)
 
-- Upgrages `Task` to a builtin unlocking `Task.map2`, enables concurrent task execution, improves error messages
+- Upgrades `Task` to a builtin unlocking `Task.map2`, enables concurrent task execution, improves error messages
 - Introduces `Stored` ability which unlocks; performance, ergonomics, and the ability to test simulated Tasks without actually running their effects
 
 ### Module Params
@@ -87,7 +88,7 @@ If you find something that doesn't work as well as it could, please reach out an
 - [lukewilliamboswell/roc-serverless](https://github.com/lukewilliamboswell/roc-serverless): HTTP handlers for WASM workers
 
 ## Roc Applications
-- [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack based language
+- [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
 - [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
 - [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): Interpreter for  🐵🤘🏼 [Monkey lang](https://monkeylang.org)
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
