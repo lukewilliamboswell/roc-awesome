@@ -117,7 +117,7 @@ Generate glue code for a platform with `roc glue path/to/spec path/to/generated/
 - [dkuku/asdf-roc](https://github.com/dkuku/asdf-roc): ASDF package for managing Roc versions
 
 ### Nix
-- [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Generate *things?* for Nix
+- [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
 
 ### Docker
 - [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles 
