@@ -75,7 +75,7 @@ If you find something that doesn't work as well as it could, please reach out an
 - [vendrinc/roc-esbuild](https://github.com/vendrinc/roc-esbuild): esbuild plugin for loading `.roc` files.
 
 ### Embedding Examples
-- [Zig](https://github.com/lukewilliamboswell/roc-zig-package-experiment) example platform with bundle script for URL packages using Zig cross-compilation
+- [Zig](https://github.com/lukewilliamboswell/roc-zig-platform) example platform with bundle script for URL packages using Zig cross-compilation
 - [Python](https://github.com/roc-lang/roc/tree/main/examples/python-interop)
 - [Ruby](https://github.com/roc-lang/roc/tree/main/examples/ruby-interop)
 - [Swift UI](https://github.com/roc-lang/roc/tree/main/examples/swiftui)
