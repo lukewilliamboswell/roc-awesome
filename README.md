@@ -71,6 +71,7 @@ If you find something that doesn't work as well as it could, please reach out an
 - [roc-lang/static-site-gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): Static websites
 
 ### Work In Progress
+- [lukewilliamboswell/roc-gui](https://github.com/lukewilliamboswell/roc-gui): GUI apps
 - [roc-lang/virtual-DOM](https://github.com/roc-lang/roc/tree/main/examples/virtual-dom-wip): Virtual DOM with SSR
 - [ostcar/roc-wasi-platform](https://github.com/ostcar/roc-wasi-platform): WASI
 - [vendrinc/roc-esbuild](https://github.com/vendrinc/roc-esbuild): esbuild plugin for loading `.roc` files.
