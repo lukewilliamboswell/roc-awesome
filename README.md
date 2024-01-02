@@ -48,15 +48,16 @@ If you find something that doesn't work as well as it could, please reach out an
 
 ## Roc Packages
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL 
-- [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON  
-- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser  
-- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) TUI, Colors and Helpers
-- [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
 - [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times 
 - [JanCVanB/roc-random forked](https://github.com/lukewilliamboswell/roc-random): Random number generation
+- [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON  
+- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser  
+- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) TUI, Colors and Helpers
+- [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
+- [Subtlesplendor/roc-data](https://github.com/Subtlesplendor/roc-data): Useful types like Stack, Queue, Bag
 
 ### Work In Progress
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Unicode
