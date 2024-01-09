@@ -67,6 +67,7 @@ If you find something that doesn't work as well as it could, please reach out an
 ## Roc Platforms
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
+- [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️
 - [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
 - [roc-lang/static-site-gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): Static websites
 
