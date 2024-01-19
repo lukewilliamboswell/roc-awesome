@@ -58,14 +58,8 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [NodeJs](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop)
 - [Java](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
 
-## Experiments 🔭
-- [ostcar/roc-wasm-platform](https://github.com/ostcar/roc-wasm-platform): WASM modules
-- [bhansconnect/roc-microbit](https://github.com/bhansconnect/roc-microbit): Microbit embedded processor
-- [JanCVanB/roc-plotters](https://github.com/JanCVanB/roc-plotters): Drawing with Plotters
-- [lukewilliamboswell/roc-tui](https://github.com/lukewilliamboswell/roc-tui): Terminal UI platform
-- [lukewilliamboswell/roc-graphics-mach](https://github.com/lukewilliamboswell/roc-graphics-mach): Graphics platform using hexops/mach-core
-- [lukewilliamboswell/roc-cgi-server](https://github.com/lukewilliamboswell/roc-cgi-server): CGI HTTP server using basic-cli apps 
-- [lukewilliamboswell/roc-serverless](https://github.com/lukewilliamboswell/roc-serverless): HTTP handlers for WASM workers
+**Glue Generation** for a platform with `roc glue path/to/spec path/to/generated/glue/destination path/to/platform/main.roc`
+[RustGlue.roc](https://github.com/roc-lang/roc/blob/main/crates/glue/src/RustGlue.roc): Bindings to Rust
 
 ## Tooling 🛠️
 
@@ -76,8 +70,14 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
 - [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc 
 
-**Glue Generation** for a platform with `roc glue path/to/spec path/to/generated/glue/destination path/to/platform/main.roc`
-[RustGlue.roc](https://github.com/roc-lang/roc/blob/main/crates/glue/src/RustGlue.roc): Bindings to Rust
+## Experiments 🔭
+- [ostcar/roc-wasm-platform](https://github.com/ostcar/roc-wasm-platform): WASM modules
+- [bhansconnect/roc-microbit](https://github.com/bhansconnect/roc-microbit): Microbit embedded processor
+- [JanCVanB/roc-plotters](https://github.com/JanCVanB/roc-plotters): Drawing with Plotters
+- [lukewilliamboswell/roc-tui](https://github.com/lukewilliamboswell/roc-tui): Terminal UI platform
+- [lukewilliamboswell/roc-graphics-mach](https://github.com/lukewilliamboswell/roc-graphics-mach): Graphics platform using hexops/mach-core
+- [lukewilliamboswell/roc-cgi-server](https://github.com/lukewilliamboswell/roc-cgi-server): CGI HTTP server using basic-cli apps 
+- [lukewilliamboswell/roc-serverless](https://github.com/lukewilliamboswell/roc-serverless): HTTP handlers for WASM workers
 
 ## Language Changes 🧱 
 
@@ -101,7 +101,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
 - [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
-- [2023 Advent of Code](https://github.com/lukewilliamboswell/roc-awesome/tree/main/aoc-2022): AoC 2023 solutions
+- [lukewilliamboswell/aoc](https://github.com/lukewilliamboswell/aoc): My AoC Solutions
 
 ## Other
 
