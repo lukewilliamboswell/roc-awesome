@@ -59,11 +59,12 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [Java](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
 
 **Glue Generation** for a platform with `roc glue path/to/spec path/to/generated/glue/destination path/to/platform/main.roc`
+
 [RustGlue.roc](https://github.com/roc-lang/roc/blob/main/crates/glue/src/RustGlue.roc): Bindings to Rust
 
 ## Tooling 🛠️
 
-- [Hasnep/setup-roc](https://github.com/Hasnep/setup-roc): Github action to tnstall Roc
+- [Hasnep/setup-roc](https://github.com/Hasnep/setup-roc): Github action to install Roc
 - [Hasnep/bundle-roc-library](https://github.com/Hasnep/bundle-roc-library): Github action to bundle packages
 - [vendrinc/roc-npm](https://github.com/vendrinc/roc-npm/): NPM package to install roc
 - [dkuku/asdf-roc](https://github.com/dkuku/asdf-roc): ASDF package for managing Roc versions
@@ -81,6 +82,8 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 
 ## Language Changes 🧱 
 
+**Plans** [roc-lang.org/plans](https://www.roc-lang.org/plans)
+
 [Task as Builtin Design Proposal](https://docs.google.com/document/d/1-h9bNNCLuYV2wSvjQA58SsGHOJivH9NHGr4wU_VF5I0/edit?usp=sharing)
 
 - Upgrades `Task` to a builtin unlocking `Task.map2`, enables concurrent task execution, improves error messages
@@ -93,7 +96,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - Unlocks simulating effects in tests using `expect-sim`
 - Unlocks recording effects `roc run --record-fx` which can be used in tests or replay
 - Enables sandboxing and polyfilling effects for improved interoperability and security
-
+ 
 ## Roc Applications 💾
 - [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
 - [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
@@ -101,8 +104,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
 - [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
-- [lukewilliamboswell/aoc](https://github.com/lukewilliamboswell/aoc): My AoC Solutions
 
 ## Other
 
-🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template)
+🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template) and [my attempts at AoC](https://github.com/lukewilliamboswell/aoc)
