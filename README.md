@@ -87,7 +87,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 [Task as Builtin Design Proposal](https://docs.google.com/document/d/1-h9bNNCLuYV2wSvjQA58SsGHOJivH9NHGr4wU_VF5I0/edit?usp=sharing)
 
 - Upgrades `Task` to a builtin unlocking `Task.map2`, enables concurrent task execution, improves error messages
-- ~~Introduces `Stored` ability which unlocks; performance, ergonomics, and the ability to test simulated Tasks without actually running their effects~~
+- ~~Introduces `Stored` ability which unlocks; performance, ergonomics, and the ability to test simulated Tasks without actually running their effects~~ this part of the proposal is no longer planned
 
 [Module Params Design Proposal](https://docs.google.com/document/d/110MwQi7Dpo1Y69ECFXyyvDWzF4OYv1BLojIm08qDTvg/edit?usp=sharing)
 
@@ -96,6 +96,31 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - Unlocks simulating effects in tests using `expect-sim`
 - Unlocks recording effects `roc run --record-fx` which can be used in tests or replay
 - Enables sandboxing and polyfilling effects for improved interoperability and security
+
+[Chaining Syntax](https://docs.google.com/document/d/1mTEZlOKqtMonmVsIGEC1A9ufs1TQHhVgZ52Vn-13GeU/edit?usp=sharing) and [Variation: Chaining with Types](https://docs.google.com/document/d/1OiIGvafF4YVgovaHjxy47Ty0tpRBSxuw_KZ0UL21TpE/edit?usp=sharing)
+
+- Make syntax for I/O in Roc easier to learn for beginners and nicer to read for experienced Roc programmers
+- Improves error messages and permit I/O inside `if` statements and guards, e.g. 
+- Introduces a `!` postfix operator for chaining `Task`s
+- e.g. `url = File.readUtf8! path` instead of current `url <- File.readUtf8 path |> Task.await`
+- Introduces a restricted HKP, but only for the new builtin abilities
+
+```
+if File.exists! path then
+
+when File.type! path is 
+
+when foo is
+    Blah if File.exists! path -> …
+    
+AndThen implements
+	andThen : t a, (a -> t b) -> t b
+        where t implements AndThen
+
+Map2 implements
+	map2 : t a, t b, (a, b -> c) -> t c
+        where t implements Map2
+```
  
 ## Roc Applications 💾
 - [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
