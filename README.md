@@ -100,10 +100,9 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 [Chaining Syntax](https://docs.google.com/document/d/1mTEZlOKqtMonmVsIGEC1A9ufs1TQHhVgZ52Vn-13GeU/edit?usp=sharing) and [Variation: Chaining with Types](https://docs.google.com/document/d/1OiIGvafF4YVgovaHjxy47Ty0tpRBSxuw_KZ0UL21TpE/edit?usp=sharing)
 
 - Make syntax for I/O in Roc easier to learn for beginners and nicer to read for experienced Roc programmers
-- Improves error messages and permit I/O inside `if` statements and guards, e.g. 
-- Introduces a `!` postfix operator for chaining `Task`s
-- e.g. `url = File.readUtf8! path` instead of current `url <- File.readUtf8 path |> Task.await`
-- Introduces a restricted HKP, but only for the new builtin abilities
+- Improve error messages and permit I/O inside if statements and guards
+- Introduce a `!` postfix operator for chaining `Task`s, e.g. `url = File.readUtf8! path` instead of current `url <- File.readUtf8 path |> Task.await`
+- Introduce a restricted HKP, but only for the new builtin abilities
 
 ```
 if File.exists! path then
@@ -112,7 +111,7 @@ when File.type! path is
 
 when foo is
     Blah if File.exists! path -> …
-    
+
 AndThen implements
 	andThen : t a, (a -> t b) -> t b
         where t implements AndThen
