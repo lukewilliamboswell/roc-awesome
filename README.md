@@ -64,6 +64,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 
 ## Tooling 🛠️
 
+- [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar
 - [Hasnep/setup-roc](https://github.com/Hasnep/setup-roc): Github action to install Roc
 - [Hasnep/bundle-roc-library](https://github.com/Hasnep/bundle-roc-library): Github action to bundle packages
 - [vendrinc/roc-npm](https://github.com/vendrinc/roc-npm/): NPM package to install roc
