@@ -23,7 +23,8 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
-- [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times 
+- [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times
+- [imclerran/Roc-IsoDate](https://github.com/imclerran/Roc-IsoDate): ISO-8601 Datetimes
 - [JanCVanB/roc-random forked](https://github.com/lukewilliamboswell/roc-random): Random number generation
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON  
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser  
