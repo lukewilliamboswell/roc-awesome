@@ -30,6 +30,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser  
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) TUI, Colors and Helpers
 - [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
+- [shritesh/roc-image](https://github.com/shritesh/roc-image): Image library with PNG export.
 - [Subtlesplendor/roc-data](https://github.com/Subtlesplendor/roc-data): Useful types like Stack, Queue, Bag
 
 *Work In Progress*
