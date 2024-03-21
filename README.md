@@ -32,6 +32,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
 - [shritesh/roc-image](https://github.com/shritesh/roc-image): Image library with PNG export.
 - [Subtlesplendor/roc-data](https://github.com/Subtlesplendor/roc-data): Useful types like Stack, Queue, Bag
+- [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
 
 *Work In Progress*
 - 🚧 [roc-lang/unicode](https://github.com/roc-lang/unicode): Unicode
