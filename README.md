@@ -7,8 +7,8 @@ A collection of links to awesome roc things.
 - **Examples** [roc-lang/examples](https://github.com/roc-lang/examples)
 - **Tutorial** [roc-lang.org/tutorial](https://www.roc-lang.org/tutorial)
 - **Documentation** [roc-lang.org/docs](https://www.roc-lang.org/docs)
-- **Unnoficial VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial)
-- **Unnocifial Tree-Sitter Grammar** [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc)
+- **Unofficial VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial)
+- **Unofficial Tree-Sitter Grammar** [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc)
 
 ## Building From Source 🏗️
 
@@ -45,6 +45,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️
 - [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
 - [roc-lang/static-site-gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): Static websites
+- [roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
 
 *Work In Progress*
 - 🚧 [lukewilliamboswell/roc-gui](https://github.com/lukewilliamboswell/roc-gui): GUI apps
