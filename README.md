@@ -40,6 +40,9 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - 🚧 [Subtlesplendor/roc-parser](https://github.com/Subtlesplendor/roc-parser): Port of Elm's Parser library
 - 🚧 [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
 
+## Roc Tools 🛠️
+- [rtl](https://github.com/isaacvando/rtl): An HTML template language for Roc with compile time validation and tag unions.
+
 ## Roc Platforms 🏢
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
