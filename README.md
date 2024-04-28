@@ -16,7 +16,7 @@ A collection of links to awesome roc things.
 
 Enter nix shell `nix develop`
 
-Build **roc cli && language server** `cargo build -p roc_cli --release && cargo build -p roc_lang_srv --release`
+Build **roc cli && language server** `cargo build -p roc_cli --release && cargo build -p roc_language_server --release`
 
 ## Roc Packages 📦
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL 
