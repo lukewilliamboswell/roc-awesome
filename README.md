@@ -7,69 +7,52 @@ A collection of links to awesome roc things.
 - **Examples** [roc-lang/examples](https://github.com/roc-lang/examples)
 - **Tutorial** [roc-lang.org/tutorial](https://www.roc-lang.org/tutorial)
 - **Documentation** [roc-lang.org/docs](https://www.roc-lang.org/docs)
-- **Unofficial VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial)
-- **Unofficial Tree-Sitter Grammar** [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc)
+- **VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial)
+- **Tree-Sitter Grammar** [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc)
+- **Building From Source** 🏗️ [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
 
-## Building From Source 🏗️
-
-[Official Guide - Building From Source](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
-
-Enter nix shell `nix develop`
-
-Build **roc cli && language server** `cargo build -p roc_cli --release && cargo build -p roc_language_server --release`
+Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this in mind and offer your assistance where you can.
 
 ## Roc Packages 📦
+- [roc-lang/unicode](https://github.com/roc-lang/unicode): Official Unicode
+
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL 
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
 - [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times
 - [imclerran/Roc-IsoDate](https://github.com/imclerran/Roc-IsoDate): ISO-8601 Datetimes
-- [JanCVanB/roc-random forked](https://github.com/lukewilliamboswell/roc-random): Random number generation
-- [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON  
-- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser  
-- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) TUI, Colors and Helpers
-- [smores56/weaver](https://github.com/smores56/weaver) Ergonomic CLI arg parser using `: <-` builder syntax
+- [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
+- [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation
+- [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
+- [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON Encoding and Decoding
+- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
+- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) Helpers for pretty Terminal UI, ANSI Codes, Colors
+- [smores56/weaver](https://github.com/smores56/weaver) Ergonomic CLI Argument Parsing
 - [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
 - [shritesh/roc-image](https://github.com/shritesh/roc-image): Image library with PNG export.
-- [Subtlesplendor/roc-data](https://github.com/Subtlesplendor/roc-data): Useful types like Stack, Queue, Bag
-- [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
-
-*Work In Progress*
-- 🚧 [roc-lang/unicode](https://github.com/roc-lang/unicode): Unicode
-- 🚧 [Subtlesplendor/roc-parser](https://github.com/Subtlesplendor/roc-parser): Port of Elm's Parser library
-- 🚧 [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
+- [Subtlesplendor/roc-data](https://github.com/Subtlesplendor/roc-data): Helpful types like Stack, Queue, Bag
+- [Subtlesplendor/roc-parser](https://github.com/Subtlesplendor/roc-parser): Port of Elm's Parser library
 
 ## Roc Tools 🛠️
 - [isaacvando/rtl](https://github.com/isaacvando/rtl): An HTML template language for Roc with compile time validation and tag unions.
 
 ## Roc Platforms 🏢
-- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
-- [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️
-- [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
-- [roc-lang/static-site-gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): Static websites
-- [roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
-- [kingfisher](https://github.com/ostcar/kingfisher): Webservers without SQL
+- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 
-*Work In Progress*
-- 🚧 [lukewilliamboswell/roc-gui](https://github.com/lukewilliamboswell/roc-gui): GUI apps
-- 🚧 [roc-lang/virtual-DOM](https://github.com/roc-lang/roc/tree/main/examples/virtual-dom-wip): Virtual DOM with SSR
-- 🚧 [ostcar/roc-wasi-platform](https://github.com/ostcar/roc-wasi-platform): WASI
-- 🚧 [vendrinc/roc-esbuild](https://github.com/vendrinc/roc-esbuild): esbuild plugin for loading `.roc` files.
+- [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
+- [isaacvando/roc-lang/static-site-gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): Static websites
+- [isaacvando/roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
+- [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️
+- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
+- [ostcar/kingfisher](https://github.com/ostcar/kingfisher): Webservers without SQL
 
 *Other languages & Embedding Examples* 🗺
-- 🚧 [alexpyattaev/roc-plugin-example](https://github.com/alexpyattaev/roc-plugin-example/tree/master): [Rust] A plugin example for a bevy game
+- [alexpyattaev/roc-plugin-example](https://github.com/alexpyattaev/roc-plugin-example/tree/master): [Rust] A plugin example for a bevy game
 - [lukewilliamboswell/roc-zig-platform](https://github.com/lukewilliamboswell/roc-zig-platform): [Zig] Example platform with bundle script for URL packages using Zig cross-compilation
-- [Python](https://github.com/roc-lang/roc/tree/main/examples/python-interop)
-- [Ruby](https://github.com/roc-lang/roc/tree/main/examples/ruby-interop)
-- [Swift UI](https://github.com/roc-lang/roc/tree/main/examples/swiftui)
-- [NodeJs](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop)
-- [Java](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
+- [roc-lang/roc](https://github.com/roc-lang/roc/tree/main/examples): [Python](https://github.com/roc-lang/roc/tree/main/examples/python-interop), [Ruby](https://github.com/roc-lang/roc/tree/main/examples/ruby-interop), [Swift UI](https://github.com/roc-lang/roc/tree/main/examples/swiftui), [NodeJs](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop), [Java](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
 
-**Glue Generation** for a platform with `roc glue path/to/spec path/to/generated/glue/destination path/to/platform/main.roc`
-
-[RustGlue.roc](https://github.com/roc-lang/roc/blob/main/crates/glue/src/RustGlue.roc): Bindings to Rust
 
 ## Tooling 🛠️
 
@@ -81,56 +64,6 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
 - [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc 
 
-## Experiments 🔭
-- [ostcar/roc-wasm-platform](https://github.com/ostcar/roc-wasm-platform): WASM modules
-- [bhansconnect/roc-microbit](https://github.com/bhansconnect/roc-microbit): Microbit embedded processor
-- [JanCVanB/roc-plotters](https://github.com/JanCVanB/roc-plotters): Drawing with Plotters
-- [lukewilliamboswell/roc-tui](https://github.com/lukewilliamboswell/roc-tui): Terminal UI platform
-- [lukewilliamboswell/roc-graphics-mach](https://github.com/lukewilliamboswell/roc-graphics-mach): Graphics platform using hexops/mach-core
-- [lukewilliamboswell/roc-cgi-server](https://github.com/lukewilliamboswell/roc-cgi-server): CGI HTTP server using basic-cli apps 
-- [lukewilliamboswell/roc-serverless](https://github.com/lukewilliamboswell/roc-serverless): HTTP handlers for WASM workers
-
-## Language Changes 🧱 
-
-**Plans** [roc-lang.org/plans](https://www.roc-lang.org/plans)
-
-[Task as Builtin Design Proposal](https://docs.google.com/document/d/1-h9bNNCLuYV2wSvjQA58SsGHOJivH9NHGr4wU_VF5I0/edit?usp=sharing)
-
-- Upgrades `Task` to a builtin unlocking `Task.map2`, enables concurrent task execution, improves error messages
-- ~~Introduces `Stored` ability which unlocks; performance, ergonomics, and the ability to test simulated Tasks without actually running their effects~~ this part of the proposal is no longer planned
-
-[Module Params Design Proposal](https://docs.google.com/document/d/110MwQi7Dpo1Y69ECFXyyvDWzF4OYv1BLojIm08qDTvg/edit?usp=sharing)
-
-- Enables platform-agnostic packages which can chain Tasks; all modules become platform-agnostic
-- Guarantees that for a Roc module to perform effects it must declare a module parameter
-- Unlocks simulating effects in tests using `expect-sim`
-- Unlocks recording effects `roc run --record-fx` which can be used in tests or replay
-- Enables sandboxing and polyfilling effects for improved interoperability and security
-
-[Chaining Syntax](https://docs.google.com/document/d/1mTEZlOKqtMonmVsIGEC1A9ufs1TQHhVgZ52Vn-13GeU/edit?usp=sharing) and [Variation: Chaining with Types](https://docs.google.com/document/d/1OiIGvafF4YVgovaHjxy47Ty0tpRBSxuw_KZ0UL21TpE/edit?usp=sharing)
-
-- Make syntax for I/O in Roc easier to learn for beginners and nicer to read for experienced Roc programmers
-- Improve error messages and permit I/O inside if statements and guards
-- Introduce a `!` postfix operator for chaining `Task`s, e.g. `url = File.readUtf8! path` instead of current `url <- File.readUtf8 path |> Task.await`
-- Introduce a restricted HKP, but only for the new builtin abilities
-
-```
-if File.exists! path then
-
-when File.type! path is 
-
-when foo is
-    Blah if File.exists! path -> …
-
-AndThen implements
-	andThen : t a, (a -> t b) -> t b
-        where t implements AndThen
-
-Map2 implements
-	map2 : t a, t b, (a, b -> c) -> t c
-        where t implements Map2
-```
- 
 ## Roc Applications 💾
 - [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
 - [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
@@ -142,3 +75,17 @@ Map2 implements
 ## Other
 
 🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template) and [my attempts at AoC](https://github.com/lukewilliamboswell/aoc)
+
+## Experiments 🔭
+- [roc-lang/virtual-DOM](https://github.com/roc-lang/roc/tree/main/examples/virtual-dom-wip): Virtual DOM with SSR
+- [ostcar/roc-wasi-platform](https://github.com/ostcar/roc-wasi-platform): WASI
+- [vendrinc/roc-esbuild](https://github.com/vendrinc/roc-esbuild): esbuild plugin for loading `.roc` files.
+- [ostcar/roc-wasm-platform](https://github.com/ostcar/roc-wasm-platform): WASM modules
+- [bhansconnect/roc-microbit](https://github.com/bhansconnect/roc-microbit): Microbit embedded processor
+- [JanCVanB/roc-plotters](https://github.com/JanCVanB/roc-plotters): Drawing with Plotters
+- [lukewilliamboswell/roc-gui](https://github.com/lukewilliamboswell/roc-gui): GUI apps
+- [lukewilliamboswell/roc-tui](https://github.com/lukewilliamboswell/roc-tui): Terminal UI platform
+- [lukewilliamboswell/roc-graphics-mach](https://github.com/lukewilliamboswell/roc-graphics-mach): Graphics platform using hexops/mach-core
+- [lukewilliamboswell/roc-cgi-server](https://github.com/lukewilliamboswell/roc-cgi-server): CGI HTTP server using basic-cli apps 
+- [lukewilliamboswell/roc-serverless](https://github.com/lukewilliamboswell/roc-serverless): HTTP handlers for WASM workers
+ 
