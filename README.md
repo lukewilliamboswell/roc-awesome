@@ -50,6 +50,7 @@ Build **roc cli && language server** `cargo build -p roc_cli --release && cargo 
 - [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
 - [roc-lang/static-site-gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): Static websites
 - [roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
+- [kingfisher](https://github.com/ostcar/kingfisher): Webservers without SQL
 
 *Work In Progress*
 - 🚧 [lukewilliamboswell/roc-gui](https://github.com/lukewilliamboswell/roc-gui): GUI apps
