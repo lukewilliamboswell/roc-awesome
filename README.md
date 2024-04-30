@@ -15,7 +15,6 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 
 ## Roc Packages 📦
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Official Unicode
-
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL 
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
@@ -23,8 +22,8 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times
 - [imclerran/Roc-IsoDate](https://github.com/imclerran/Roc-IsoDate): ISO-8601 Datetimes
 - [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
-- [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
+- [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON Encoding and Decoding
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) Helpers for pretty Terminal UI, ANSI Codes, Colors
@@ -40,7 +39,6 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 ## Roc Platforms 🏢
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
-
 - [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
 - [isaacvando/roc-lang/static-site-gen](https://github.com/roc-lang/roc/tree/main/examples/static-site-gen): Static websites
 - [isaacvando/roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
