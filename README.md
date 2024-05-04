@@ -15,7 +15,8 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 
 ## Roc Packages 📦
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Official Unicode
-- [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL 
+- [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL
+- [Hasnep/roc-ascii](https://github.com/Hasnep/roc-ascii): ASCII string and character types
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
