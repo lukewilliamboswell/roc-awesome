@@ -61,7 +61,8 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [vendrinc/roc-npm](https://github.com/vendrinc/roc-npm/): NPM package to install roc
 - [dkuku/asdf-roc](https://github.com/dkuku/asdf-roc): ASDF package for managing Roc versions
 - [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
-- [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc 
+- [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc
+- [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/managemetn tools
 
 ## Roc Applications 💾
 - [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
