@@ -10,6 +10,7 @@ A collection of links to awesome roc things.
 - **VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial)
 - **Tree-Sitter Grammar** [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc)
 - **Building From Source** 🏗️ [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
+- **Packages Index (Unnoficial)** [hasnep.github.io/roc-packages](https://hasnep.github.io/roc-packages/)
 
 Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this in mind and offer your assistance where you can.
 
@@ -22,8 +23,10 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
 - [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times
 - [imclerran/Roc-IsoDate](https://github.com/imclerran/Roc-IsoDate): ISO-8601 Datetimes
+- [imclerran/roc-openrouter](https://github.com/imclerran/roc-openrouter): OpenRouter.ai API
 - [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
+- [KilianVounckx/crisp](https://github.com/KilianVounckx/crisp): Web framework middleware (proof of concept)
 - [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON Encoding and Decoding
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
