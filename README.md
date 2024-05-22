@@ -55,6 +55,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Rust platform template](https://github.com/lukewilliamboswell/roc-platform-template-rust)
 - [Go platform template](https://github.com/lukewilliamboswell/roc-platform-template-go)
 - [Swift platform template](https://github.com/lukewilliamboswell/roc-platform-template-swift)
+- [C platform template](https://github.com/lukewilliamboswell/roc-platform-template-c)
 - [Python interop](https://github.com/roc-lang/roc/tree/main/examples/python-interop)
 - [Ruby interop](https://github.com/roc-lang/roc/tree/main/examples/ruby-interop)
 - [NodeJs interop](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop)
