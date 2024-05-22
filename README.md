@@ -31,6 +31,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON Encoding and Decoding
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) Helpers for pretty Terminal UI, ANSI Codes, Colors
+- [lukewilliamboswell/roc-glue-code-gen](https://github.com/lukewilliamboswell/roc-glue-code-gen): Hlpers for generating roc glue
 - [smores56/weaver](https://github.com/smores56/weaver) Ergonomic CLI Argument Parsing
 - [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
 - [shritesh/roc-image](https://github.com/shritesh/roc-image): Image library with PNG export.
@@ -49,11 +50,15 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
 - [ostcar/kingfisher](https://github.com/ostcar/kingfisher): Webservers without SQL
 
-*Other languages & Embedding Examples* 🗺
-- [alexpyattaev/roc-plugin-example](https://github.com/alexpyattaev/roc-plugin-example/tree/master): [Rust] A plugin example for a bevy game
-- [lukewilliamboswell/roc-zig-platform](https://github.com/lukewilliamboswell/roc-zig-platform): [Zig] Example platform with bundle script for URL packages using Zig cross-compilation
-- [roc-lang/roc](https://github.com/roc-lang/roc/tree/main/examples): [Python](https://github.com/roc-lang/roc/tree/main/examples/python-interop), [Ruby](https://github.com/roc-lang/roc/tree/main/examples/ruby-interop), [Swift UI](https://github.com/roc-lang/roc/tree/main/examples/swiftui), [NodeJs](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop), [Java](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
-
+*Templates & Embedding/Interop Examples* 🗺
+- [Zig platform template](https://github.com/lukewilliamboswell/roc-platform-template-zig)
+- [Rust platform template](https://github.com/lukewilliamboswell/roc-platform-template-rust)
+- [Go platform template](https://github.com/lukewilliamboswell/roc-platform-template-go)
+- [Swift platform template](https://github.com/lukewilliamboswell/roc-platform-template-swift)
+- [Python interop](https://github.com/roc-lang/roc/tree/main/examples/python-interop)
+- [Ruby interop](https://github.com/roc-lang/roc/tree/main/examples/ruby-interop)
+- [NodeJs interop](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop)
+- [Java interop](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
 
 ## Tooling 🛠️
 
