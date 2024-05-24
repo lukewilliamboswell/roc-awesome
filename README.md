@@ -73,12 +73,14 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/managemetn tools
 
 ## Roc Applications 💾
-- [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
-- [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
+
 - [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): Interpreter for  🐵🤘🏼 [Monkey lang](https://monkeylang.org)
+- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
+- [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
+- [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
+- [lukewilliamboswell/roc-htmx-playground](https://github.com/lukewilliamboswell/roc-htmx-playground)
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
-- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
 
 ## Other
 
