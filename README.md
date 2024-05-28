@@ -11,6 +11,7 @@ A collection of links to awesome roc things.
 - **Tree-Sitter Grammar** [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc)
 - **Building From Source** 🏗️ [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
 - **Packages Index (Unnoficial)** [hasnep.github.io/roc-packages](https://hasnep.github.io/roc-packages/)
+- **Dockerhub Repositories** [roclang](https://hub.docker.com/repositories/roclang)
 
 Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this in mind and offer your assistance where you can.
 
