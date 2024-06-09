@@ -73,6 +73,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
 - [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc
 - [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/managemetn tools
+- [imclerran/roc-start](https://github.com/imclerran/roc-start): CLI tool for initializing Roc applications.
 
 ## Roc Applications 💾
 
