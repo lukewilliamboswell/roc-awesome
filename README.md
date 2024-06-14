@@ -72,12 +72,12 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [dkuku/asdf-roc](https://github.com/dkuku/asdf-roc): ASDF package for managing Roc versions
 - [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
 - [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc
-- [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/managemetn tools
+- [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/management tools
 - [imclerran/roc-start](https://github.com/imclerran/roc-start): CLI tool for initializing Roc applications.
 
 ## Roc Applications 💾
 
-- [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): Interpreter for  🐵🤘🏼 [Monkey lang](https://monkeylang.org)
+- [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): Interpreter for 🐵🤘🏼 [Monkey lang](https://monkeylang.org)
 - [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
 - [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
 - [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
