@@ -23,6 +23,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
 - [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times
+- [Hasnep/roc-linear-algebra](https://github.com/Hasnep/roc-linear-algebra): Linear algebra library for small vectors and matrices
 - [imclerran/Roc-IsoDate](https://github.com/imclerran/Roc-IsoDate): ISO-8601 Datetimes
 - [imclerran/roc-openrouter](https://github.com/imclerran/roc-openrouter): OpenRouter.ai API
 - [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
