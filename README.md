@@ -78,11 +78,13 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 
 ## Roc Applications 💾
 
-- [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): Interpreter for  🐵🤘🏼 [Monkey lang](https://monkeylang.org)
-- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
-- [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
+- [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): [Monkey lang](https://monkeylang.org) 🐵 interpreter
+- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): [Lox lang](https://craftinginterpreters.com/contents.html) interpreter
+- [Hasnep/brainroc](https://github.com/Hasnep/brainroc): [BF](https://en.wikipedia.org/wiki/Brainfuck) interpreter
 - [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
-- [lukewilliamboswell/roc-htmx-playground](https://github.com/lukewilliamboswell/roc-htmx-playground)
+- [lukewilliamboswell/roc-htmx-playground](https://github.com/lukewilliamboswell/roc-htmx-playground): Fullstack Web App using HTMX
+- [lukewilliamboswell/roc-htmx-tailwindcss-demo](https://github.com/lukewilliamboswell/roc-htmx-tailwindcss-demo): Fullstack Web App using HTMX, Tailwindcss, and RTL
+- [raymyers/roc-lisp](https://github.com/raymyers/roc-lisp): LISP interpreter
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
 
