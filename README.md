@@ -37,6 +37,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [smores56/weaver](https://github.com/smores56/weaver) Ergonomic CLI Argument Parsing
 - [smores56/roc-semver](https://github.com/smores56/roc-semver) Semver 2.0.0 parsing and match checking
 - [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
+- [quelgar/roc-utils](https://github.com/quelgar/roc-utils): Utils for Hex, Base64, Sha, Hmac
 - [shritesh/roc-image](https://github.com/shritesh/roc-image): Image library with PNG export.
 - [Subtlesplendor/roc-data](https://github.com/Subtlesplendor/roc-data): Helpful types like Stack, Queue, Bag
 - [Subtlesplendor/roc-parser](https://github.com/Subtlesplendor/roc-parser): Port of Elm's Parser library
