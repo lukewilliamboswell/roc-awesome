@@ -7,17 +7,16 @@ A collection of links to awesome roc things.
 - **Examples** [roc-lang/examples](https://github.com/roc-lang/examples)
 - **Tutorial** [roc-lang.org/tutorial](https://www.roc-lang.org/tutorial)
 - **Documentation** [roc-lang.org/docs](https://www.roc-lang.org/docs)
-- **VSCode Extension** [raqystyle/roc-vscode-unofficial](https://github.com/raqystyle/roc-vscode-unofficial)
-- **Tree-Sitter Grammar** [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc)
 - **Building From Source** 🏗️ [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
+- **Dockerhub** [hub.docker.com/repositories/roclang](https://hub.docker.com/repositories/roclang)
 - **Packages Index (Unnoficial)** [hasnep.github.io/roc-packages](https://hasnep.github.io/roc-packages/)
-- **Dockerhub Repositories** [roclang](https://hub.docker.com/repositories/roclang)
 
 Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this in mind and offer your assistance where you can.
 
 ## Roc Packages 📦
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Official Unicode
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL
+- [bhansconnect/roc-msgpack](https://github.com/bhansconnect/roc-msgpack): MessagePack 🚧 
 - [Hasnep/roc-ascii](https://github.com/Hasnep/roc-ascii): ASCII string and character types
 - [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
 - [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
@@ -76,6 +75,13 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc
 - [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/managemetn tools
 - [imclerran/roc-start](https://github.com/imclerran/roc-start): CLI tool for initializing Roc applications.
+
+*Editors*
+- [Tree-sitter Grammar](https://github.com/faldor20/tree-sitter-roc): also Helix, Neovim
+- [VS Code](https://marketplace.visualstudio.com/items?itemName=IvanDemchenko.roc-lang-unofficial)
+- [Zed](https://github.com/h2000/zed-roc)
+- [Kakoune](https://github.com/evanrelf/roc.kak)
+- [Emacs](https://gitlab.com/tad-lispy/roc-mode)
 
 ## Roc Applications 💾
 
