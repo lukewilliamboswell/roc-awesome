@@ -52,6 +52,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️
 - [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
 - [ostcar/kingfisher](https://github.com/ostcar/kingfisher): Webservers without SQL
+- [tarkah/roc-iced](https://github.com/tarkah/roc-iced): GUI Applications
 
 *Templates & Embedding/Interop Examples* 🗺
 - [Zig platform template](https://github.com/lukewilliamboswell/roc-platform-template-zig)
