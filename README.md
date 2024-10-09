@@ -93,6 +93,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [lukewilliamboswell/roc-htmx-playground](https://github.com/lukewilliamboswell/roc-htmx-playground): Fullstack Web App using HTMX
 - [lukewilliamboswell/roc-htmx-tailwindcss-demo](https://github.com/lukewilliamboswell/roc-htmx-tailwindcss-demo): Fullstack Web App using HTMX, Tailwindcss, and RTL
 - [raymyers/roc-lisp](https://github.com/raymyers/roc-lisp): LISP interpreter
+- [jared-cone/roctris](https://github.com/jared-cone/roctris): Tetris clone that runs in the terminal
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
 
