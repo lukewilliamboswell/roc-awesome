@@ -54,7 +54,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
 - [ostcar/kingfisher](https://github.com/ostcar/kingfisher): Webservers without SQL
 - [tarkah/roc-iced](https://github.com/tarkah/roc-iced): GUI Applications
-- [adomurad/r2e-platform)](https://github.com/adomurad/r2e-platform): E2E testing
+- [adomurad/r2e-platform](https://github.com/adomurad/r2e-platform): E2E testing
 
 *Templates & Embedding/Interop Examples* 🗺
 - [Zig platform template](https://github.com/lukewilliamboswell/roc-platform-template-zig)
