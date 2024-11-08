@@ -13,6 +13,8 @@ A collection of links to awesome roc things.
 
 Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this in mind and offer your assistance where you can.
 
+🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template) and [my puzzle solutions](https://github.com/lukewilliamboswell/aoc)
+
 ## Roc Packages 📦
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Official Unicode
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL
@@ -98,10 +100,6 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [jared-cone/roctris](https://github.com/jared-cone/roctris): Tetris clone that runs in the terminal
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
-
-## Other
-
-🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template) and [my attempts at AoC](https://github.com/lukewilliamboswell/aoc)
 
 ## Experiments 🔭
 - [roc-lang/virtual-DOM](https://github.com/roc-lang/roc/tree/main/examples/virtual-dom-wip): Virtual DOM with SSR
