@@ -4,7 +4,7 @@
 A collection of links to awesome roc things. 
 
 - **Repository** [roc-lang/roc](https://github.com/roc-lang/roc)
-- **Examples** [roc-lang/examples](https://github.com/roc-lang/examples)
+- **Examples** [roc-lang.org/examples](https://www.roc-lang.org/examples)
 - **Tutorial** [roc-lang.org/tutorial](https://www.roc-lang.org/tutorial)
 - **Documentation** [roc-lang.org/docs](https://www.roc-lang.org/docs)
 - **Building From Source** 🏗️ [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
