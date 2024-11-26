@@ -42,6 +42,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [shritesh/roc-image](https://github.com/shritesh/roc-image): Image library with PNG export.
 - [Subtlesplendor/roc-data](https://github.com/Subtlesplendor/roc-data): Helpful types like Stack, Queue, Bag
 - [Subtlesplendor/roc-parser](https://github.com/Subtlesplendor/roc-parser): Port of Elm's Parser library
+- [phagenlocher/roc-color](https://github.com/phagenlocher/roc-color): Colors for the terminal
 
 ## Roc Tools 🛠️
 - [isaacvando/rtl](https://github.com/isaacvando/rtl): An HTML template language for Roc with compile time validation and tag unions.
