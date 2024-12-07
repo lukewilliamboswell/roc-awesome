@@ -34,7 +34,6 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON Encoding and Decoding
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) Helpers for pretty Terminal UI, ANSI Codes, Colors
-- [lukewilliamboswell/roc-glue-code-gen](https://github.com/lukewilliamboswell/roc-glue-code-gen): Hlpers for generating roc glue
 - [smores56/weaver](https://github.com/smores56/weaver) Ergonomic CLI Argument Parsing
 - [smores56/roc-semver](https://github.com/smores56/roc-semver) Semver 2.0.0 parsing and match checking
 - [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
