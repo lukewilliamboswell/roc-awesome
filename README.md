@@ -7,6 +7,7 @@ A collection of links to awesome roc things.
 - **Examples** [roc-lang.org/examples](https://www.roc-lang.org/examples)
 - **Tutorial** [roc-lang.org/tutorial](https://www.roc-lang.org/tutorial)
 - **Documentation** [roc-lang.org/docs](https://www.roc-lang.org/docs)
+- **Exercism Track** [exercism.org/tracks/roc](https://exercism.org/tracks/roc)
 - **Building From Source** 🏗️ [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
 - **Dockerhub** [hub.docker.com/repositories/roclang](https://hub.docker.com/repositories/roclang)
 - **Packages Index (Unnoficial)** [hasnep.github.io/roc-packages](https://hasnep.github.io/roc-packages/)
