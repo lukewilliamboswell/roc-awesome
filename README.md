@@ -44,10 +44,6 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Subtlesplendor/roc-parser](https://github.com/Subtlesplendor/roc-parser): Port of Elm's Parser library
 - [phagenlocher/roc-color](https://github.com/phagenlocher/roc-color): Colors for the terminal
 
-## Roc Tools 🛠️
-- [isaacvando/rtl](https://github.com/isaacvando/rtl): HTML templates with compile time validation and tag unions.
-- [lue-bird/elm-syntax-to-roc](https://github.com/lue-bird/elm-syntax-to-roc): Transpile elm to roc
-
 ## Roc Platforms 🏢
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
@@ -71,11 +67,13 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [NodeJs interop](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop)
 - [Java interop](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
 
-## Tooling 🛠️
+## Tools 🛠️
 
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar
 - [Hasnep/setup-roc](https://github.com/Hasnep/setup-roc): Github action to install Roc
 - [Hasnep/bundle-roc-library](https://github.com/Hasnep/bundle-roc-library): Github action to bundle packages
+- [isaacvando/rtl](https://github.com/isaacvando/rtl): HTML templates with compile time validation and tag unions.
+- [lue-bird/elm-syntax-to-roc](https://github.com/lue-bird/elm-syntax-to-roc): Transpile elm to roc
 - [vendrinc/roc-npm](https://github.com/vendrinc/roc-npm/): NPM package to install roc
 - [dkuku/asdf-roc](https://github.com/dkuku/asdf-roc): ASDF package for managing Roc versions
 - [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
@@ -90,6 +88,10 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Kakoune](https://github.com/evanrelf/roc.kak)
 - [Emacs](https://gitlab.com/tad-lispy/roc-mode)
 
+## Articles
+
+- [Dusty Philips: Build a Wasm Compiler in Roc](https://dusty.phillips.codes/categories/#posts-list-roc)
+  
 ## Roc Applications 💾
 
 - [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): [Monkey lang](https://monkeylang.org) 🐵 interpreter
