@@ -45,7 +45,8 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [phagenlocher/roc-color](https://github.com/phagenlocher/roc-color): Colors for the terminal
 
 ## Roc Tools 🛠️
-- [isaacvando/rtl](https://github.com/isaacvando/rtl): An HTML template language for Roc with compile time validation and tag unions.
+- [isaacvando/rtl](https://github.com/isaacvando/rtl): HTML templates with compile time validation and tag unions.
+- [lue-bird/elm-syntax-to-roc](https://github.com/lue-bird/elm-syntax-to-roc): Transpile elm to roc
 
 ## Roc Platforms 🏢
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
