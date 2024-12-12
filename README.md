@@ -49,6 +49,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 - [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
 - [isaacvando/roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
+- [niclas-ahden/joy](https://github.com/niclas-ahden/joy): Build Single Page Apps using WASM
 - [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
