@@ -27,7 +27,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times
 - [Hasnep/roc-linear-algebra](https://github.com/Hasnep/roc-linear-algebra): Linear algebra library for small vectors and matrices
 - [imclerran/Roc-IsoDate](https://github.com/imclerran/Roc-IsoDate): ISO-8601 Datetimes
-- [imclerran/roc-openrouter](https://github.com/imclerran/roc-openrouter): OpenRouter.ai API
+- [imclerran/roc-ai](https://github.com/imclerran/roc-ai): LLM calling API and AI agents
 - [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
 - [KilianVounckx/crisp](https://github.com/KilianVounckx/crisp): Web framework middleware (proof of concept)
