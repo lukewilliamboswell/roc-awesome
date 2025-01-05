@@ -31,6 +31,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
 - [KilianVounckx/crisp](https://github.com/KilianVounckx/crisp): Web framework middleware (proof of concept)
+- [lukewilliamboswell/plume](https://github.com/lukewilliamboswell/plume): Charts using plotly.js
 - [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON Encoding and Decoding
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
