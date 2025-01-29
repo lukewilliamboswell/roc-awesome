@@ -14,8 +14,6 @@ A collection of links to awesome roc things.
 
 Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this in mind and offer your assistance where you can.
 
-🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template) and [my puzzle solutions](https://github.com/lukewilliamboswell/aoc)
-
 ## Roc Packages 📦
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Official Unicode
 - [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL
@@ -64,10 +62,6 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Go platform template](https://github.com/lukewilliamboswell/roc-platform-template-go)
 - [Swift platform template](https://github.com/lukewilliamboswell/roc-platform-template-swift)
 - [C platform template](https://github.com/lukewilliamboswell/roc-platform-template-c)
-- [Python interop](https://github.com/roc-lang/roc/tree/main/examples/python-interop)
-- [Ruby interop](https://github.com/roc-lang/roc/tree/main/examples/ruby-interop)
-- [NodeJs interop](https://github.com/roc-lang/roc/tree/main/examples/nodejs-interop)
-- [Java interop](https://github.com/roc-lang/roc/tree/main/examples/jvm-interop)
 
 ## Tools 🛠️
 
@@ -96,6 +90,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
   
 ## Roc Applications 💾
 
+- [Godrak/kodos](https://gitlab.com/Godrak/kodos): A Task Manager webapp written using Roc
 - [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): [Monkey lang](https://monkeylang.org) 🐵 interpreter
 - [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): [Lox lang](https://craftinginterpreters.com/contents.html) interpreter
 - [Hasnep/brainroc](https://github.com/Hasnep/brainroc): [BF](https://en.wikipedia.org/wiki/Brainfuck) interpreter
@@ -107,16 +102,4 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
 
-## Experiments 🔭
-- [roc-lang/virtual-DOM](https://github.com/roc-lang/roc/tree/main/examples/virtual-dom-wip): Virtual DOM with SSR
-- [ostcar/roc-wasi-platform](https://github.com/ostcar/roc-wasi-platform): WASI
-- [vendrinc/roc-esbuild](https://github.com/vendrinc/roc-esbuild): esbuild plugin for loading `.roc` files.
-- [ostcar/roc-wasm-platform](https://github.com/ostcar/roc-wasm-platform): WASM modules
-- [bhansconnect/roc-microbit](https://github.com/bhansconnect/roc-microbit): Microbit embedded processor
-- [JanCVanB/roc-plotters](https://github.com/JanCVanB/roc-plotters): Drawing with Plotters
-- [lukewilliamboswell/roc-gui](https://github.com/lukewilliamboswell/roc-gui): GUI apps
-- [lukewilliamboswell/roc-tui](https://github.com/lukewilliamboswell/roc-tui): Terminal UI platform
-- [lukewilliamboswell/roc-graphics-mach](https://github.com/lukewilliamboswell/roc-graphics-mach): Graphics platform using hexops/mach-core
-- [lukewilliamboswell/roc-cgi-server](https://github.com/lukewilliamboswell/roc-cgi-server): CGI HTTP server using basic-cli apps 
-- [lukewilliamboswell/roc-serverless](https://github.com/lukewilliamboswell/roc-serverless): HTTP handlers for WASM workers
- 
+🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template) and [my puzzle solutions](https://github.com/lukewilliamboswell/aoc)
