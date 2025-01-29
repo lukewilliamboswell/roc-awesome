@@ -74,7 +74,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [dkuku/asdf-roc](https://github.com/dkuku/asdf-roc): ASDF package for managing Roc versions
 - [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
 - [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc
-- [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/managemetn tools
+- [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/management tools
 - [imclerran/roc-start](https://github.com/imclerran/roc-start): CLI tool for initializing Roc applications.
 
 *Editors*
@@ -91,9 +91,9 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 ## Roc Applications 💾
 
 - [Godrak/kodos](https://gitlab.com/Godrak/kodos): A Task Manager webapp written using Roc
-- [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): [Monkey lang](https://monkeylang.org) 🐵 interpreter
-- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): [Lox lang](https://craftinginterpreters.com/contents.html) interpreter
-- [Hasnep/brainroc](https://github.com/Hasnep/brainroc): [BF](https://en.wikipedia.org/wiki/Brainfuck) interpreter
+- [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): Interpreter for 🐵🤘🏼 [Monkey lang](https://monkeylang.org)
+- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
+- [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
 - [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
 - [lukewilliamboswell/roc-htmx-playground](https://github.com/lukewilliamboswell/roc-htmx-playground): Fullstack Web App using HTMX
 - [lukewilliamboswell/roc-htmx-tailwindcss-demo](https://github.com/lukewilliamboswell/roc-htmx-tailwindcss-demo): Fullstack Web App using HTMX, Tailwindcss, and RTL
