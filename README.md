@@ -24,8 +24,12 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
 - [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times
 - [Hasnep/roc-linear-algebra](https://github.com/Hasnep/roc-linear-algebra): Linear algebra library for small vectors and matrices
-- [imclerran/Roc-IsoDate](https://github.com/imclerran/Roc-IsoDate): ISO-8601 Datetimes
 - [imclerran/roc-ai](https://github.com/imclerran/roc-ai): LLM calling API and AI agents
+- [imclerran/roc-asciiart](https://github.com/imclerran/roc-asciiart): Convert text to ASCII art
+- [imclerran/roc-heck](https://github.com/imclerran/roc-heck): Convert between various text casings
+- [imclerran/roc-isodate](https://github.com/imclerran/roc-isodate): ISO-8601 Datetimes
+- [imclerran/roc-tinyparse](https://github.com/imclerran/roc-tinyparse): Small parser combinator library
+- [imclerran/roc-utf16](https://github.com/imclerran/roc-utf16): Convert to and from Utf16 encoding
 - [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
 - [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
 - [KilianVounckx/crisp](https://github.com/KilianVounckx/crisp): Web framework middleware (proof of concept)
