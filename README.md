@@ -28,6 +28,7 @@ Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this i
 - [imclerran/roc-asciiart](https://github.com/imclerran/roc-asciiart): Convert text to ASCII art
 - [imclerran/roc-heck](https://github.com/imclerran/roc-heck): Convert between various text casings
 - [imclerran/roc-isodate](https://github.com/imclerran/roc-isodate): ISO-8601 Datetimes
+- [imclerran/roc-linalg](https://github.com/imclerran/roc-linalg): Linear algebra for arbitrary-size vectors and matrices
 - [imclerran/roc-tinyparse](https://github.com/imclerran/roc-tinyparse): Small parser combinator library
 - [imclerran/roc-utf16](https://github.com/imclerran/roc-utf16): Convert to and from Utf16 encoding
 - [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
