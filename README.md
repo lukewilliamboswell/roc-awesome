@@ -8,6 +8,8 @@ A collection of links to awesome roc things.
 > migrated yet have moved to **[LEGACY_ROC.md](LEGACY_ROC.md)** — that file doubles as
 > a checklist of what still needs porting. Migrating a package or platform is a great
 > way to help out! 🙌
+>
+> 📚 New here? Richard Feldman's writeup [**on the Rust → Zig compiler rewrite**](https://gist.github.com/rtfeldman/77fb430ee57b42f5f2ca973a3992532f) explains why it's happening and what it changes.
 
 **Legend:** ✅ works with the new compiler · 🚧 migration in progress (PR/branch open)
 
