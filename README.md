@@ -1,110 +1,50 @@
 
 # Roc Awesome 🤘
 
-A collection of links to awesome roc things. 
+A collection of links to awesome roc things.
+
+> 🦎 **The Roc compiler is being rewritten from Rust to Zig.** This list now tracks
+> projects that work with the **new Zig-based compiler**. Projects that haven't been
+> migrated yet have moved to **[LEGACY_ROC.md](LEGACY_ROC.md)** — that file doubles as
+> a checklist of what still needs porting. Migrating a package or platform is a great
+> way to help out! 🙌
+>
+> 📚 New here? Richard Feldman's writeup [**on the Rust → Zig compiler rewrite**](https://gist.github.com/rtfeldman/77fb430ee57b42f5f2ca973a3992532f) explains why it's happening and what it changes.
+
+**Legend:** ✅ works with the new compiler · 🚧 migration in progress (PR/branch open)
 
 - **Repository** [roc-lang/roc](https://github.com/roc-lang/roc)
-- **Examples** [roc-lang.org/examples](https://www.roc-lang.org/examples)
-- **Tutorial** [roc-lang.org/tutorial](https://www.roc-lang.org/tutorial)
-- **Documentation** [roc-lang.org/docs](https://www.roc-lang.org/docs)
-- **Exercism Track** [exercism.org/tracks/roc](https://exercism.org/tracks/roc)
+- **Download Roc** ⬇️ [roc-lang/nightlies releases](https://github.com/roc-lang/nightlies/releases) — prebuilt nightly builds of the latest compiler
 - **Building From Source** 🏗️ [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
+- **Tutorial** 📖 [docs/mini-tutorial-new-compiler.md](https://github.com/roc-lang/roc/blob/main/docs/mini-tutorial-new-compiler.md) — interim "mini" tutorial for the new compiler (a full rewrite is planned)
+- **Language Reference** [docs/langref](https://github.com/roc-lang/roc/tree/main/docs/langref) — new-compiler reference (not yet complete or on the website, but very helpful)
+- **Syntax Reference** [test/echo/all_syntax_test.roc](https://github.com/roc-lang/roc/blob/main/test/echo/all_syntax_test.roc) — a single file demonstrating the new syntax
+- **Exercism Track** [exercism.org/tracks/roc](https://exercism.org/tracks/roc) 🚧 ([migration PR #198](https://github.com/exercism/roc/pull/198) — 92+ exercises ported & passing)
 - **Dockerhub** [hub.docker.com/repositories/roclang](https://hub.docker.com/repositories/roclang)
-- **Packages Index (Unnoficial)** [hasnep.github.io/roc-packages](https://hasnep.github.io/roc-packages/)
 
-Some of the links below are 🚧 **Work In Progress** 🚧 so please keep this in mind and offer your assistance where you can.
+> ℹ️ The [roc-lang.org](https://www.roc-lang.org) website (Examples, Tutorial, Docs) still
+> documents the **old** compiler and is yet to be updated — for now use the new-compiler
+> mini-tutorial and syntax reference above.
 
 ## Roc Packages 📦
-- [roc-lang/unicode](https://github.com/roc-lang/unicode): Official Unicode
-- [agu-z/roc-pg](https://github.com/agu-z/roc-pg): PostgreSQL
-- [bhansconnect/roc-msgpack](https://github.com/bhansconnect/roc-msgpack): MessagePack 🚧 
-- [Hasnep/roc-ascii](https://github.com/Hasnep/roc-ascii): ASCII string and character types
-- [Hasnep/roc-math](https://github.com/Hasnep/roc-math): Math and constants
-- [Hasnep/roc-html](https://github.com/Hasnep/roc-html): HTML
-- [Hasnep/roc-svg](https://github.com/Hasnep/roc-svg): SVGs
-- [Hasnep/roc-datetimes](https://github.com/hasnep/roc-datetimes): Dates and times
-- [Hasnep/roc-linear-algebra](https://github.com/Hasnep/roc-linear-algebra): Linear algebra library for small vectors and matrices
-- [imclerran/roc-ai](https://github.com/imclerran/roc-ai): LLM calling API and AI agents
-- [imclerran/roc-asciiart](https://github.com/imclerran/roc-asciiart): Convert text to ASCII art
-- [imclerran/roc-heck](https://github.com/imclerran/roc-heck): Convert between various text casings
-- [imclerran/roc-isodate](https://github.com/imclerran/roc-isodate): ISO-8601 Datetimes
-- [imclerran/roc-tinyparse](https://github.com/imclerran/roc-tinyparse): Small parser combinator library
-- [imclerran/roc-utf16](https://github.com/imclerran/roc-utf16): Convert to and from Utf16 encoding
-- [jwoudenberg/rvn](https://github.com/jwoudenberg/rvn): A serialization format based on Roc syntax.
-- [KilianVounckx/roc_regex](https://github.com/KilianVounckx/roc_regex): Regex
-- [KilianVounckx/crisp](https://github.com/KilianVounckx/crisp): Web framework middleware (proof of concept)
-- [lukewilliamboswell/plume](https://github.com/lukewilliamboswell/plume): Charts using plotly.js
-- [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation
-- [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON Encoding and Decoding
-- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
-- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) Helpers for pretty Terminal UI, ANSI Codes, Colors
-- [smores56/weaver](https://github.com/smores56/weaver) Ergonomic CLI Argument Parsing
-- [smores56/roc-semver](https://github.com/smores56/roc-semver) Semver 2.0.0 parsing and match checking
-- [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays
-- [quelgar/roc-utils](https://github.com/quelgar/roc-utils): Utils for Hex, Base64, Sha, Hmac
-- [shritesh/roc-image](https://github.com/shritesh/roc-image): Image library with PNG export.
-- [Subtlesplendor/roc-data](https://github.com/Subtlesplendor/roc-data): Helpful types like Stack, Queue, Bag
-- [Subtlesplendor/roc-parser](https://github.com/Subtlesplendor/roc-parser): Port of Elm's Parser library
-- [phagenlocher/roc-color](https://github.com/phagenlocher/roc-color): Colors for the terminal
+- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators 🚧 ([PR #30](https://github.com/lukewilliamboswell/roc-parser/pull/30))
+- [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation 🚧 (branch `update-new-module-syntax`)
 
 ## Roc Platforms 🏢
-- [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
-- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
-- [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
-- [isaacvando/roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
-- [niclas-ahden/joy](https://github.com/niclas-ahden/joy): Build Single Page Apps using WASM
-- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
-- [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️
-- [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
-- [ostcar/kingfisher](https://github.com/ostcar/kingfisher): Webservers without SQL
-- [tarkah/roc-iced](https://github.com/tarkah/roc-iced): GUI Applications
-- [adomurad/r2e-platform](https://github.com/adomurad/r2e-platform): E2E testing
+- [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️ ✅
+- [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib ✅
+- [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps 🚧 ([PR #413](https://github.com/roc-lang/basic-cli/pull/413))
 
 *Templates & Embedding/Interop Examples* 🗺
-- [Zig platform template](https://github.com/lukewilliamboswell/roc-platform-template-zig)
-- [Rust platform template](https://github.com/lukewilliamboswell/roc-platform-template-rust)
-- [Go platform template](https://github.com/lukewilliamboswell/roc-platform-template-go)
-- [Swift platform template](https://github.com/lukewilliamboswell/roc-platform-template-swift)
-- [C platform template](https://github.com/lukewilliamboswell/roc-platform-template-c)
+- [Zig platform template](https://github.com/lukewilliamboswell/roc-platform-template-zig) ✅
+- [Rust platform template](https://github.com/lukewilliamboswell/roc-platform-template-rust) ✅
 
 ## Tools 🛠️
+- [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) ✅ — also powers Helix & Neovim
+- [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP ✅
+- [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc ✅ — supports new-compiler nightlies (`version: nightly-new-compiler`)
 
-- [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar
-- [Hasnep/setup-roc](https://github.com/Hasnep/setup-roc): Github action to install Roc
-- [Hasnep/bundle-roc-library](https://github.com/Hasnep/bundle-roc-library): Github action to bundle packages
-- [isaacvando/rtl](https://github.com/isaacvando/rtl): HTML templates with compile time validation and tag unions.
-- [lue-bird/elm-syntax-to-roc](https://github.com/lue-bird/elm-syntax-to-roc): Transpile elm to roc
-- [vendrinc/roc-npm](https://github.com/vendrinc/roc-npm/): NPM package to install roc
-- [dkuku/asdf-roc](https://github.com/dkuku/asdf-roc): ASDF package for managing Roc versions
-- [JRMurr/roc2nix](https://github.com/JRMurr/roc2nix): Nix library for building Apps & Platforms
-- [roc-lang docker](https://github.com/roc-lang/roc/tree/main/docker): Dockerfiles for roc
-- [appblue/rocup](https://github.com/appblue/rocup): Roc compiler installation/management tools
-- [imclerran/roc-start](https://github.com/imclerran/roc-start): CLI tool for initializing Roc applications.
+---
 
-*Editors*
-- [Tree-sitter Grammar](https://github.com/faldor20/tree-sitter-roc): also Helix, Neovim
-- [VS Code](https://marketplace.visualstudio.com/items?itemName=IvanDemchenko.roc-lang-unofficial)
-- [Zed](https://github.com/h2000/zed-roc)
-- [Kakoune](https://github.com/evanrelf/roc.kak)
-- [Emacs](https://gitlab.com/tad-lispy/roc-mode)
-- [Lite XL](https://github.com/0riginaln0/lite-xl-roc)
-
-## Articles
-
-- [Dusty Philips: Build a Wasm Compiler in Roc](https://dusty.phillips.codes/categories/#posts-list-roc)
-  
-## Roc Applications 💾
-
-- [Godrak/kodos](https://gitlab.com/Godrak/kodos): A Task Manager webapp written using Roc
-- [bhansconnect/monkey-roc](https://github.com/bhansconnect/monkey-roc): Interpreter for 🐵🤘🏼 [Monkey lang](https://monkeylang.org)
-- [Billzabob/roc-lox](https://github.com/Billzabob/roc-lox): Interpreter for [Lox programming language](https://craftinginterpreters.com/contents.html)
-- [Hasnep/brainroc](https://github.com/Hasnep/brainroc): Interpreter for [BF](https://en.wikipedia.org/wiki/Brainfuck)  
-- [isaacvando/gob](https://github.com/isaacvando/gob): Compiler for a stack-based language
-- [lukewilliamboswell/roc-htmx-playground](https://github.com/lukewilliamboswell/roc-htmx-playground): Fullstack Web App using HTMX
-- [lukewilliamboswell/roc-htmx-tailwindcss-demo](https://github.com/lukewilliamboswell/roc-htmx-tailwindcss-demo): Fullstack Web App using HTMX, Tailwindcss, and RTL
-- [raymyers/roc-lisp](https://github.com/raymyers/roc-lisp): LISP interpreter
-- [jared-cone/roctris](https://github.com/jared-cone/roctris): Tetris clone that runs in the terminal
-- [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
-- [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
-
-🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template) and [my puzzle solutions](https://github.com/lukewilliamboswell/aoc)
+📜 Looking for the older ecosystem (everything not yet migrated to the new compiler)?
+See **[LEGACY_ROC.md](LEGACY_ROC.md)**.
