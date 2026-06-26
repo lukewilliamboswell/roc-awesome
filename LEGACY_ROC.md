@@ -47,7 +47,6 @@ graduates to the main **[README.md](README.md)**.
 - [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
 - [isaacvando/roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
 - [niclas-ahden/joy](https://github.com/niclas-ahden/joy): Build Single Page Apps using WASM
-- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
 - [ostcar/kingfisher](https://github.com/ostcar/kingfisher): Webservers without SQL
 - [tarkah/roc-iced](https://github.com/tarkah/roc-iced): GUI Applications
 - [adomurad/r2e-platform](https://github.com/adomurad/r2e-platform): E2E testing

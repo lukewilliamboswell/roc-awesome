@@ -35,6 +35,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib ✅
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps 🚧 ([PR #413](https://github.com/roc-lang/basic-cli/pull/413))
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers 🚧 ([PR #163](https://github.com/roc-lang/basic-webserver/pull/163))
+- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation 🚧 ([PR #16](https://github.com/lukewilliamboswell/basic-ssg/pull/16))
 
 *Templates & Embedding/Interop Examples* 🗺
 - [Zig platform template](https://github.com/lukewilliamboswell/roc-platform-template-zig) ✅
