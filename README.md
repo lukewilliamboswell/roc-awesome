@@ -34,6 +34,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games 🕹️ ✅
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib ✅
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps 🚧 ([PR #413](https://github.com/roc-lang/basic-cli/pull/413))
+- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers 🚧 ([PR #163](https://github.com/roc-lang/basic-webserver/pull/163))
 
 *Templates & Embedding/Interop Examples* 🗺
 - [Zig platform template](https://github.com/lukewilliamboswell/roc-platform-template-zig) ✅

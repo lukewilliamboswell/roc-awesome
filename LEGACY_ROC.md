@@ -10,7 +10,7 @@ graduates to the main **[README.md](README.md)**.
 
 > ⚠️ Most of these target the `alpha4-rolling` (or earlier) releases and will not build
 > with the new compiler as-is. Some are still actively developed but remain on the old
-> compiler/alpha syntax (e.g. `basic-webserver`, `joy`, `roc-htmx-playground`).
+> compiler/alpha syntax (e.g. `joy`, `roc-htmx-playground`).
 
 ## Roc Packages 📦
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Official Unicode
@@ -44,7 +44,6 @@ graduates to the main **[README.md](README.md)**.
 - [phagenlocher/roc-color](https://github.com/phagenlocher/roc-color): Colors for the terminal
 
 ## Roc Platforms 🏢
-- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 - [bhansconnect/roc-fuzz](https://github.com/bhansconnect/roc-fuzz): Fuzzing
 - [isaacvando/roc-aws-lambda](https://github.com/isaacvando/roc-aws-lambda): AWS Lambda (See also [roc-aws-lambda-runtime](https://github.com/isaacvando/roc-aws-lambda-runtime) for a pure Roc implementation.)
 - [niclas-ahden/joy](https://github.com/niclas-ahden/joy): Build Single Page Apps using WASM
