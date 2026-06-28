@@ -27,6 +27,7 @@ A collection of links to awesome roc things.
 > mini-tutorial and syntax reference above.
 
 ## Roc Packages 📦
+- [roc-lang/http](https://github.com/roc-lang/http): HTTP client ✅ ([release 0.1](https://github.com/roc-lang/http/releases/tag/0.1))
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators 🚧 ([PR #30](https://github.com/lukewilliamboswell/roc-parser/pull/30))
 - [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation 🚧 (branch `update-new-module-syntax`)
 
