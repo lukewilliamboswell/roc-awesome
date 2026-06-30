@@ -25,9 +25,9 @@ A collection of links to awesome roc things.
 > mini-tutorial and syntax reference above.
 
 ## Roc Packages
-- [roc-lang/http](https://github.com/roc-lang/http): HTTP client ([release 0.1](https://github.com/roc-lang/http/releases/tag/0.1))
-- [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation ([release 0.1](https://github.com/roc-lang/path/releases/tag/0.1))
-- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control ([release 0.9.0](https://github.com/lukewilliamboswell/roc-ansi/releases/tag/0.9.0))
+- [roc-lang/http](https://github.com/roc-lang/http): HTTP client
+- [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation
+- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators — migration in progress ([PR #30](https://github.com/lukewilliamboswell/roc-parser/pull/30))
 - [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation — migration in progress (branch `update-new-module-syntax`)
 
@@ -39,8 +39,8 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation — migration in progress ([PR #16](https://github.com/lukewilliamboswell/basic-ssg/pull/16))
 
 *Templates & Embedding/Interop Examples*
-- [Zig platform template](https://github.com/lukewilliamboswell/roc-platform-template-zig)
-- [Rust platform template](https://github.com/lukewilliamboswell/roc-platform-template-rust)
+- [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
+- [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
 
 ## Tools
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
