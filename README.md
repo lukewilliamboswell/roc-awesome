@@ -29,7 +29,7 @@ A collection of links to awesome roc things.
 - [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
-- [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation — migration in progress (branch `update-new-module-syntax`)
+- [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 
 ## Roc Platforms
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
