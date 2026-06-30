@@ -28,6 +28,7 @@ A collection of links to awesome roc things.
 
 ## Roc Packages 📦
 - [roc-lang/http](https://github.com/roc-lang/http): HTTP client ✅ ([release 0.1](https://github.com/roc-lang/http/releases/tag/0.1))
+- [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation ✅ ([release 0.1](https://github.com/roc-lang/path/releases/tag/0.1))
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control ✅ ([release 0.9.0](https://github.com/lukewilliamboswell/roc-ansi/releases/tag/0.9.0))
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators 🚧 ([PR #30](https://github.com/lukewilliamboswell/roc-parser/pull/30))
 - [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation 🚧 (branch `update-new-module-syntax`)
