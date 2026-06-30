@@ -33,7 +33,6 @@ graduates to the main **[README.md](README.md)**.
 - [KilianVounckx/crisp](https://github.com/KilianVounckx/crisp): Web framework middleware (proof of concept)
 - [lukewilliamboswell/plume](https://github.com/lukewilliamboswell/plume): Charts using plotly.js
 - [lukewilliamboswell/roc-json](https://github.com/lukewilliamboswell/roc-json): JSON Encoding and Decoding
-- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi) Helpers for pretty Terminal UI, ANSI Codes, Colors
 - [smores56/weaver](https://github.com/smores56/weaver) Ergonomic CLI Argument Parsing
 - [smores56/roc-semver](https://github.com/smores56/roc-semver) Semver 2.0.0 parsing and match checking
 - [mulias/roc-array2d](https://github.com/mulias/roc-array2d) 2D Arrays

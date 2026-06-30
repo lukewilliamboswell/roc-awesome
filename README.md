@@ -28,6 +28,7 @@ A collection of links to awesome roc things.
 
 ## Roc Packages 📦
 - [roc-lang/http](https://github.com/roc-lang/http): HTTP client ✅ ([release 0.1](https://github.com/roc-lang/http/releases/tag/0.1))
+- [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control ✅ ([release 0.9.0](https://github.com/lukewilliamboswell/roc-ansi/releases/tag/0.9.0))
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators 🚧 ([PR #30](https://github.com/lukewilliamboswell/roc-parser/pull/30))
 - [lukewilliamboswell/roc-random](https://github.com/lukewilliamboswell/roc-random): Random number generation 🚧 (branch `update-new-module-syntax`)
 
@@ -46,6 +47,39 @@ A collection of links to awesome roc things.
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) ✅ — also powers Helix & Neovim
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP ✅
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc ✅ — supports new-compiler nightlies (`version: nightly-new-compiler`)
+
+## AI Skills 🤖
+This repo doubles as a [Claude Code plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces) bundling skills that encode Roc best-practices — repo hygiene (`roc-hygiene`), CI scaffolding (`roc-setup-ci`), and legacy-syntax migration (`roc-migrate-legacy`). Install with:
+
+```shell
+/plugin marketplace add lukewilliamboswell/roc-awesome
+/plugin install roc-skills@roc-awesome
+```
+
+Skills live under [`plugins/roc-skills/skills/`](plugins/roc-skills/skills) — contributions welcome.
+
+### Use via symlink (for development & contributors)
+
+If you want to **edit the skills and see changes immediately** (rather than reinstalling the plugin), clone the repo and symlink the skill folders into a skills directory Claude Code scans. Discovery is one level deep — `<skills-dir>/<skill-name>/SKILL.md` — so link each skill folder individually.
+
+```shell
+git clone https://github.com/lukewilliamboswell/roc-awesome
+cd roc-awesome
+
+# Personal scope — available in all your projects (~/.claude/skills/):
+mkdir -p ~/.claude/skills
+for s in plugins/roc-skills/skills/*/; do
+  ln -s "$PWD/$s" ~/.claude/skills/"$(basename "$s")"
+done
+
+# …or project scope — only this repo (commit .claude/skills/ to share it):
+#   ln -s "$PWD/plugins/roc-skills/skills/roc-hygiene" /path/to/project/.claude/skills/roc-hygiene
+```
+
+Notes:
+- **Invocation differs from the plugin form.** Symlinked skills are invoked by directory name (`/roc-hygiene`), whereas the plugin form is namespaced (`/roc-skills:roc-hygiene`). Plugin skills are namespaced so the two installs don't collide — but two symlinked skills with the same name would, so don't symlink into a dir that already has a `roc-hygiene`.
+- **Live reload:** edits to a `SKILL.md` under a watched skills dir take effect within the current session. Creating a *new* top-level skills directory that didn't exist when the session started requires restarting Claude Code. (Edits made *through* a symlink may not be detected by the file watcher on every platform — restart to be sure.)
+- Personal skills go in `~/.claude/skills/`; project skills in `<project>/.claude/skills/` and should be committed to version control to share with your team.
 
 ---
 
