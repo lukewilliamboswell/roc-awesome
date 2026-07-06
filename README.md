@@ -33,13 +33,12 @@ A collection of links to awesome roc things.
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 
 ## Roc Platforms
+
+- [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps ([WIP PR #413](https://github.com/roc-lang/basic-cli/pull/413))
+- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers ([WIP PR #163](https://github.com/roc-lang/basic-webserver/pull/163))
+- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation ([WIP PR #16](https://github.com/lukewilliamboswell/basic-ssg/pull/16))
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
-- [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps — migration in progress ([PR #413](https://github.com/roc-lang/basic-cli/pull/413))
-- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers — migration in progress ([PR #163](https://github.com/roc-lang/basic-webserver/pull/163))
-- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation — migration in progress ([PR #16](https://github.com/lukewilliamboswell/basic-ssg/pull/16))
-
-*Templates & Embedding/Interop Examples*
 - [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
 - [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
 
