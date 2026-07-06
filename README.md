@@ -32,6 +32,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [niclas-ahden/roc-crc32](https://github.com/niclas-ahden/roc-crc32): CRC32 checksum calculation
+- [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
 
 ## Roc Platforms
 
