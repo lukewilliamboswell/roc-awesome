@@ -91,4 +91,4 @@ graduates to the main **[README.md](README.md)**.
 - [shritesh/raytrace.roc](https://github.com/shritesh/raytrace.roc): Implementing [Ray Tracing in One Weekend](https://raytracing.github.io)
 - [WhileTruu/counter-roc-swiftui-app](https://github.com/WhileTruu/counter-roc-swiftui-app): SwiftUI counter app
 
-🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template) and [my puzzle solutions](https://github.com/lukewilliamboswell/aoc)
+🎄🎁🎄 [Advent of Code template](https://github.com/lukewilliamboswell/aoc-template)

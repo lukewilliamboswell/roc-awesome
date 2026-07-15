@@ -50,6 +50,10 @@ A collection of links to awesome roc things.
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
 
+## Roc Applications
+
+- 🎄 [lukewilliamboswell/aoc](https://github.com/lukewilliamboswell/aoc): Advent of Code puzzle solutions
+
 ---
 
 Looking for the older ecosystem (everything not yet migrated to the new compiler)?
