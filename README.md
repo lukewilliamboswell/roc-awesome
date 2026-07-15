@@ -33,6 +33,7 @@ A collection of links to awesome roc things.
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [niclas-ahden/roc-crc32](https://github.com/niclas-ahden/roc-crc32): CRC32 checksum calculation
 - [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
+- [jwoudenberg/roc-gregorian](https://sr.ht/~jwoudenberg/roc-gregorian/): Working with dates and times
 
 ## Roc Platforms
 
