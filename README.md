@@ -49,6 +49,7 @@ A collection of links to awesome roc things.
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
+- [thebrandonlucas/roc-overlay](https://github.com/thebrandonlucas/roc-overlay): A Nix flake to easily install Roc new-compiler nightlies
 
 ## Roc Applications
 
