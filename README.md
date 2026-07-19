@@ -33,6 +33,7 @@ A collection of links to awesome roc things.
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [niclas-ahden/roc-base64](https://github.com/niclas-ahden/roc-base64): Base64 encoding and decoding
 - [niclas-ahden/roc-crc32](https://github.com/niclas-ahden/roc-crc32): CRC32 checksum calculation
+- [niclas-ahden/roc-human-readable-file-size](https://github.com/niclas-ahden/roc-human-readable-file-size): Format your file sizes
 - [niclas-ahden/roc-maybe](https://github.com/niclas-ahden/roc-maybe): Ergonomic optional values ([note before using](https://roc-lang.org/faq#option-type))
 - [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
 - [jwoudenberg/roc-gregorian](https://sr.ht/~jwoudenberg/roc-gregorian/): Working with dates and times
