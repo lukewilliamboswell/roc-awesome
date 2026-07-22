@@ -47,6 +47,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation ([WIP PR #16](https://github.com/lukewilliamboswell/basic-ssg/pull/16))
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
+- [lukewilliamboswell/roc-signals](https://github.com/lukewilliamboswell/roc-signals): Experimental Roc platform for the Web
 - [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
 - [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
 
