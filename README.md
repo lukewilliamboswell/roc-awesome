@@ -56,6 +56,7 @@ A collection of links to awesome roc things.
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP
 - [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Generate Nix dev flakes using Roc
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
+- [roc-lang/release-package](https://github.com/roc-lang/release-package): A workflow for building, testing, and publishing Roc packages
 - [thebrandonlucas/roc-overlay](https://github.com/thebrandonlucas/roc-overlay): A Nix flake to easily install Roc new-compiler nightlies
 
 ## Roc Applications
