@@ -29,7 +29,7 @@ A collection of links to awesome roc things.
 - [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Unicode text processing (grapheme clusters, code points)
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
-- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
+- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parsers for Utf-8, CSV, XML, Markdown, HTTP, YAML
 - [lukewilliamboswell/weaver](https://github.com/lukewilliamboswell/weaver): Ergonomic command-line argument parser
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [niclas-ahden/roc-deflate](https://github.com/niclas-ahden/roc-deflate): DEFLATE compression
