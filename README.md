@@ -32,6 +32,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser Combinators
 - [lukewilliamboswell/weaver](https://github.com/lukewilliamboswell/weaver): Ergonomic command-line argument parser
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
+- [niclas-ahden/roc-deflate](https://github.com/niclas-ahden/roc-deflate): DEFLATE compression
 - [niclas-ahden/roc-base64](https://github.com/niclas-ahden/roc-base64): Base64 encoding and decoding
 - [niclas-ahden/roc-crc32](https://github.com/niclas-ahden/roc-crc32): CRC32 checksum calculation
 - [niclas-ahden/roc-human-readable-file-size](https://github.com/niclas-ahden/roc-human-readable-file-size): Format your file sizes
