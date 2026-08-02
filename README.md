@@ -41,6 +41,7 @@ A collection of links to awesome roc things.
 - [niclas-ahden/roc-url](https://github.com/niclas-ahden/roc-url): URL parsing and construction
 - [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
 - [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
+- [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
 
 ## Roc Platforms
 
