@@ -54,6 +54,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-signals](https://github.com/lukewilliamboswell/roc-signals): Experimental Roc platform for the Web
 - [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
 - [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
+- [lukewilliamboswell/roc-platform-template-go](https://github.com/lukewilliamboswell/roc-platform-template-go): Go platform template
 
 ## Tools
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
