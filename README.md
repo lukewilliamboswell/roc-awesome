@@ -46,14 +46,15 @@ A collection of links to awesome roc things.
 
 ## Roc Platforms
 
-- [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps ([WIP PR #413](https://github.com/roc-lang/basic-cli/pull/413))
-- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers ([WIP PR #163](https://github.com/roc-lang/basic-webserver/pull/163))
+- [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
+- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 - [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation ([WIP PR #16](https://github.com/lukewilliamboswell/basic-ssg/pull/16))
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
 - [lukewilliamboswell/roc-signals](https://github.com/lukewilliamboswell/roc-signals): Experimental Roc platform for the Web
 - [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
 - [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
+- [lukewilliamboswell/roc-platform-template-go](https://github.com/lukewilliamboswell/roc-platform-template-go): Go platform template
 
 ## Tools
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
