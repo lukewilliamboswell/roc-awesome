@@ -48,7 +48,7 @@ A collection of links to awesome roc things.
 
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
-- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation ([WIP PR #16](https://github.com/lukewilliamboswell/basic-ssg/pull/16))
+- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
 - [lukewilliamboswell/roc-signals](https://github.com/lukewilliamboswell/roc-signals): Experimental Roc platform for the Web
