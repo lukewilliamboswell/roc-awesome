@@ -43,6 +43,7 @@ A collection of links to awesome roc things.
 - [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
 - [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
 - [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
+- [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Generate Nix dev flakes using Roc
 
 ## Roc Platforms
 
@@ -55,12 +56,11 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
 - [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
 - [lukewilliamboswell/roc-platform-template-go](https://github.com/lukewilliamboswell/roc-platform-template-go): Go platform template
+- [lukewilliamboswell/roc-fuzz](https://github.com/lukewilliamboswell/roc-fuzz): Fuzz testing for Roc code
 
 ## Tools
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP
-- [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Generate Nix dev flakes using Roc
-- [lukewilliamboswell/roc-fuzz](https://github.com/lukewilliamboswell/roc-fuzz): Fuzz testing for Roc code
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
 - [roc-lang/release-package](https://github.com/roc-lang/release-package): A workflow for building, testing, and publishing Roc packages
 - [thebrandonlucas/roc-overlay](https://github.com/thebrandonlucas/roc-overlay): A Nix flake to easily install Roc new-compiler nightlies
