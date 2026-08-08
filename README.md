@@ -25,13 +25,13 @@ A collection of links to awesome roc things.
 > mini-tutorial and syntax reference above.
 
 ## Roc Packages
-- [roc-lang/http](https://github.com/roc-lang/http): HTTP client
-- [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation
-- [roc-lang/unicode](https://github.com/roc-lang/unicode): Unicode text processing (grapheme clusters, code points)
+- [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
+- [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
+- [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
+- [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Generate Nix dev flakes using Roc
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parsers for Utf-8, CSV, XML, Markdown, HTTP, YAML
 - [lukewilliamboswell/weaver](https://github.com/lukewilliamboswell/weaver): Ergonomic command-line argument parser
-- [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [niclas-ahden/roc-base64](https://github.com/niclas-ahden/roc-base64): Base64 encoding and decoding
 - [niclas-ahden/roc-crc32](https://github.com/niclas-ahden/roc-crc32): CRC32 checksum calculation
 - [niclas-ahden/roc-database-url](https://github.com/niclas-ahden/roc-database-url): `DATABASE_URL` parsing
@@ -41,28 +41,28 @@ A collection of links to awesome roc things.
 - [niclas-ahden/roc-non-zero](https://github.com/niclas-ahden/roc-non-zero): Non-zero number type
 - [niclas-ahden/roc-url](https://github.com/niclas-ahden/roc-url): URL parsing and construction
 - [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
-- [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
-- [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
-- [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Generate Nix dev flakes using Roc
+- [roc-lang/http](https://github.com/roc-lang/http): HTTP client
+- [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation
+- [roc-lang/unicode](https://github.com/roc-lang/unicode): Unicode text processing (grapheme clusters, code points)
 
 ## Roc Platforms
 
-- [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
-- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 - [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
-- [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
+- [lukewilliamboswell/roc-fuzz](https://github.com/lukewilliamboswell/roc-fuzz): Fuzz testing for Roc code
+- [lukewilliamboswell/roc-platform-template-go](https://github.com/lukewilliamboswell/roc-platform-template-go): Go platform template
+- [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
+- [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
 - [lukewilliamboswell/roc-signals](https://github.com/lukewilliamboswell/roc-signals): Experimental Roc platform for the Web
-- [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
-- [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
-- [lukewilliamboswell/roc-platform-template-go](https://github.com/lukewilliamboswell/roc-platform-template-go): Go platform template
-- [lukewilliamboswell/roc-fuzz](https://github.com/lukewilliamboswell/roc-fuzz): Fuzz testing for Roc code
+- [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
+- [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
+- [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 
 ## Tools
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP
-- [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
 - [roc-lang/release-package](https://github.com/roc-lang/release-package): A workflow for building, testing, and publishing Roc packages
+- [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
 - [thebrandonlucas/roc-overlay](https://github.com/thebrandonlucas/roc-overlay): A Nix flake to easily install Roc new-compiler nightlies
 
 ## Roc Applications
