@@ -55,6 +55,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-ray](https://github.com/lukewilliamboswell/roc-ray): Graphics and GUI using Raylib
 - [lukewilliamboswell/roc-signals](https://github.com/lukewilliamboswell/roc-signals): Experimental Roc platform for the Web
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
+- [niclas-ahden/joy](https://github.com/niclas-ahden/joy): Full-stack web framework for building isomorphic web apps in Roc
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 
