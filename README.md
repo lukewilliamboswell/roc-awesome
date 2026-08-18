@@ -61,8 +61,10 @@ A collection of links to awesome roc things.
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 
 ## Tools
+
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP
+- [hasnep/pre-commit-roc](https://github.com/hasnep/pre-commit-roc): Pre-commit hooks
 - [ivan-demchenko/roc-vscode-unofficial](https://github.com/ivan-demchenko/roc-vscode-unofficial): VSCode plugin
 - [roc-lang/release-package](https://github.com/roc-lang/release-package): A workflow for building, testing, and publishing Roc packages
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
