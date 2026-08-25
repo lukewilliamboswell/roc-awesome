@@ -34,6 +34,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Generate Nix dev flakes using Roc
 - [lukewilliamboswell/roc-graph-layout](https://github.com/lukewilliamboswell/roc-graph-layout): Graph layout algorithms
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parsers for Utf-8, CSV, XML, Markdown, HTTP, YAML
+- [lukewilliamboswell/roc-pdf](https://github.com/lukewilliamboswell/roc-pdf): PDF generation
 - [lukewilliamboswell/weaver](https://github.com/lukewilliamboswell/weaver): Ergonomic command-line argument parser
 - [mpizenberg/rocsat](https://github.com/mpizenberg/rocsat): SAT solver
 - [niclas-ahden/roc-base64](https://github.com/niclas-ahden/roc-base64): Base64 encoding and decoding
