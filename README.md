@@ -52,7 +52,7 @@ A collection of links to awesome roc things.
 
 ## Roc Platforms
 
-- [lukewilliamboswell/basic-ssg](https://github.com/lukewilliamboswell/basic-ssg): Static Site Generation
+- [lukewilliamboswell/basic-ssg](https://lukewilliamboswell.github.io/basic-ssg/): Static Site Generation
 - [lukewilliamboswell/roc-fuzz](https://github.com/lukewilliamboswell/roc-fuzz): Fuzz testing for Roc code
 - [lukewilliamboswell/roc-platform-template-go](https://github.com/lukewilliamboswell/roc-platform-template-go): Go platform template
 - [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
