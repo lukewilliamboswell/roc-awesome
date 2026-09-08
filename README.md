@@ -17,7 +17,7 @@ A collection of links to awesome roc things.
 - **Tutorial** [docs/mini-tutorial-new-compiler.md](https://github.com/roc-lang/roc/blob/main/docs/mini-tutorial-new-compiler.md) — interim "mini" tutorial for the new compiler (a full rewrite is planned)
 - **Language Reference** [docs/langref](https://github.com/roc-lang/roc/tree/main/docs/langref) — new-compiler reference (not yet complete or on the website, but very helpful)
 - **Syntax Reference** [test/echo/all_syntax_test.roc](https://github.com/roc-lang/roc/blob/main/test/echo/all_syntax_test.roc) — a single file demonstrating the new syntax
-- **Exercism Track** [exercism.org/tracks/roc](https://exercism.org/tracks/roc) — migration in progress ([PR #198](https://github.com/exercism/roc/pull/198) — 92+ exercises ported & passing)
+- **Exercism Track** [exercism.org/tracks/roc](https://exercism.org/tracks/roc) — exercises using the new compiler & syntax
 - **Dockerhub** [hub.docker.com/repositories/roclang](https://hub.docker.com/repositories/roclang)
 
 > The [roc-lang.org](https://www.roc-lang.org) website (Examples, Tutorial, Docs) still
