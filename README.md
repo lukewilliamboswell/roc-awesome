@@ -83,6 +83,7 @@ A collection of links to awesome roc things.
 ## Roc Applications
 
 - 🎄 [lukewilliamboswell/aoc](https://github.com/lukewilliamboswell/aoc): Advent of Code puzzle solutions
+- [thebrandonlucas/kai](https://github.com/thebrandonlucas/kai): A friendly CLI frontend for Nix and reproducible systems
 
 ---
 
