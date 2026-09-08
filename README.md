@@ -68,6 +68,7 @@ A collection of links to awesome roc things.
 
 ## Tools
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
+- [grayrest/roc-just](https://github.com/grayrest/roc-just): A Roc port of the just task runner
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP
 - [ivan-demchenko/roc-vscode-unofficial](https://github.com/ivan-demchenko/roc-vscode-unofficial): VSCode plugin
 - [roc-lang/release-package](https://github.com/roc-lang/release-package): A workflow for building, testing, and publishing Roc packages
