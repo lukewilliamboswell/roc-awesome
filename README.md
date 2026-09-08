@@ -3,13 +3,10 @@
 
 A collection of links to awesome roc things.
 
-> **The Roc compiler is being rewritten from Rust to Zig.** This list now tracks
-> projects that work with the **new Zig-based compiler**. Projects that haven't been
-> migrated yet have moved to **[LEGACY_ROC.md](LEGACY_ROC.md)** — that file doubles as
+> This list tracks projects that work with the current compiler. Projects that haven't
+> been migrated yet have moved to **[LEGACY_ROC.md](LEGACY_ROC.md)** — that file doubles as
 > a checklist of what still needs porting. Migrating a package or platform is a great
 > way to help out!
->
-> New here? Richard Feldman's writeup [**on the Rust → Zig compiler rewrite**](https://gist.github.com/rtfeldman/77fb430ee57b42f5f2ca973a3992532f) explains why it's happening and what it changes.
 
 - **Repository** [roc-lang/roc](https://github.com/roc-lang/roc)
 - **Download Roc** [roc-lang/nightlies releases](https://github.com/roc-lang/nightlies/releases) — prebuilt nightly builds of the latest compiler
@@ -19,10 +16,6 @@ A collection of links to awesome roc things.
 - **Syntax Reference** [test/echo/all_syntax_test.roc](https://github.com/roc-lang/roc/blob/main/test/echo/all_syntax_test.roc) — a single file demonstrating the new syntax
 - **Exercism Track** [exercism.org/tracks/roc](https://exercism.org/tracks/roc) — exercises using the new compiler & syntax
 - **Dockerhub** [hub.docker.com/repositories/roclang](https://hub.docker.com/repositories/roclang)
-
-> The [roc-lang.org](https://www.roc-lang.org) website (Examples, Tutorial, Docs) still
-> documents the **old** compiler and is yet to be updated — for now use the new-compiler
-> mini-tutorial and syntax reference above.
 
 ## Roc Packages
 
