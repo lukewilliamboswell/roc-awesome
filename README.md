@@ -3,11 +3,6 @@
 
 A collection of links to awesome roc things.
 
-> This list tracks projects that work with the current compiler. Projects that haven't
-> been migrated yet have moved to **[LEGACY_ROC.md](LEGACY_ROC.md)** — that file doubles as
-> a checklist of what still needs porting. Migrating a package or platform is a great
-> way to help out!
-
 - **Repository** [roc-lang/roc](https://github.com/roc-lang/roc)
 - **Download Roc** [roc-lang/nightlies releases](https://github.com/roc-lang/nightlies/releases) — prebuilt nightly builds of the latest compiler
 - **Building From Source** [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
