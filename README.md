@@ -77,8 +77,8 @@ A collection of links to awesome roc things.
 - [hasnep/pre-commit-roc](https://github.com/hasnep/pre-commit-roc): Pre-commit hooks for the Roc language
 - [ivan-demchenko/roc-vscode-unofficial](https://github.com/ivan-demchenko/roc-vscode-unofficial): VSCode plugin
 - [roc-lang/release-package](https://github.com/roc-lang/release-package): A workflow for building, testing, and publishing Roc packages
+- [roc-lang/roc-overlay](https://github.com/roc-lang/roc-overlay): A Nix flake to easily install Roc new-compiler nightlies
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
-- [thebrandonlucas/roc-overlay](https://github.com/thebrandonlucas/roc-overlay): A Nix flake to easily install Roc new-compiler nightlies
 
 ## Roc Applications
 
