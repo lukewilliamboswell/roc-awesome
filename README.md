@@ -41,6 +41,7 @@ A collection of links to awesome roc things.
 - [roc-lang/http](https://github.com/roc-lang/http): HTTP client
 - [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Unicode text processing (grapheme clusters, code points)
+- [jaredramirez/roc-redis](https://github.com/jaredramirez/roc-redis): A binary-safe, platform-agnostic Redis client for Roc
 
 ## Roc Platforms
 
