@@ -16,6 +16,7 @@ A collection of links to awesome roc things.
 
 - [grayrest/roc-regex](https://github.com/grayrest/roc-regex): Regular expressions
 - [hasnep/roc-ascii](https://github.com/hasnep/roc-ascii): ASCII string and character types
+- [jaredramirez/roc-redis](https://github.com/jaredramirez/roc-redis): A binary-safe, platform-agnostic Redis client for Roc
 - [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
 - [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
@@ -41,7 +42,6 @@ A collection of links to awesome roc things.
 - [roc-lang/http](https://github.com/roc-lang/http): HTTP client
 - [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation
 - [roc-lang/unicode](https://github.com/roc-lang/unicode): Unicode text processing (grapheme clusters, code points)
-- [jaredramirez/roc-redis](https://github.com/jaredramirez/roc-redis): A binary-safe, platform-agnostic Redis client for Roc
 
 ## Roc Platforms
 
