@@ -29,16 +29,19 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-time](https://github.com/lukewilliamboswell/roc-time): Dates, times, and durations
 - [lukewilliamboswell/weaver](https://github.com/lukewilliamboswell/weaver): Ergonomic command-line argument parser
 - [mpizenberg/rocsat](https://github.com/mpizenberg/rocsat): SAT solver
+- [niclas-ahden/joy-html](https://github.com/niclas-ahden/joy-html): HTML for [Joy](https://github.com/niclas-ahden/joy) apps
 - [niclas-ahden/roc-base64](https://github.com/niclas-ahden/roc-base64): Base64 encoding and decoding
 - [niclas-ahden/roc-crc32](https://github.com/niclas-ahden/roc-crc32): CRC32 checksum calculation
 - [niclas-ahden/roc-database-url](https://github.com/niclas-ahden/roc-database-url): `DATABASE_URL` parsing
 - [niclas-ahden/roc-deflate](https://github.com/niclas-ahden/roc-deflate): DEFLATE compression
+- [niclas-ahden/roc-hmac](https://github.com/niclas-ahden/roc-hmac): HMAC in pure Roc
 - [niclas-ahden/roc-human-readable-file-size](https://github.com/niclas-ahden/roc-human-readable-file-size): Format your file sizes
 - [niclas-ahden/roc-maybe](https://github.com/niclas-ahden/roc-maybe): Ergonomic optional values ([note before using](https://roc-lang.org/faq#option-type))
 - [niclas-ahden/roc-non-zero](https://github.com/niclas-ahden/roc-non-zero): Non-zero number type
 - [niclas-ahden/roc-prng](https://github.com/niclas-ahden/roc-prng): Pseudo-random number generation
 - [niclas-ahden/roc-url](https://github.com/niclas-ahden/roc-url): URL parsing and construction
 - [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
+- [niclas-ahden/roc-zip](https://github.com/niclas-ahden/roc-zip): Create and extract basic ZIP archives in Roc
 - [obust/terrocotta](https://github.com/obust/terrocotta): GUI library with a Clay-style layout engine and MVU architecture, rendering via roc-ray
 - [roc-lang/http](https://github.com/roc-lang/http): HTTP client
 - [roc-lang/path](https://github.com/roc-lang/path): OS filesystem path manipulation
