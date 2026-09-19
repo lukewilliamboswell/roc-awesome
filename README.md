@@ -40,6 +40,7 @@ A collection of links to awesome roc things.
 - [niclas-ahden/roc-non-zero](https://github.com/niclas-ahden/roc-non-zero): Non-zero number type
 - [niclas-ahden/roc-prng](https://github.com/niclas-ahden/roc-prng): Pseudo-random number generation
 - [niclas-ahden/roc-url](https://github.com/niclas-ahden/roc-url): URL parsing and construction
+- [niclas-ahden/roc-xlsx](https://github.com/niclas-ahden/roc-xlsx): XLSX spreadsheets
 - [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
 - [niclas-ahden/roc-zip](https://github.com/niclas-ahden/roc-zip): Create and extract basic ZIP archives in Roc
 - [obust/terrocotta](https://github.com/obust/terrocotta): GUI library with a Clay-style layout engine and MVU architecture, rendering via roc-ray
