@@ -37,9 +37,11 @@ A collection of links to awesome roc things.
 - [niclas-ahden/roc-hmac](https://github.com/niclas-ahden/roc-hmac): HMAC in pure Roc
 - [niclas-ahden/roc-human-readable-file-size](https://github.com/niclas-ahden/roc-human-readable-file-size): Format your file sizes
 - [niclas-ahden/roc-maybe](https://github.com/niclas-ahden/roc-maybe): Ergonomic optional values ([note before using](https://roc-lang.org/faq#option-type))
+- [niclas-ahden/roc-md5](https://github.com/niclas-ahden/roc-md5): MD5 in pure Roc
 - [niclas-ahden/roc-non-zero](https://github.com/niclas-ahden/roc-non-zero): Non-zero number type
 - [niclas-ahden/roc-playwright](https://github.com/niclas-ahden/roc-playwright): Browser automation in Roc using Playwright
 - [niclas-ahden/roc-prng](https://github.com/niclas-ahden/roc-prng): Pseudo-random number generation
+- [niclas-ahden/roc-scram](https://github.com/niclas-ahden/roc-scram): SCRAM in pure Roc
 - [niclas-ahden/roc-spec](https://github.com/niclas-ahden/roc-spec): Parallel tests with isolated test environments
 - [niclas-ahden/roc-url](https://github.com/niclas-ahden/roc-url): URL parsing and construction
 - [niclas-ahden/roc-xlsx](https://github.com/niclas-ahden/roc-xlsx): XLSX spreadsheets
