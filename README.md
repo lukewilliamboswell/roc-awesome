@@ -37,11 +37,17 @@ A collection of links to awesome roc things.
 - [niclas-ahden/roc-hmac](https://github.com/niclas-ahden/roc-hmac): HMAC in pure Roc
 - [niclas-ahden/roc-human-readable-file-size](https://github.com/niclas-ahden/roc-human-readable-file-size): Format your file sizes
 - [niclas-ahden/roc-maybe](https://github.com/niclas-ahden/roc-maybe): Ergonomic optional values ([note before using](https://roc-lang.org/faq#option-type))
+- [niclas-ahden/roc-md5](https://github.com/niclas-ahden/roc-md5): MD5 in pure Roc
 - [niclas-ahden/roc-non-zero](https://github.com/niclas-ahden/roc-non-zero): Non-zero number type
+- [niclas-ahden/roc-openapi](https://github.com/niclas-ahden/roc-openapi): Validate HTTP request bodies against OpenAPI 3.x specs
+- [niclas-ahden/roc-pg](https://github.com/niclas-ahden/roc-pg): PostgreSQL client with compile-time checked SQL
 - [niclas-ahden/roc-playwright](https://github.com/niclas-ahden/roc-playwright): Browser automation in Roc using Playwright
 - [niclas-ahden/roc-prng](https://github.com/niclas-ahden/roc-prng): Pseudo-random number generation
+- [niclas-ahden/roc-scram](https://github.com/niclas-ahden/roc-scram): SCRAM in pure Roc
+- [niclas-ahden/roc-sendgrid](https://github.com/niclas-ahden/roc-sendgrid): Send emails using SendGrid in Roc
 - [niclas-ahden/roc-spec](https://github.com/niclas-ahden/roc-spec): Parallel tests with isolated test environments
 - [niclas-ahden/roc-url](https://github.com/niclas-ahden/roc-url): URL parsing and construction
+- [niclas-ahden/roc-vcr](https://github.com/niclas-ahden/roc-vcr): Record and replay HTTP interactions in your test suite
 - [niclas-ahden/roc-xlsx](https://github.com/niclas-ahden/roc-xlsx): XLSX spreadsheets
 - [niclas-ahden/roc-xml](https://github.com/niclas-ahden/roc-xml): Simple XML generation
 - [niclas-ahden/roc-zip](https://github.com/niclas-ahden/roc-zip): Create and extract basic ZIP archives in Roc
