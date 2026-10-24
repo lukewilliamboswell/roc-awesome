@@ -61,6 +61,7 @@ A collection of links to awesome roc things.
 - [grayrest/roc-tower-platform](https://github.com/grayrest/roc-tower-platform): Web servers with pure handlers, built on Rust's hyper/Tower and SQLite
 - [lukewilliamboswell/basic-ssg](https://lukewilliamboswell.github.io/basic-ssg/): Static Site Generation
 - [lukewilliamboswell/roc-fuzz](https://github.com/lukewilliamboswell/roc-fuzz): Fuzz testing for Roc code
+- [lukewilliamboswell/roc-gui](https://github.com/lukewilliamboswell/roc-gui): Experimental native GUI applications using GPUI
 - [lukewilliamboswell/roc-platform-template-go](https://github.com/lukewilliamboswell/roc-platform-template-go): Go platform template
 - [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
 - [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
