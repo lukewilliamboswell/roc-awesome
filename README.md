@@ -21,7 +21,6 @@ A collection of links to awesome roc things.
 - [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
-- [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Generate Nix dev flakes using Roc
 - [lukewilliamboswell/roc-font](https://github.com/lukewilliamboswell/roc-font): Read TrueType/OpenType fonts and shape text into positioned glyphs, in pure Roc
 - [lukewilliamboswell/roc-graph-layout](https://github.com/lukewilliamboswell/roc-graph-layout): Graph layout algorithms, plus a package for parsing and rendering Mermaid diagrams
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parsers for Utf-8, CSV, XML, Markdown, HTTP, YAML
@@ -81,6 +80,7 @@ A collection of links to awesome roc things.
 - [hasnep/pre-commit-roc](https://github.com/hasnep/pre-commit-roc): Pre-commit hooks for the Roc language
 - [ivan-demchenko/roc-vscode-unofficial](https://github.com/ivan-demchenko/roc-vscode-unofficial): VSCode plugin
 - [lukewilliamboswell/embed-roc-in-dotnet](https://github.com/lukewilliamboswell/embed-roc-in-dotnet): Example of embedding Roc in a .NET application
+- [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Declare dev environments, tasks, builds and workflows in a typed `Blueprint.roc`, with pinned downloads or Nix tools shared by contributors and CI
 - [roc-lang/release-package](https://github.com/roc-lang/release-package): A workflow for building, testing, and publishing Roc packages
 - [roc-lang/roc-overlay](https://github.com/roc-lang/roc-overlay): A Nix flake to easily install Roc new-compiler nightlies
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
