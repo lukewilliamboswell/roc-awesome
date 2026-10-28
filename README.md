@@ -23,7 +23,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
 - [lukewilliamboswell/roc-font](https://github.com/lukewilliamboswell/roc-font): Read TrueType/OpenType fonts and shape text into positioned glyphs, in pure Roc
 - [lukewilliamboswell/roc-graph-layout](https://github.com/lukewilliamboswell/roc-graph-layout): Graph layout algorithms, plus a package for parsing and rendering Mermaid diagrams
-- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parsers for Utf-8, CSV, XML, Markdown, HTTP, YAML
+- [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser combinators plus ready-made parsers for CSV, JSON, YAML, XML, Markdown, AsciiDoc, HTTP, and Roc source
 - [lukewilliamboswell/roc-pandoc](https://github.com/lukewilliamboswell/roc-pandoc): Build Pandoc documents with a type-safe interface
 - [lukewilliamboswell/roc-pdf](https://github.com/lukewilliamboswell/roc-pdf): PDF generation
 - [lukewilliamboswell/roc-time](https://github.com/lukewilliamboswell/roc-time): Dates, times, and durations
