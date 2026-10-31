@@ -16,6 +16,7 @@ A collection of links to awesome roc things.
 
 - [grayrest/roc-regex](https://github.com/grayrest/roc-regex): Regular expressions
 - [hasnep/roc-ascii](https://github.com/hasnep/roc-ascii): ASCII string and character types
+- [imclerran/roc-isodate](https://github.com/imclerran/roc-isodate): Date, time, and duration types with ISO 8601 parsing and formatting
 - [jaredramirez/roc-redis](https://github.com/jaredramirez/roc-redis): A binary-safe, platform-agnostic Redis client for Roc
 - [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
 - [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
