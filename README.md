@@ -20,6 +20,7 @@ A collection of links to awesome roc things.
 - [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
 - [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
+- [lukewilliamboswell/plume](https://github.com/lukewilliamboswell/plume): Like a feather pen for drawing, but for charts
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
 - [lukewilliamboswell/roc-font](https://github.com/lukewilliamboswell/roc-font): Read TrueType/OpenType fonts and shape text into positioned glyphs, in pure Roc
 - [lukewilliamboswell/roc-graph-layout](https://github.com/lukewilliamboswell/roc-graph-layout): Graph layout algorithms, plus a package for parsing and rendering Mermaid diagrams
