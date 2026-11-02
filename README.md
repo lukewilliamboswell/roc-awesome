@@ -75,6 +75,7 @@ A collection of links to awesome roc things.
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 
 ## Tools
+- [ageron/roclet](https://ageron.github.io/roclet/): Reactive notebooks in Roc that run in your browser, as Roc apps, or export to Markdown
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
 - [grayrest/roc-just](https://github.com/grayrest/roc-just): A Roc port of the just task runner
 - [h2000/zed-roc](https://github.com/h2000/zed-roc): Zed editor support, using the new grammar & LSP
