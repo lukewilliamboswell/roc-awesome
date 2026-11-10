@@ -24,6 +24,7 @@ A collection of links to awesome roc things.
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [lukewilliamboswell/plume](https://github.com/lukewilliamboswell/plume): Interactive charts (bar, line, scatter, pie, Sankey) built from typed traces and layouts, rendered with Plotly.js
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
+- [lukewilliamboswell/roc-docx](https://github.com/lukewilliamboswell/roc-docx): Read and write Word documents (.docx) in pure Roc
 - [lukewilliamboswell/roc-font](https://github.com/lukewilliamboswell/roc-font): Read TrueType/OpenType fonts and shape text into positioned glyphs, in pure Roc
 - [lukewilliamboswell/roc-graph-layout](https://github.com/lukewilliamboswell/roc-graph-layout): Graph layout algorithms, plus a package for parsing and rendering Mermaid diagrams
 - [lukewilliamboswell/roc-parser](https://github.com/lukewilliamboswell/roc-parser): Parser combinators plus ready-made parsers for CSV, JSON, YAML, XML, Markdown, AsciiDoc, HTTP, and Roc source
