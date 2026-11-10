@@ -20,6 +20,7 @@ A collection of links to awesome roc things.
 - [jaredramirez/roc-redis](https://github.com/jaredramirez/roc-redis): A binary-safe, platform-agnostic Redis client for Roc
 - [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
 - [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
+- [Karakatiza666/roc-cbor](https://github.com/Karakatiza666/roc-cbor): CBOR encoding and decoding with derived readers and writers
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [lukewilliamboswell/plume](https://github.com/lukewilliamboswell/plume): Interactive charts (bar, line, scatter, pie, Sankey) built from typed traces and layouts, rendered with Plotly.js
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
