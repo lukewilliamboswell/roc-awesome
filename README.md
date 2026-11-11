@@ -20,7 +20,15 @@ A collection of links to awesome roc things.
 - [jaredramirez/roc-redis](https://github.com/jaredramirez/roc-redis): A binary-safe, platform-agnostic Redis client for Roc
 - [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
 - [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
+- [Karakatiza666/roc-app-header](https://github.com/Karakatiza666/roc-app-header): Read and edit Roc app, package and platform headers, parse package release URLs, and select versions (MVS)
+- [Karakatiza666/roc-base58](https://github.com/Karakatiza666/roc-base58): Base58 encoding and decoding with the Bitcoin alphabet
 - [Karakatiza666/roc-cbor](https://github.com/Karakatiza666/roc-cbor): CBOR encoding and decoding with derived readers and writers
+- [Karakatiza666/roc-jwt](https://github.com/Karakatiza666/roc-jwt): Decode JSON Web Tokens, check `alg` and claims, and select keys from a JWK Set (bring your own crypto)
+- [Karakatiza666/roc-semver](https://github.com/Karakatiza666/roc-semver): Semantic Versioning 2.0.0 versions and npm/Cargo-style version ranges
+- [Karakatiza666/roc-s2-geometry](https://github.com/Karakatiza666/roc-s2-geometry): Port of Google's S2 Geometry Library: spherical geometry and hierarchical cell IDs for spatial indexing
+- [Karakatiza666/roc-tar](https://github.com/Karakatiza666/roc-tar): Streaming tar archive reader (ustar, pax, GNU long names)
+- [Karakatiza666/roc-toml](https://github.com/Karakatiza666/roc-toml): TOML 1.0 parsing and printing, with edits that keep comments and formatting
+- [Karakatiza666/roc-websocket](https://github.com/Karakatiza666/roc-websocket): Platform-independent WebSocket (RFC 6455) to use in packages and apps: protocol core, client and server that platform adapters implement
 - [kili-ilo/roc-random](https://github.com/kili-ilo/roc-random): Random number generation
 - [lukewilliamboswell/plume](https://github.com/lukewilliamboswell/plume): Interactive charts (bar, line, scatter, pie, Sankey) built from typed traces and layouts, rendered with Plotly.js
 - [lukewilliamboswell/roc-ansi](https://github.com/lukewilliamboswell/roc-ansi): ANSI escape codes for color, styling & cursor control
@@ -74,6 +82,7 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/roc-wasm4](https://github.com/lukewilliamboswell/roc-wasm4): WASM-4 Games
 - [niclas-ahden/joy](https://github.com/niclas-ahden/joy): Full-stack web framework for building isomorphic web apps in Roc
 - [removewingman/restricted-roc](https://codeberg.org/removewingman/restricted-roc): CLI apps that can sandbox themselves, restricting syscall and filesystem access
+- [Karakatiza666/roc-cloudflare-workers](https://github.com/Karakatiza666/roc-cloudflare-workers): Build Cloudflare Workers apps that handle many concurrent requests per isolate, with most Workers APIs available
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 
@@ -86,6 +95,9 @@ A collection of links to awesome roc things.
 - [ivan-demchenko/roc-vscode-unofficial](https://github.com/ivan-demchenko/roc-vscode-unofficial): VSCode plugin
 - [lukewilliamboswell/embed-roc-in-dotnet](https://github.com/lukewilliamboswell/embed-roc-in-dotnet): Example of embedding Roc in a .NET application
 - [lukewilliamboswell/roc-blueprint](https://github.com/lukewilliamboswell/roc-blueprint): Declare dev environments, tasks, builds and workflows in a typed `Blueprint.roc`, with pinned downloads or Nix tools shared by contributors and CI
+- [Karakatiza666/roc-cloudflare-workers-cli](https://github.com/Karakatiza666/roc-cloudflare-workers-cli): Companion CLI for the Cloudflare Workers platform: project setup and Wrangler config checks
+- [Karakatiza666/roc-reify-nightlies](https://github.com/Karakatiza666/roc-reify-nightlies): Nightly releases of a Roc compiler fork with reflection support
+- [Karakatiza666/roc-syntax-mcp](https://www.npmjs.com/package/roc-syntax-mcp): MCP server that teaches coding agents Roc, platforms and packages, checks the code and provides Hoogle-style function search
 - [roc-lang/release-package](https://github.com/roc-lang/release-package): A workflow for building, testing, and publishing Roc packages
 - [roc-lang/roc-overlay](https://github.com/roc-lang/roc-overlay): A Nix flake to easily install Roc new-compiler nightlies
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
