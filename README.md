@@ -86,6 +86,13 @@ A collection of links to awesome roc things.
 - [roc-lang/basic-cli](https://github.com/roc-lang/basic-cli): CLI apps
 - [roc-lang/basic-webserver](https://github.com/roc-lang/basic-webserver): Webservers
 
+### Host Glue Scripts
+
+Glue scripts generate the host-side bindings for a platform in a given language. The scripts maintained in the Roc repo are just a starting point. You are encouraged to innovate, and to write and share glue scripts for other languages and use cases!
+
+- [Pixelsprout/roc-odin-glue](https://github.com/Pixelsprout/roc-odin-glue): Glue script for hosts written in Odin
+- [roc-lang/roc](https://github.com/roc-lang/roc/tree/main/src/glue/src): Glue scripts maintained alongside the compiler, a starting point for writing your own
+
 ## Tools
 - [ageron/roclet](https://ageron.github.io/roclet/): Reactive notebooks in Roc that run in your browser, as Roc apps, or export to Markdown
 - [faldor20/tree-sitter-roc](https://github.com/faldor20/tree-sitter-roc): Tree-sitter grammar (updated for the new syntax) — also powers Helix & Neovim
