@@ -114,6 +114,10 @@ Glue scripts generate the host-side bindings for a platform in a given language.
 - 🎄 [lukewilliamboswell/aoc](https://github.com/lukewilliamboswell/aoc): Advent of Code puzzle solutions
 - [thebrandonlucas/kai](https://github.com/thebrandonlucas/kai): A friendly CLI frontend for Nix and reproducible systems
 
+## Roc Showcases
+
+- [roc.lynrummy.com](https://roc.lynrummy.com/): Steve Howell's portfolio of Roc apps, written with Claude, ranges from animated shorts and browser games to a BASIC interpreter, an online book that teaches Roc through a real program, and a live chat server built on his roc-markdown and roc-syntax-color packages. The write-ups show where Roc's types and pure functions carried the design, and how Roc works alongside Zig, WebAssembly and JavaScript.
+
 ---
 
 Looking for the older ecosystem (everything not yet migrated to the new compiler)?
