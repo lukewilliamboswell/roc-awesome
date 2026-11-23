@@ -69,6 +69,8 @@ A collection of links to awesome roc things.
 - [lukewilliamboswell/basic-ssg](https://lukewilliamboswell.github.io/basic-ssg/): Static Site Generation
 - [lukewilliamboswell/roc-fuzz](https://github.com/lukewilliamboswell/roc-fuzz): Fuzz testing for Roc code
 - [lukewilliamboswell/roc-gui](https://github.com/lukewilliamboswell/roc-gui): Experimental native GUI applications using GPUI
+- [lukewilliamboswell/roc-native-android](https://github.com/lukewilliamboswell/roc-native-android): Native Android apps
+- [lukewilliamboswell/roc-native-macos](https://github.com/lukewilliamboswell/roc-native-macos): Native macOS applications
 - [lukewilliamboswell/roc-platform-template-go](https://github.com/lukewilliamboswell/roc-platform-template-go): Go platform template
 - [lukewilliamboswell/roc-platform-template-rust](https://github.com/lukewilliamboswell/roc-platform-template-rust): Rust platform template
 - [lukewilliamboswell/roc-platform-template-zig](https://github.com/lukewilliamboswell/roc-platform-template-zig): Zig platform template
