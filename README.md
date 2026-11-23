@@ -4,13 +4,8 @@
 A collection of links to awesome roc things.
 
 - **Repository** [roc-lang/roc](https://github.com/roc-lang/roc)
-- **Download Roc** [roc-lang/nightlies releases](https://github.com/roc-lang/nightlies/releases) — prebuilt nightly builds of the latest compiler
-- **Building From Source** [official guide](https://github.com/roc-lang/roc/blob/main/BUILDING_FROM_SOURCE.md)
-- **Tutorial** [docs/mini-tutorial-new-compiler.md](https://github.com/roc-lang/roc/blob/main/docs/mini-tutorial-new-compiler.md) — interim "mini" tutorial for the new compiler (a full rewrite is planned)
-- **Language Reference** [docs/langref](https://github.com/roc-lang/roc/tree/main/docs/langref) — new-compiler reference (not yet complete or on the website, but very helpful)
-- **Syntax Reference** [test/echo/all_syntax_test.roc](https://github.com/roc-lang/roc/blob/main/test/echo/all_syntax_test.roc) — a single file demonstrating the new syntax
-- **Exercism Track** [exercism.org/tracks/roc](https://exercism.org/tracks/roc) — exercises using the new compiler & syntax
-- **Dockerhub** [hub.docker.com/repositories/roclang](https://hub.docker.com/repositories/roclang)
+- **Language Reference** [docs/langref](https://github.com/roc-lang/roc/tree/main/docs/langref)
+- **Exercism Track** [exercism.org/tracks/roc](https://exercism.org/tracks/roc)
 
 ## Roc Packages
 
@@ -109,16 +104,8 @@ Glue scripts generate the host-side bindings for a platform in a given language.
 - [roc-lang/roc-vscode](https://github.com/roc-lang/roc-vscode): VSCode plugin
 - [roc-lang/setup-roc](https://github.com/roc-lang/setup-roc): GitHub Action to install Roc — supports new-compiler nightlies (`version: nightly-new-compiler`)
 
-## Roc Applications
+## Roc Applications / Showcases
 
-- 🎄 [lukewilliamboswell/aoc](https://github.com/lukewilliamboswell/aoc): Advent of Code puzzle solutions
+- [lukewilliamboswell/aoc](https://github.com/lukewilliamboswell/aoc): Advent of Code puzzle solutions 🎄
 - [thebrandonlucas/kai](https://github.com/thebrandonlucas/kai): A friendly CLI frontend for Nix and reproducible systems
-
-## Roc Showcases
-
 - [roc.lynrummy.com](https://roc.lynrummy.com/): Steve Howell's portfolio of Roc apps, written with Claude, ranges from animated shorts and browser games to a BASIC interpreter, an online book that teaches Roc through a real program, and a live chat server built on his roc-markdown and roc-syntax-color packages. The write-ups show where Roc's types and pure functions carried the design, and how Roc works alongside Zig, WebAssembly and JavaScript.
-
----
-
-Looking for the older ecosystem (everything not yet migrated to the new compiler)?
-See **[LEGACY_ROC.md](LEGACY_ROC.md)**.
