@@ -13,6 +13,7 @@ A collection of links to awesome roc things.
 - [hasnep/roc-ascii](https://github.com/hasnep/roc-ascii): ASCII string and character types
 - [imclerran/roc-isodate](https://github.com/imclerran/roc-isodate): Date, time, and duration types with ISO 8601 parsing and formatting
 - [jaredramirez/roc-redis](https://github.com/jaredramirez/roc-redis): A binary-safe, platform-agnostic Redis client for Roc
+- [jaredramirez/roc-uuid](https://github.com/jaredramirez/roc-uuid): RFC 9562 UUIDs with parsing, versions 3, 4, 5, 7 and 8, and version 7 IDs that stay in order, on any platform
 - [jwoudenberg/roc-gregorian](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/gregorian/README.md): Working with dates and times
 - [jwoudenberg/roc-rvn](https://git.sr.ht/~jwoudenberg/roc/tree/main/item/rvn/README.md): A Roc-like serialization format
 - [Karakatiza666/roc-app-header](https://github.com/Karakatiza666/roc-app-header): Read and edit Roc app, package and platform headers, parse package release URLs, and select versions (MVS)
